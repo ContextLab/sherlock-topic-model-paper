@@ -1,0 +1,19 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\astroncite{Blei et~al.}{2003}]{BleiEtal03}
+Blei, D.~M., Ng, A.~Y., and Jordan, M.~I. (2003).
+\newblock Latent dirichlet allocation.
+\newblock {\em Journal of Machine Learning Research}, 3:993 -- 1022.
+
+\bibitem[\protect\astroncite{Kahana}{1996}]{Kaha96}
+Kahana, M.~J. (1996).
+\newblock Associative retrieval processes in free recall.
+\newblock {\em Memory \& Cognition}, 24:103--109.
+
+\bibitem[\protect\astroncite{Yonelinas}{2002}]{Yone02}
+Yonelinas, A.~P. (2002).
+\newblock The nature of recollection and familiarity: A review of 30 years of
+  research.
+\newblock {\em Journal of Memory and Language}, 46:441--517.
+
+\end{thebibliography}
