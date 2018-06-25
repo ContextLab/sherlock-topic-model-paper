@@ -10,6 +10,12 @@ Kahana, M.~J. (1996).
 \newblock Associative retrieval processes in free recall.
 \newblock {\em Memory \& Cognition}, 24:103--109.
 
+\bibitem[\protect\astroncite{Rabiner}{1989}]{Rabi89}
+Rabiner, L. (1989).
+\newblock A tutorial on hidden markov models and selected applications in
+  speech recognition.
+\newblock {\em Proceedings of the IEEE}, 77(2):257--286.
+
 \bibitem[\protect\astroncite{Yonelinas}{2002}]{Yone02}
 Yonelinas, A.~P. (2002).
 \newblock The nature of recollection and familiarity: A review of 30 years of

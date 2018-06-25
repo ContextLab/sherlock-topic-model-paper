@@ -6,45 +6,45 @@ Database file #1: memlab.bib
 Warning--I didn't find a database entry for "Murd62a"
 Warning--I didn't find a database entry for "ChenEtal17"
 Warning--I didn't find a database entry for "BaldEtal17"
-You've used 3 entries,
+You've used 4 entries,
             1940 wiz_defined-function locations,
-            600 strings with 5667 characters,
-and the built_in function-call counts, 1187 in all, are:
-= -- 119
-> -- 32
-< -- 2
-+ -- 12
-- -- 10
-* -- 102
-:= -- 207
-add.period$ -- 9
-call.type$ -- 3
-change.case$ -- 20
-chr.to.int$ -- 3
-cite$ -- 3
-duplicate$ -- 42
-empty$ -- 91
-format.name$ -- 13
-if$ -- 228
+            608 strings with 5811 characters,
+and the built_in function-call counts, 1557 in all, are:
+= -- 157
+> -- 39
+< -- 3
++ -- 16
+- -- 12
+* -- 135
+:= -- 269
+add.period$ -- 12
+call.type$ -- 4
+change.case$ -- 26
+chr.to.int$ -- 4
+cite$ -- 4
+duplicate$ -- 56
+empty$ -- 121
+format.name$ -- 16
+if$ -- 299
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 3
-newline$ -- 18
-num.names$ -- 9
-pop$ -- 12
+missing$ -- 4
+newline$ -- 23
+num.names$ -- 12
+pop$ -- 15
 preamble$ -- 1
-purify$ -- 20
+purify$ -- 26
 quote$ -- 0
-skip$ -- 33
+skip$ -- 44
 stack$ -- 0
-substring$ -- 118
-swap$ -- 6
+substring$ -- 157
+swap$ -- 8
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 18
+type$ -- 24
 warning$ -- 0
-while$ -- 11
+while$ -- 15
 width$ -- 0
-write$ -- 41
+write$ -- 54
 (There were 3 warnings)
