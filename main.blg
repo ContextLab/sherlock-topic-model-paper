@@ -4,47 +4,51 @@ The top-level auxiliary file: main.aux
 The style file: apa.bst
 Database file #1: memlab.bib
 Warning--I didn't find a database entry for "Murd62a"
-Warning--I didn't find a database entry for "ChenEtal17"
+Warning--I didn't find a database entry for "Radv12"
+Warning--I didn't find a database entry for "RadvZack11"
+Warning--I didn't find a database entry for "BrunEtal18"
+Warning--I didn't find a database entry for "HeusEtal18"
 Warning--I didn't find a database entry for "BaldEtal17"
-You've used 4 entries,
+Warning--I didn't find a database entry for "ChenEtal17"
+You've used 7 entries,
             1940 wiz_defined-function locations,
-            608 strings with 5811 characters,
-and the built_in function-call counts, 1557 in all, are:
-= -- 157
-> -- 39
-< -- 3
-+ -- 16
-- -- 12
-* -- 135
-:= -- 269
-add.period$ -- 12
-call.type$ -- 4
-change.case$ -- 26
-chr.to.int$ -- 4
-cite$ -- 4
-duplicate$ -- 56
-empty$ -- 121
-format.name$ -- 16
-if$ -- 299
+            636 strings with 6242 characters,
+and the built_in function-call counts, 2872 in all, are:
+= -- 292
+> -- 78
+< -- 7
++ -- 30
+- -- 24
+* -- 241
+:= -- 474
+add.period$ -- 21
+call.type$ -- 7
+change.case$ -- 47
+chr.to.int$ -- 7
+cite$ -- 7
+duplicate$ -- 115
+empty$ -- 214
+format.name$ -- 37
+if$ -- 576
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 4
-newline$ -- 23
-num.names$ -- 12
-pop$ -- 15
+missing$ -- 7
+newline$ -- 38
+num.names$ -- 21
+pop$ -- 30
 preamble$ -- 1
-purify$ -- 26
+purify$ -- 47
 quote$ -- 0
-skip$ -- 44
+skip$ -- 100
 stack$ -- 0
-substring$ -- 157
-swap$ -- 8
-text.length$ -- 0
+substring$ -- 259
+swap$ -- 31
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 24
+type$ -- 42
 warning$ -- 0
-while$ -- 15
+while$ -- 24
 width$ -- 0
-write$ -- 54
-(There were 3 warnings)
+write$ -- 93
+(There were 7 warnings)
