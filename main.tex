@@ -104,7 +104,7 @@ The analyses described in the previous sections are useful in that they allow us
 \label{fig:trajectory}
 \end{figure}
 
-To visualize the relationship between the video and recall event models, we embedded the video and average recall models into a 2D space (using the UMAP dimensionality reduction algorithm, for details see \ref{sec:methods}) where the points represent video/recall events and the distance between them represents their similarity in ``topic space'' (Fig.~\ref{fig:trajectory}a). (Note that all analyses are performed in the original 100 dimensional space.) We computed the group average transition probabilities from each event to each other event and plotted the values as lines where the tranparency is proportional to the probability of the transition (Fig.~\ref{fig:trajectory}b).  We observed that the two models have a very similar temporal evolution and geometric structure, and the transition probabilities tend to be strongest between events that occured sequentially (or nearby) in time.
+To visualize the relationship between the video and recall event models, we embedded the video and average recall models into a 2D space (using the UMAP dimensionality reduction algorithm, for details see \ref{sec:methods}) where the points represent video/recall events and the distance between them represents their similarity in ``topic space'' (Fig.~\ref{fig:trajectory}a). (Note that all analyses are performed in the original 100 dimensional space.) We computed the group average transition probabilities from each event to each other event and plotted the values as lines where the tranparency is proportional to the probability of the transition (Fig.~\ref{fig:trajectory}b, see Supp Fig.~\ref{fig:ind_embeddings} for individual participant plots).  We observed that the two models have a very similar temporal evolution and geometric structure, and the transition probabilities tend to be strongest between events that occured sequentially (or nearby) in time.
 
 \begin{figure}[th!]
 \centering
@@ -183,6 +183,13 @@ This analysis tested whether recall dynamics across participants could be explai
 \includegraphics[width=1\textwidth]{figs/supp1_corrmats.pdf}
 \caption{\small \textbf{Recall model correlation matrices and event segmentation fits.} Each participant's timepoint-by-timepoint recall correlation matrix.  The yellow boxes represent ``events'' identified by a hidden Markov model.}
 \label{fig:corrmats}
+\end{figure}
+
+\begin{figure}[t!]
+\centering
+\includegraphics[width=1\textwidth]{figs/supp2_projs.pdf}
+\caption{\small \textbf{Individual participant recall event model embeddings.} Each participant's recall event model embedded into a 2D space using the UMAP algorithm. The arrows on the lines connecting the recall events represents the direction of the sequence of recalls.  The color of the dots represent the most likely (i.e. most correlated) video event. The dark black line represents the best fitting line segment model (same for each participant).}
+\label{fig:ind_embeddings}
 \end{figure}
 
 \end{document}
