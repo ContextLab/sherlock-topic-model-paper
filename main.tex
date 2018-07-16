@@ -10,9 +10,9 @@
 % \newcommand{\rpm}{\raisebox{.2ex}{$\scriptstyle\pm$}}
 % \DeclareMathOperator*{\argmax}{arg\,max}
 
-% \title{Capturing the geometric structure of our experiences and how we remember them}
+\title{Capturing the geometric structure of our experiences and how we remember them}
 % \title{The fundamental shape of naturalistic experiences is preserved in episodic memory}
-\title{Memory dynamics for naturalistic experiences}
+% \title{Memory dynamics for naturalistic experiences}
 \author{Andrew C. Heusser \& Jeremy R. Manning}
 % \affiliation{Dartmouth College}
 
@@ -33,6 +33,7 @@ What does it mean to \textit{remember} something? In traditional episodic memory
 
 Human memory studies typically assess memory for the individual contents of an experience, such as the people, places and things/items encountered. However, real life experiences can also be described in terms of their temporal structure (i.e. how the contents relate over time).  Naturalistic experiences are typically autocorrelated in space and time on short timescales: the contents of an experience are often similar from moment to moment and change gradually. For example, many of us spend our mornings/evenings at home and much of our days at work (e.g. an office). While the specific happenings within these contexts differ, they are often highly correlated (and thus predictable) over time. Furthermore, our experiences can also be characterized by longer timescale correlations. For example, consider returning to your office after taking a lunch break. The spatial contexts before and after lunch are highly similar, but separated in time. Thus, while evaluating the ability to recall specific contents of an experience is one way to assess memory, another important dimension to consider is the temporal structure of the remembered experience, and how the temporal structure of the memory relates to the original experience. However, these recurrent and gradually changing temporal dynamics are not typically present in traditional memory studies, but are likely critical if we wish to understand how our memory systems remember our life experiences.
 
+% I realize this sticks out and needs to be better integrate into the narrative, but not sure how!
 Despite the continuous and (often) gradually changing nature of naturalistic experiences, prior research suggests that our memories for those same experiences may be more descrete and organized around particular ``events'' \citep{Radv12, RadvZack11, BrunEtal18}. Short timescale autocorrelations in the contents of an experience are thought associatively link information in memory, while more drastic changes in perceptual or semantic aspects of an experience (i.e. ``event boundaries'') may lead to discontinuous in memory \citep{HeusEtal18, BrunEtal18, Radv12}. There is now compelling evidence that event boundaries can influence memory organization when learning sequences of items \citep{HeusEtal18, DuBrDava13}, during navigation \citep{BrunEtal18}, and narrative comprehension \citep{ZwaaRadv98, EzzyDava11}.  However, whether people naturally recount their experiences in a way that is structured around events is not known.
 
 In this study, we analyzed an open dataset in which participants view and then verbally recount an episode of the BBC series \textit{Sherlock} \citep{ChenEtal17}. To capture the temporal structure present in naturalistic experiences, we developed a novel computational approach based on topic modeling \citep{BleiEtal03} and hidden Markov models \citep{Rabi89, BaldEtal17}. We propose that the temporal structure of an experience gives it a unique geometric ``shape'' or ``trajectory'', defined by how the contents of the experience relate and change over time. We hypothesized that when recounting naturalistic experiences, the precise details that are recapitulated and language used may differ across people, but the trajectory of the stimulus is generally preserved.
@@ -115,6 +116,13 @@ To visualize the relationship between the video and recall event models, we embe
 To test the observation that participants' recall trajectories generally matched the shape of the video trajectory, we fit participants' recall data to a model comprised of $n$ line segments that were connected by a subset of the average recall event coordinates. We fixed the endpoints of the model at the average first and last recall event, but fit the placement/length of rest of the line segments to the data. Using a cross-validated model fitting procedure (see ~\ref{sec:methods} for details), we searched for the optimal number of line segments. The best fitting model (12 line segments) can be seen in Fig.~\ref{fig:linesegs}. This model represents the set of consecutive line segments that best describe all participants recall event models. Notably, the optimal model comprises a subset of the total recall events (~roughly 1/3). % include a measure of the variance described by the model?
 
 We hypothesized that the points connecting the line segments (referred to as ``hinge-points'') represent critical scenes in the storyline. To visualize the semantic content of each hinge-point, we created wordles from the average topic vectors for each video event (left side), where the size of the word is proportional to its ``activation'' in the video event relative to other video events (Fig.~\ref{fig:linesegs}, see ~\ref{sec:methods} for analysis details). We performed the same analysis for the average recall topic vectors (right side). Notably, the text in the wordles is distinct across the hinge-points, but but similar between video and recall within hinge-point.
+
+\section{Discussion}
+\label{sec:discussion}
+
++ novel way to quantify naturalistic experiences and memories
++ opens the door to studies of how various manipulations (or simply the passage of time) might lead to changes in the structure of naturalistic memories
++ other potential applications - quantifying learning from educational videos, memory assessment/diagnosis of memory disorders and other psychiatric disorders
 
 \section{Methods}
 \label{sec:methods}
