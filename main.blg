@@ -1,54 +1,51 @@
-This is BibTeX, Version 0.99d (TeX Live 2016)
-Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: apa.bst
 Database file #1: memlab.bib
-Warning--I didn't find a database entry for "Murd62a"
 Warning--I didn't find a database entry for "Radv12"
 Warning--I didn't find a database entry for "RadvZack11"
 Warning--I didn't find a database entry for "BrunEtal18"
 Warning--I didn't find a database entry for "HeusEtal18"
-Warning--I didn't find a database entry for "ChenEtal17"
-Warning--I didn't find a database entry for "BaldEtal17"
-You've used 7 entries,
+You've used 10 entries,
             1940 wiz_defined-function locations,
-            636 strings with 6242 characters,
-and the built_in function-call counts, 2872 in all, are:
-= -- 292
-> -- 78
-< -- 7
-+ -- 30
-- -- 24
-* -- 241
-:= -- 474
-add.period$ -- 21
-call.type$ -- 7
-change.case$ -- 47
-chr.to.int$ -- 7
-cite$ -- 7
-duplicate$ -- 115
-empty$ -- 214
-format.name$ -- 37
-if$ -- 576
+            651 strings with 6749 characters,
+and the built_in function-call counts, 4215 in all, are:
+= -- 421
+> -- 141
+< -- 8
++ -- 54
+- -- 46
+* -- 372
+:= -- 707
+add.period$ -- 30
+call.type$ -- 10
+change.case$ -- 73
+chr.to.int$ -- 10
+cite$ -- 10
+duplicate$ -- 157
+empty$ -- 303
+format.name$ -- 62
+if$ -- 830
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 7
-newline$ -- 38
-num.names$ -- 21
-pop$ -- 30
+missing$ -- 10
+newline$ -- 53
+num.names$ -- 30
+pop$ -- 49
 preamble$ -- 1
-purify$ -- 47
+purify$ -- 73
 quote$ -- 0
-skip$ -- 100
+skip$ -- 131
 stack$ -- 0
-substring$ -- 259
-swap$ -- 31
+substring$ -- 368
+swap$ -- 37
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 42
+type$ -- 60
 warning$ -- 0
-while$ -- 24
+while$ -- 35
 width$ -- 0
-write$ -- 93
-(There were 7 warnings)
+write$ -- 132
+(There were 4 warnings)

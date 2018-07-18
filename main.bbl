@@ -1,9 +1,23 @@
 \begin{thebibliography}{}
 
+\bibitem[\protect\astroncite{Baldassano et~al.}{2017}]{BaldEtal17}
+Baldassano, C., Chen, J., Zadbood, A., Pillow, J.~W., Hasson, U., and Norman,
+  K.~A. (2017).
+\newblock Discovering event structure in continuous narrative perception and
+  memory.
+\newblock {\em Neuron}, 95(3):709--721.
+
 \bibitem[\protect\astroncite{Blei et~al.}{2003}]{BleiEtal03}
 Blei, D.~M., Ng, A.~Y., and Jordan, M.~I. (2003).
 \newblock Latent dirichlet allocation.
 \newblock {\em Journal of Machine Learning Research}, 3:993 -- 1022.
+
+\bibitem[\protect\astroncite{Chen et~al.}{2017}]{ChenEtal17}
+Chen, J., Leong, Y.~C., Norman, K.~A., and Hasson, U. (2017).
+\newblock Shared experience, shared memory: a common structure for brain
+  activity during naturalistic recall shared experience, shared memory: a
+  common structure for brain activity during naturalistic recall.
+\newblock {\em Nature {N}euroscience}, 20(1):115--125.
 
 \bibitem[\protect\astroncite{DuBrow and Davachi}{2013}]{DuBrDava13}
 DuBrow, S. and Davachi, L. (2013).
@@ -21,9 +35,14 @@ Kahana, M.~J. (1996).
 \newblock Associative retrieval processes in free recall.
 \newblock {\em Memory \& Cognition}, 24:103--109.
 
+\bibitem[\protect\astroncite{Murdock}{1962}]{Murd62a}
+Murdock, B.~B. (1962).
+\newblock The serial position effect of free recall.
+\newblock {\em Journal of Experimental Psychology}, 64:482--488.
+
 \bibitem[\protect\astroncite{Rabiner}{1989}]{Rabi89}
 Rabiner, L. (1989).
-\newblock A tutorial on hidden markov models and selected applications in
+\newblock A tutorial on {Hidden Markov Models} and selected applications in
   speech recognition.
 \newblock {\em Proceedings of the IEEE}, 77(2):257--286.
 
