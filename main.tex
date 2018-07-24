@@ -115,20 +115,20 @@ To measure video event memorability, we computed the correlational distance betw
 
 Then, we took a closer look at the themes contained in the top/bottom 3 events. We used the "memorability" weights to select the top/bottom events. We performed the same analysis as described above, but separately for the video event and average recall event vectors representing each of the top/bottom 3 remembered events. In Figure~\ref{fig:topics}c, the trajectory represents a low-dimensional embedding of the video model and the large colored dots represent the video events. The smaller colored dots represent the distribution of individual recall events across all participants, colored by the closest video event. We plotted wordles for the top 3 (circled in green) and bottom 3 (red) most/least remembered events, where the video is represented in the left half of the circle and the average recall is represented in the right half of the circle. Visual inspection reveals that the words contained in the memorability weighted worldles (Fig.~\ref{fig:topics}b) overlap with the individual top/bottom event wordles (Fig.~\ref{fig:topics}c). These analyses uncover the contents of naturalistic stimuli and accompanying memories, and highlight the flexibility in transforming between human and machine readable representations of the data afforded by our modeling approach.
 
-\begin{figure}[t!h]
+\begin{figure}[t!]
 \centering
 \includegraphics[width=1\textwidth]{figs/5_topics.pdf}
-\caption{\small \textbf{Topic vector memorability.} A 2-dimensional embedding of the best fitting line segment model.  The points outlined in black represent and connected by black line segments represent the critical recall events (or ``hinge-points'') of the best fitting model colored according to their matching video event.  The points not outlined in black are individual participant recall event topic vectors colored by the most similar video event. The kernel density plot represents the distribution across all points.  The word clouds for hinge-point (left: video; right: recall) were created by plotting the top 100 words from topic model that were ``activated'' during a particular event.}
+\caption{\small \textbf{Analysis of topics by event memorability.} A). Group-averaged correlation between each video event and closest recall event (per subject). Error bars represent 95\% confidence intervals. B). Wordles (top 200 words) representing a weighted average of video event topic vectors weighted by event memorability (e.g. the correlation values in A). The top wordle (green) contains words from the most remembered events and the bottom (red) contains words from least memorable events. The word sizes are proportional to the word's ``activation''. C). Trajectory represents the video event model embedded in a 2D space using UMAP. The large colored dots are video events. The small colored dots are all individual recall events across all participants, where the colors refer to the closest video event. The circular wordles represent the top 3 most (green circles) and least (red) memorable video events.  The left side of the wordle circles contain words associated with the video event vector and the right side contains words associated with the average recall event vector.}
 \label{fig:topics}
 \end{figure}
 
 \subsubsection{Brain regions that mirror the correlational structure of memory}
 
-\begin{figure}[]
+\begin{figure}[t!]
 \centering
 \includegraphics[width=1\textwidth]{figs/6_brains.pdf}
 \caption{\small \textbf{Recall model correlational structure searchlight analysis.} A). We used dynamic time warping to separately align each participant's recall model to the video model. The left matrix is S13's video-recall correlation matrix before warping. The yellow stars represent the path recovered by dynamic time warping. The right matrix is the result after warping. The same warping path was applied to the fMRI timeseries (separately for each participant). Below the matrices are toy examples representing a vectorized (aligned) recall correlation matrix and a vectorized (aligned) fMRI searchlight correlation matrix. These vectors were correlated for each searchlight sphere in the brain to assess brain regions whose temporal correlation structure mirrored the participant's recall model correlation structure. B) A surface plot of brain regions whose activity patterns mirrored the participant-specific recall correlation matrix. Significance threshold (p$<$.05) derived from a permutation procedure by phase shifting the video model and recomputing the z-scores.}
-\label{fig:topics}
+\label{fig:brainz}
 \end{figure}
 
 
