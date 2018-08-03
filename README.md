@@ -1,6 +1,6 @@
 # Capturing the geometric structure of our experiences and how we remember them
 
-This repo contains data and code used to produce the paper _Capturing the geometric structure of our experiences and how we remember them_ by Andrew C. Heusser and Jeremy R. Manning. The repo is organized as follows:
+This repo contains data and code used to produce the paper "_Capturing the geometric structure of our experiences and how we remember them_" by Andrew C. Heusser and Jeremy R. Manning. The repo is organized as follows:
 
 ```
 root
