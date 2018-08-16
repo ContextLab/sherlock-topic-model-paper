@@ -9,6 +9,8 @@
 % \usepackage{amsmath}
 % \newcommand{\rpm}{\raisebox{.2ex}{$\scriptstyle\pm$}}
 % \DeclareMathOperator*{\argmax}{arg\,max}
+\usepackage{newfloat}
+\DeclareFloatingEnvironment[name={Supplementary Figure},fileext=lof]{suppfigure}
 
 \title{Capturing the shape of our experiences and how we remember them}
 % \title{The fundamental shape of naturalistic experiences is preserved in episodic memory}
@@ -65,20 +67,6 @@ Next, we created a video ``event model by'' averaging together neighboring topic
 Then, we computed a group-averaged recall event model and video-recall event correlation matrix. For each participant (and each recall event), we sorted the recall event vectors (across all participants) according to the video event with the highest correlation. We then averaged the recall event vectors within each group. This yielded an average recall event vector for all but one (of 34) video events, since no participant remembered one of the events according to our model. Lastly, we computed an average recall event (34) by video event (34) correlation matrix, and highlighted the cell with the highest correlation value with a yellow border (Fig.~\ref{fig:model}h). Notably, this matrix displayed high correlation values along the diagonal and low correlations in the off-diagonal cells. This suggests that on average, participants were able to recapitulate the events in the episode in a specific, highly descriminable way.
 % NOTE: ^ possibly need a null model for the group analysis.  I think it could be to get a result that looks like this even if we scrambled the text. My concern is that I'm grouping the recall events by the video event they were most similar to, and then averaging, which may give rise to a smooth looking plot without any real information there...
 
-\begin{figure}[ht!]
-\centering
-\includegraphics[width=\textwidth]{figs/2_eventseg.pdf}
-\caption{\small \textbf{Modelling naturalistic stimuli and recall.} A depiction of our analysis pipeline. For all plots, darker colors indicate greater values and the range of each plot is 0-1.  A). A timepoints (1976) by topics (100) matrix representing the video stimulus.  Each row represents the most likely mixture of topics for a given timepoint (i.e. topic weights). Each column represents a different topic. B). A timepoints (1976) by topics (100) matrix representing participant \#13's recall. C). A viewing-time (1976) by viewing-time (1976) correlation matrix representing the correlation of each moment of the video model with every other moment of the video model. The white boxes represent `events' recovered by a hidden Markov model. D). A recall-time (294 sentences) by recall-time (294) correlation matrix for participant \#13. E). An events (34) by topics (100) matrix where each row represents the average topic vector for each event in the video model.  F). An events (27) by topics (100) matrix where each row represents the average topic vector for each event in participant \#13's recall model. G. A recall events (27) by video events (34) correlation matrix for participant \#13. The cells with a yellow border identify the video event with the highest correlation to a given recall event. F. A group averaged recall events (34) by video events (34) correlation matrix.  The cells with yellow borders are the video event with the highest correlation to a given average recall event.}
-\label{fig:model}
-\end{figure}
-
-\begin{figure}[t!]
-\centering
-\includegraphics[width=1\textwidth]{figs/3_list_learning.pdf}
-\caption{\small \textbf{Naturalistic extensions of classic list-learning memory analyses.} A). The probability of first recall as a function of the serial position of the event during encoding. B). A lag-conditional response probability curve. Given recall of event i, the probability that the next recalled item will be from serial position i +/- lag. C). Proportion of events recalled as a function of serial position. All error bars are the standard error of the mean derived from a bootstrap resampling procedure.}
-\label{fig:list-learning}
-\end{figure}
-
 \subsubsection{Characterizing naturalistic memory with traditional list-learning analyses}
 Just like in a traditional ``free-recall'' list-learning experiment where participants view a list of words and then verbally recall them, our video-recall matching analysis approach affords us the ability to analyze memory in the same way. The recalled events can be treated as ``items'' analogous to words recalled in a list-learning study. In our first set of analyses, we sought to characterize memory performance/dynamics by extending classic analyses originally designed for list-learning experiments to more naturalistic settings.
 
@@ -107,19 +95,19 @@ Next, we tested whether participants who recalled more events were also more pre
 
 Lastly, we tested whether participants with better memory performance were also more likely to remember the events in order.  For each participant, we computed the Spearman rank correlation between the order of events that the participant recalled and the actual order of events (filtering events that were actually recalled).  We found that participants who recalled more events also recalled more of them in order (Pearson's $r$(16)=.5, p=.04). In summary, we found that better memory performance was associated with more precise, distinctive and ordered recalls.
 
-\subsubsection{Memorability by event and topics}
-A noteworthy advantage of representing naturalistic stimuli/memory using this approach is that the event models can be mapped back to the language used to fit the model(s).  This allows for analysis and visualization of the language used when participant's recounted their experiences.  In this next analysis, we 1) quantified the memorability of each video event and 2) used memorability to plot the top words for the most and least memorable scenes, and also aggregated across the entire video.
-
-To measure video event memorability, we computed the correlation between each video event and the closest recall event and then averaged those values within participant (Fig.~\ref{fig:topics}a). We used event memorability to create a weighted average over all video event vectors, where video events with better memory were weighted more heavily. Then, we extracted the top 200 words and created ``wordles'' representing the most memorable themes in the video. The result reveal that scenes containing ``Sherlock'' and ``John'' were highly memorable, and also scenes containing words such as ``medium'', ``street'' and ``baker'' (Fig.~\ref{fig:topics}b). To find words related to the least memorable scenes, we inverted the memorability weights and again extracted the top 200 words.  Scenes containing ``Mike'' and ``Molly'' were least remembered, and also words like ``conference'', ``hospital'' and ``psychotherapist'' (Fig.~\ref{fig:topics}b).
-
-Then, we took a closer look at the themes contained in the top/bottom 3 events, using the memorability weights to select the top/bottom events. We performed the same analysis as described above, but separately for the video and average recall event vectors representing each of the top/bottom 3 remembered events. In Figure~\ref{fig:topics}c, the trajectory represents a low-dimensional embedding of the video model and the large colored dots represent the video events. The smaller colored dots represent the distribution of individual recall events across all participants, colored by the closest video event. We plotted wordles for the top 3 (circled in green) and bottom 3 (red) most/least remembered events, where the video is represented in the left half of the circle and the average recall is represented in the right half of the circle. Visual inspection reveals that the words contained in the memorability weighted worldles (Fig.~\ref{fig:topics}b) overlap with the individual top/bottom event wordles (Fig.~\ref{fig:topics}c). These analyses shed light on the contents of naturalistic stimuli and accompanying memories, and highlight the flexibility in transforming between human and machine readable representations of the data afforded by our modeling approach.
-
 \begin{figure}[t!]
 \centering
 \includegraphics[width=1\textwidth]{figs/5_topics.pdf}
 \caption{\small \textbf{Analysis of topics by event memorability.} A). Group-averaged correlation between each video event and closest recall event (per subject). Error bars represent 95\% confidence intervals. B). Wordles (top 200 words) representing a weighted average of video event topic vectors weighted by event memorability (e.g. the correlation values in A). The top wordle (green) contains words from the most remembered events and the bottom (red) contains words from least memorable events. The word sizes are proportional to the word's ``activation''. C). Trajectory represents the video event model embedded in a 2D space using UMAP. The large colored dots are video events. The small colored dots are all individual recall events across all participants, where the colors refer to the closest video event. The circular wordles represent the top 3 most (green circles) and least (red) memorable video events.  The left side of the wordle circles contain words associated with the video event vector and the right side contains words associated with the average recall event vector.}
 \label{fig:topics}
 \end{figure}
+
+\subsubsection{Memorability by event and topics}
+A noteworthy advantage of representing naturalistic stimuli/memory using this approach is that the event models can be mapped back to the language used to fit the model(s).  This allows for analysis and visualization of the language used when participant's recounted their experiences.  In this next analysis, we 1) quantified the memorability of each video event and 2) used memorability to plot the top words for the most and least memorable scenes, and also aggregated across the entire video.
+
+To measure video event memorability, we computed the correlation between each video event and the closest recall event and then averaged those values within participant (Fig.~\ref{fig:topics}a). We used event memorability to create a weighted average over all video event vectors, where video events with better memory were weighted more heavily. Then, we extracted the top 200 words and created ``wordles'' representing the most memorable themes in the video. The result reveal that scenes containing ``Sherlock'' and ``John'' were highly memorable, and also scenes containing words such as ``medium'', ``street'' and ``baker'' (Fig.~\ref{fig:topics}b). To find words related to the least memorable scenes, we inverted the memorability weights and again extracted the top 200 words.  Scenes containing ``Mike'' and ``Molly'' were least remembered, and also words like ``conference'', ``hospital'' and ``psychotherapist'' (Fig.~\ref{fig:topics}b).
+
+Then, we took a closer look at the themes contained in the top/bottom 3 events, using the memorability weights to select the top/bottom events. We performed the same analysis as described above, but separately for the video and average recall event vectors representing each of the top/bottom 3 remembered events. In Figure~\ref{fig:topics}c, the trajectory represents a low-dimensional embedding of the video model and the large colored dots represent the video events. The smaller colored dots represent the distribution of individual recall events across all participants, colored by the closest video event. We plotted wordles for the top 3 (circled in green) and bottom 3 (red) most/least remembered events, where the video is represented in the left half of the circle and the average recall is represented in the right half of the circle. Visual inspection reveals that the words contained in the memorability weighted worldles (Fig.~\ref{fig:topics}b) overlap with the individual top/bottom event wordles (Fig.~\ref{fig:topics}c). These analyses shed light on the contents of naturalistic stimuli and accompanying memories, and highlight the flexibility in transforming between human and machine readable representations of the data afforded by our modeling approach.
 
 %NOTE: I'm not sure the brain stuff really fits in this paper.  It's cool, but seems like a distraction from the main point.  perhaps it needs it own paper with more motivation, and more extensive analyses (for example, what brain regions have temporal structure like the movie model?). I'm also having a hard time motivating it in the discussion, so maybe we should cut it.
 
@@ -147,6 +135,8 @@ Historically, human memory reseachers have focussed on measuring the quantity of
 More broadly, these findings have strong implications for how we assess memory in other naturalistic contexts, like the in the classroom or in a doctor's office.  Whereas instructors often measure students' performance using metrics such as the proportion of correctly answered questions, our work suggests that this approach might miss the ``forrest for the trees''. True learning is about understanding the key concepts (i.e. understanding key themes in the learned content and how they relate) rather than about regurgitating the greatest number of facts. In addition to educational contexts, our approach may provide unique metrics that can be used to assist in the diagnosis of a memory disorder, and other psychiatric disorders that influence memory. For example, while the quantity of information recalled could be roughly matched between a healthy and patient population, other aspects of the memory (such as the shape, serial order, precision or distinctiveness) might be different. Thus, this work serves as a foundation for more nuanced approaches to memory assessment that consider the trajectory and specific contents of memory for a naturalistic experience.
 
 An important question for future work concerns the factors that drive an individual to sample their recall trajectory finely or coarsely. For example, given a short recall interval, would participants intuitively gravitate towards coarser samplings that still outline the basic shape of the movie's topic trajectory? Or if participants were told that their narrations would be played back to other participants (cite Hasson work), would that change the resolution or shape of their recalls? And over successive recountings of the same sequence of events, how do the shapes of the trajectories change? For example, loss of detail would result in a "smoothing our" of the trajectories with each new retelling. This could be quantified using our topic trajectory approach.
+
+To conclude, let's revisit the question of what it means to remember something. We assert that episodic memories are not veridical snapshots from the past, and so we should stop treating (and modelling) them as such.  Rather, episodic memories are better described as echoes of a prior experience that are shaped by other past experiences as well as the current context. Furthermore
 
 \section{Methods}
 \label{sec:methods}
@@ -210,11 +200,26 @@ In the second analysis (Fig.~\ref{fig:topics}c), we created wordles for the top/
 
 % Supplemental materials
 
-\begin{figure}[t!]
+\begin{suppfigure}[ht!]
 \centering
-\includegraphics[width=1\textwidth]{figs/supp1_corrmats.pdf}
+\includegraphics[width=\textwidth]{figs/supp1_eventseg.pdf}
+\caption{\small \textbf{Modelling naturalistic stimuli and recall.} A depiction of our analysis pipeline. For all plots, darker colors indicate greater values and the range of each plot is 0-1.  A). A timepoints (1976) by topics (100) matrix representing the video stimulus.  Each row represents the most likely mixture of topics for a given timepoint (i.e. topic weights). Each column represents a different topic. B). A timepoints (1976) by topics (100) matrix representing participant \#13's recall. C). A viewing-time (1976) by viewing-time (1976) correlation matrix representing the correlation of each moment of the video model with every other moment of the video model. The white boxes represent `events' recovered by a hidden Markov model. D). A recall-time (294 sentences) by recall-time (294) correlation matrix for participant \#13. E). An events (34) by topics (100) matrix where each row represents the average topic vector for each event in the video model.  F). An events (27) by topics (100) matrix where each row represents the average topic vector for each event in participant \#13's recall model. G. A recall events (27) by video events (34) correlation matrix for participant \#13. The cells with a yellow border identify the video event with the highest correlation to a given recall event. F. A group averaged recall events (34) by video events (34) correlation matrix.  The cells with yellow borders are the video event with the highest correlation to a given average recall event.}
+\label{fig:model}
+\end{suppfigure}
+
+\begin{suppfigure}[t!]
+\centering
+\includegraphics[width=1\textwidth]{figs/supp2_corrmats.pdf}
 \caption{\small \textbf{Recall model correlation matrices and event segmentation fits.} Each participant's timepoint-by-timepoint recall correlation matrix.  The yellow boxes represent ``events'' identified by a hidden Markov model.}
 \label{fig:corrmats}
-\end{figure}
+\end{suppfigure}
+
+
+\begin{suppfigure}[t!]
+\centering
+\includegraphics[width=1\textwidth]{figs/supp3_list_learning.pdf}
+\caption{\small \textbf{Naturalistic extensions of classic list-learning memory analyses.} A). The probability of first recall as a function of the serial position of the event during encoding. B). A lag-conditional response probability curve. Given recall of event i, the probability that the next recalled item will be from serial position i +/- lag. C). Proportion of events recalled as a function of serial position. All error bars are the standard error of the mean derived from a bootstrap resampling procedure.}
+\label{fig:list-learning}
+\end{suppfigure}
 
 \end{document}
