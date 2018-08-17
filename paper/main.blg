@@ -7,9 +7,10 @@ Warning--I didn't find a database entry for "Radv12"
 Warning--I didn't find a database entry for "RadvZack11"
 Warning--I didn't find a database entry for "BrunEtal18"
 Warning--I didn't find a database entry for "HeusEtal18"
+Warning--I didn't find a database entry for "ClewDava18"
 You've used 10 entries,
             1940 wiz_defined-function locations,
-            651 strings with 6749 characters,
+            653 strings with 6769 characters,
 and the built_in function-call counts, 4215 in all, are:
 = -- 421
 > -- 141
@@ -48,4 +49,4 @@ warning$ -- 0
 while$ -- 35
 width$ -- 0
 write$ -- 132
-(There were 4 warnings)
+(There were 5 warnings)
