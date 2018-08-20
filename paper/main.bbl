@@ -17,6 +17,11 @@ Brunec, I.~K., Moscovitch, M., and Barense, M.~D. (2018).
 \newblock Boundaries shape cognitive representations of spaces and events.
 \newblock {\em Trends Cogn Sci}, 22(7):637--650.
 
+\bibitem[\protect\astroncite{Capota et~al.}{2017}]{Brainiak}
+Capota, M., Turek, J., Chen, P.-H., Zhu, X., Manning, J.~R., Sundaram, N.,
+  Keller, B., Wang, Y., and Shin, Y.~S. (2017).
+\newblock Brain imaging analysis kit.
+
 \bibitem[\protect\astroncite{Chen et~al.}{2017}]{ChenEtal17}
 Chen, J., Leong, Y.~C., Norman, K.~A., and Hasson, U. (2017).
 \newblock Shared experience, shared memory: a common structure for brain
@@ -46,6 +51,12 @@ Heusser, A.~C., Ezzyat, Y., Shiff, I., and Davachi, L. (2018).
 \newblock Perceptual boundaries cause mnemonic trade-offs between local
   boundary processing and across-trial associative binding.
 \newblock {\em J Exp Psychol Learn Mem Cogn}, 44(7):1075--1090.
+
+\bibitem[\protect\astroncite{Heusser et~al.}{2017}]{HeusEtal17a}
+Heusser, A.~C., Ziman, K., Owen, L. L.~W., and Manning, J.~R. (2017).
+\newblock {HyperTools}: a {Python} toolbox for gaining geometric insights into
+  high-dimensional data.
+\newblock {\em {Journal of Machine Learning Research}}, \textit{In press}.
 
 \bibitem[\protect\astroncite{Hogan}{1975}]{Hoga75}
 Hogan, R.~M. (1975).
@@ -83,6 +94,14 @@ McInnes, L. and Healy, J. (2018).
 Murdock, B.~B. (1962).
 \newblock The serial position effect of free recall.
 \newblock {\em Journal of Experimental Psychology}, 64:482--488.
+
+\bibitem[\protect\astroncite{Pedregosa et~al.}{2011}]{PedrEtal11}
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel,
+  O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J.,
+  Passos, A., Cournapeau, D., Brucher, M., Perrot, M., and Duchesnay, E.
+  (2011).
+\newblock Scikit-learn: Machine learning in {P}ython.
+\newblock {\em Journal of Machine Learning Research}, 12:2825--2830.
 
 \bibitem[\protect\astroncite{Polyn et~al.}{2009}]{PolyEtal09}
 Polyn, S.~M., Norman, K.~A., and Kahana, M.~J. (2009).

@@ -5,45 +5,45 @@ The style file: apa.bst
 Database file #1: memlab.bib
 Warning--I didn't find a database entry for "ZadbEtal16"
 Warning--I didn't find a database entry for "YuEtal16"
-You've used 20 entries,
+You've used 23 entries,
             1940 wiz_defined-function locations,
-            712 strings with 8105 characters,
-and the built_in function-call counts, 8155 in all, are:
-= -- 808
-> -- 279
+            728 strings with 8835 characters,
+and the built_in function-call counts, 9868 in all, are:
+= -- 954
+> -- 433
 < -- 15
-+ -- 104
-- -- 90
-* -- 733
-:= -- 1385
-add.period$ -- 60
-call.type$ -- 20
-change.case$ -- 145
-chr.to.int$ -- 20
-cite$ -- 20
-duplicate$ -- 296
-empty$ -- 590
-format.name$ -- 126
-if$ -- 1598
++ -- 162
+- -- 148
+* -- 912
+:= -- 1705
+add.period$ -- 68
+call.type$ -- 23
+change.case$ -- 189
+chr.to.int$ -- 23
+cite$ -- 23
+duplicate$ -- 333
+empty$ -- 656
+format.name$ -- 187
+if$ -- 1900
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 20
-newline$ -- 103
-num.names$ -- 60
-pop$ -- 94
+missing$ -- 22
+newline$ -- 117
+num.names$ -- 69
+pop$ -- 133
 preamble$ -- 1
-purify$ -- 145
+purify$ -- 189
 quote$ -- 0
-skip$ -- 239
+skip$ -- 268
 stack$ -- 0
-substring$ -- 697
-swap$ -- 57
+substring$ -- 764
+swap$ -- 62
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 120
+type$ -- 138
 warning$ -- 0
-while$ -- 66
+while$ -- 74
 width$ -- 0
-write$ -- 262
+write$ -- 298
 (There were 2 warnings)
