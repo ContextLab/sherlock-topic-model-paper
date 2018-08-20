@@ -2,56 +2,45 @@ This is BibTeX, Version 0.99d (TeX Live 2018)
 Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: apa.bst
-White space in argument---line 35 of file main.aux
- : \citation{Hoga75,HowaKaha99;
- :                              Lami99}
-I'm skipping whatever remains of this command
 Database file #1: memlab.bib
-Warning--I didn't find a database entry for "Radv12"
-Warning--I didn't find a database entry for "RadvZack11"
-Warning--I didn't find a database entry for "BrunEtal18"
-Warning--I didn't find a database entry for "HeusEtal18"
-Warning--I didn't find a database entry for "ClewDava18"
-Warning--I didn't find a database entry for ""
-You've used 14 entries,
+You've used 19 entries,
             1940 wiz_defined-function locations,
-            677 strings with 7229 characters,
-and the built_in function-call counts, 5800 in all, are:
-= -- 580
-> -- 192
-< -- 11
-+ -- 74
-- -- 62
-* -- 515
-:= -- 977
-add.period$ -- 42
-call.type$ -- 14
-change.case$ -- 101
-chr.to.int$ -- 14
-cite$ -- 14
-duplicate$ -- 213
-empty$ -- 420
-format.name$ -- 86
-if$ -- 1138
+            701 strings with 7939 characters,
+and the built_in function-call counts, 7832 in all, are:
+= -- 777
+> -- 266
+< -- 14
++ -- 100
+- -- 86
+* -- 704
+:= -- 1326
+add.period$ -- 57
+call.type$ -- 19
+change.case$ -- 138
+chr.to.int$ -- 19
+cite$ -- 19
+duplicate$ -- 283
+empty$ -- 569
+format.name$ -- 119
+if$ -- 1537
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 14
-newline$ -- 73
-num.names$ -- 42
-pop$ -- 66
+missing$ -- 19
+newline$ -- 98
+num.names$ -- 57
+pop$ -- 90
 preamble$ -- 1
-purify$ -- 101
+purify$ -- 138
 quote$ -- 0
-skip$ -- 174
+skip$ -- 227
 stack$ -- 0
-substring$ -- 512
-swap$ -- 45
+substring$ -- 685
+swap$ -- 55
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 84
+type$ -- 114
 warning$ -- 0
-while$ -- 49
+while$ -- 64
 width$ -- 0
-write$ -- 184
-(There was 1 error message)
+write$ -- 249
