@@ -3,9 +3,11 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: apa.bst
 Database file #1: memlab.bib
+Warning--I didn't find a database entry for "ZadbEtal16"
+Warning--I didn't find a database entry for "YuEtal16"
 You've used 20 entries,
             1940 wiz_defined-function locations,
-            708 strings with 8069 characters,
+            712 strings with 8105 characters,
 and the built_in function-call counts, 8155 in all, are:
 = -- 808
 > -- 279
@@ -44,3 +46,4 @@ warning$ -- 0
 while$ -- 66
 width$ -- 0
 write$ -- 262
+(There were 2 warnings)
