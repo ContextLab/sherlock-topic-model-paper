@@ -73,6 +73,12 @@ Laming, D. (1999).
 \newblock Testing the idea of distinct storage mechanisms in memory.
 \newblock {\em International Journal of Psychology}, 34:419--426.
 
+\bibitem[\protect\astroncite{McInnes and Healy}{2018}]{McInHeal18}
+McInnes, L. and Healy, J. (2018).
+\newblock Umap: Uniform manifold approximation and projection for dimension
+  reduction.
+\newblock {\em arXiv}, 1802(03426).
+
 \bibitem[\protect\astroncite{Murdock}{1962}]{Murd62a}
 Murdock, B.~B. (1962).
 \newblock The serial position effect of free recall.
