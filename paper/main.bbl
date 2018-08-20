@@ -30,6 +30,22 @@ Ezzyat, Y. and Davachi, L. (2011).
 \newblock What constitutes an episode in episodic memory?
 \newblock {\em Psychological Science}, 22(2):243--252.
 
+\bibitem[\protect\astroncite{Hogan}{1975}]{Hoga75}
+Hogan, R.~M. (1975).
+\newblock Interitem encoding and directed search in free recall.
+\newblock {\em Memory \& Cognition}, 3:197--209.
+
+\bibitem[\protect\astroncite{Howard and Kahana}{1999}]{HowaKaha99}
+Howard, M.~W. and Kahana, M.~J. (1999).
+\newblock Contextual variability and serial position effects in free recall.
+\newblock {\em Journal of Experimental Psychology: Learning, Memory, and
+  Cognition}, 25:923--941.
+
+\bibitem[\protect\astroncite{Howard and Kahana}{2002}]{HowaKaha02}
+Howard, M.~W. and Kahana, M.~J. (2002).
+\newblock A distributed representation of temporal context.
+\newblock {\em Journal of Mathematical Psychology}, 46:269--299.
+
 \bibitem[\protect\astroncite{Kahana}{1996}]{Kaha96}
 Kahana, M.~J. (1996).
 \newblock Associative retrieval processes in free recall.
@@ -39,6 +55,12 @@ Kahana, M.~J. (1996).
 Murdock, B.~B. (1962).
 \newblock The serial position effect of free recall.
 \newblock {\em Journal of Experimental Psychology}, 64:482--488.
+
+\bibitem[\protect\astroncite{Polyn et~al.}{2009}]{PolyEtal09}
+Polyn, S.~M., Norman, K.~A., and Kahana, M.~J. (2009).
+\newblock A context maintenance and retrieval model of organizational processes
+  in free recall.
+\newblock {\em Psychological Review}, 116(1):129--156.
 
 \bibitem[\protect\astroncite{Rabiner}{1989}]{Rabi89}
 Rabiner, L. (1989).
