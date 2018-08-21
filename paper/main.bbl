@@ -46,6 +46,13 @@ Ezzyat, Y. and Davachi, L. (2011).
 \newblock What constitutes an episode in episodic memory?
 \newblock {\em Psychological Science}, 22(2):243--252.
 
+\bibitem[\protect\astroncite{Haonan et~al.}{2016}]{YuEtal16}
+Haonan, Y., Jiang, W., Zhiheng, H., Yi, Y., and Wei, X. (2016).
+\newblock Video paragraph captioning using hierarchical recurrent neural
+  networks.
+\newblock In {\em Proceedings of the IEEE conference on computer vision and
+  pattern recognition}, pages 4584--4593.
+
 \bibitem[\protect\astroncite{Heusser et~al.}{2018}]{HeusEtal18}
 Heusser, A.~C., Ezzyat, Y., Shiff, I., and Davachi, L. (2018).
 \newblock Perceptual boundaries cause mnemonic trade-offs between local
@@ -125,6 +132,12 @@ Yonelinas, A.~P. (2002).
 \newblock The nature of recollection and familiarity: A review of 30 years of
   research.
 \newblock {\em Journal of Memory and Language}, 46:441--517.
+
+\bibitem[\protect\astroncite{Zadbood et~al.}{2017}]{ZadbEtal17}
+Zadbood, A., Chen, J., Leong, Y.~C., Norman, K.~A., and Hasson, U. (2017).
+\newblock How we transmit memories to other brains: Constructing shared neural
+  representations via communication.
+\newblock {\em Cereb Cortex}, 27(10):4988--5000.
 
 \bibitem[\protect\astroncite{Zwaan and Radvansky}{1998}]{ZwaaRadv98}
 Zwaan, R.~A. and Radvansky, G.~A. (1998).
