@@ -2,3 +2,6 @@
 *.aux
 *.DS_Store*
 *ipynb_checkpoints*
+*.fdb_latexmk
+*.fls
+*.synctex.gz
