@@ -3,44 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: apa.bst
 Database file #1: memlab.bib
-You've used 25 entries,
+You've used 33 entries,
             1940 wiz_defined-function locations,
-            739 strings with 9244 characters,
-and the built_in function-call counts, 11020 in all, are:
-= -- 1066
-> -- 489
-< -- 16
-+ -- 182
-- -- 168
-* -- 1015
-:= -- 1888
-add.period$ -- 74
-call.type$ -- 25
-change.case$ -- 209
-chr.to.int$ -- 25
-cite$ -- 25
-duplicate$ -- 376
-empty$ -- 733
-format.name$ -- 209
-if$ -- 2136
+            791 strings with 10551 characters,
+and the built_in function-call counts, 14401 in all, are:
+= -- 1393
+> -- 632
+< -- 19
++ -- 230
+- -- 216
+* -- 1345
+:= -- 2472
+add.period$ -- 98
+call.type$ -- 33
+change.case$ -- 273
+chr.to.int$ -- 33
+cite$ -- 33
+duplicate$ -- 487
+empty$ -- 968
+format.name$ -- 269
+if$ -- 2785
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 24
-newline$ -- 127
-num.names$ -- 75
-pop$ -- 155
+missing$ -- 32
+newline$ -- 167
+num.names$ -- 99
+pop$ -- 202
 preamble$ -- 1
-purify$ -- 209
+purify$ -- 273
 quote$ -- 0
-skip$ -- 302
+skip$ -- 385
 stack$ -- 0
-substring$ -- 855
-swap$ -- 77
+substring$ -- 1127
+swap$ -- 93
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 150
+type$ -- 198
 warning$ -- 0
-while$ -- 82
+while$ -- 108
 width$ -- 0
-write$ -- 324
+write$ -- 427

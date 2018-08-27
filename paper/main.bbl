@@ -35,6 +35,18 @@ Clewett, D. and Davachi, L. (2017).
   memory.
 \newblock {\em Curr Opin Behav Sci}, 17:186--193.
 
+\bibitem[\protect\astroncite{Davachi}{2006}]{Dava06}
+Davachi, L. (2006).
+\newblock Item, context and relational episodic encoding in humans.
+\newblock {\em Current Opinion in Neurobiology}, 16(6):693---700.
+
+\bibitem[\protect\astroncite{Davachi et~al.}{2003}]{DavaEtAl03}
+Davachi, L., Mitchell, J.~P., and Wagner, A.~D. (2003).
+\newblock Multiple routes to memory: distinct medial temporal lobe processes
+  build item and source memories.
+\newblock {\em Proceedings of the National Academy of Sciences, USA},
+  100(4):2157 -- 2162.
+
 \bibitem[\protect\astroncite{DuBrow and Davachi}{2013}]{DuBrDava13}
 DuBrow, S. and Davachi, L. (2013).
 \newblock The influence of contextual boundaries on memory for the sequential
@@ -45,6 +57,11 @@ DuBrow, S. and Davachi, L. (2013).
 Ezzyat, Y. and Davachi, L. (2011).
 \newblock What constitutes an episode in episodic memory?
 \newblock {\em Psychological Science}, 22(2):243--252.
+
+\bibitem[\protect\astroncite{Gilboa and Marlatte}{2017}]{GilbMarl17}
+Gilboa, A. and Marlatte, H. (2017).
+\newblock Neurobiology of schemas and schema-mediated memory.
+\newblock {\em Trends Cogn Sci}, 21(8):618--631.
 
 \bibitem[\protect\astroncite{Haonan et~al.}{2016}]{YuEtal16}
 Haonan, Y., Jiang, W., Zhiheng, H., Yi, Y., and Wei, X. (2016).
@@ -91,6 +108,12 @@ Laming, D. (1999).
 \newblock Testing the idea of distinct storage mechanisms in memory.
 \newblock {\em International Journal of Psychology}, 34:419--426.
 
+\bibitem[\protect\astroncite{Lerner et~al.}{2011}]{LernEtal11}
+Lerner, Y., Honey, C.~J., Silbert, L.~J., and Hasson, U. (2011).
+\newblock Topographic mapping of a hierarchy of temporal receptive windows
+  using a narrated story.
+\newblock {\em Journal of Neuroscience}, 31(8):2906--2915.
+
 \bibitem[\protect\astroncite{McInnes and Healy}{2018}]{McInHeal18}
 McInnes, L. and Healy, J. (2018).
 \newblock Umap: Uniform manifold approximation and projection for dimension
@@ -101,6 +124,11 @@ McInnes, L. and Healy, J. (2018).
 Murdock, B.~B. (1962).
 \newblock The serial position effect of free recall.
 \newblock {\em Journal of Experimental Psychology}, 64:482--488.
+
+\bibitem[\protect\astroncite{Paller and Wagner}{2002}]{PallWagn02}
+Paller, K.~A. and Wagner, A.~D. (2002).
+\newblock Observing the transformation of experience into memory.
+\newblock {\em Trends in Cognitive Sciences}, 6(2):93--102.
 
 \bibitem[\protect\astroncite{Pedregosa et~al.}{2011}]{PedrEtal11}
 Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel,
@@ -126,6 +154,24 @@ Rabiner, L. (1989).
 Radvansky, G.~A. and Zacks, J.~M. (2017).
 \newblock Event boundaries in memory and cognition.
 \newblock {\em Curr Opin Behav Sci}, 17:133--140.
+
+\bibitem[\protect\astroncite{Ranganath et~al.}{2004}]{RangEtal04}
+Ranganath, C., Cohen, M.~X., Dam, C., and {D'E}sposito, M. (2004).
+\newblock Inferior temporal, prefrontal, and hippocampal contributions to
+  visual working memory maintenance and associative memory retrieval.
+\newblock {\em Journal of Neuroscience}, 24(16):3917--3925.
+
+\bibitem[\protect\astroncite{Simony et~al.}{2016}]{SimoEtal16}
+Simony, E., Honey, C.~J., Chen, J., and Hasson, U. (2016).
+\newblock Uncovering stimulus-locked network dynamics during narrative
+  comprehension.
+\newblock {\em Nature Communications}.
+
+\bibitem[\protect\astroncite{van Kesteren et~al.}{2012}]{KestEtal12}
+van Kesteren, M. T.~R., Ruiter, D.~J., Fern{\'a}ndez, G., and Henson, R.~N.
+  (2012).
+\newblock How schema and novelty augment memory formation.
+\newblock {\em Trends Neurosci}, 35(4):211--9.
 
 \bibitem[\protect\astroncite{Yonelinas}{2002}]{Yone02}
 Yonelinas, A.~P. (2002).
