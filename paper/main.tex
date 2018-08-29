@@ -1,4 +1,3 @@
-% !TEX TS-program = pdflatex
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
@@ -8,7 +7,9 @@
 \usepackage{pxfonts}
 \usepackage{graphicx}
 \usepackage{newfloat}
+\usepackage{setspace}
 \DeclareFloatingEnvironment[name={Supplementary Figure},fileext=lof]{suppfigure}
+\doublespacing
 
 
 \title{How is experience transformed into memory?}
@@ -34,6 +35,8 @@ Here we sought to examine how the temporal dynamics of a ``naturalistic'' experi
 
 
 \section*{Results}
+
+
 We sought to formalize the gists of a naturalistic stimulus (an episode of the \textit{Sherlock} television show) and participants' recountings of that stimulus.
 % JRM STOPPED HERE
 % - add a general overview
@@ -129,8 +132,6 @@ While we view this work as a major advance in characterizing and understanding h
 
 To conclude, we'll revisit the question of what it means to remember something. Our view is that ``successful remembering'' is about recovering the ``trajectory'' of an experience, rather than the ability to recognize/recall any of its particular isolated details. Decades of research suggest that episodic memories are not veridical and context-free snapshots of the past, and so treating (and modelling) them as such is overly simplistic at best (and counterproductive at worst). While it's undeniable that these models have been useful in advancing our understanding of human memory, they are severely limited in their ability to explain memory for real life experiences. Real life experiences are highly structured in time, and so to have a complete understanding of the human memory system, our experiments and models of memory must not ignore this fact. Our work provides a theoretical advance in our understanding of what it means to remember as well as a novel methodological tool to study it.
 
-\bibliography{memlab}
-
 \section*{Methods}
 \label{sec:methods}
 
@@ -174,6 +175,8 @@ We created word clouds to visualize the themes contained in the recall events. O
 In the first analysis (Fig.~\ref{fig:topics}A,B), we quantified the most and least remembered topics/words throughout the entire video by computing a weighted average over all recall events, where the weights were proportional to memory for each recall event. To measure memory for each event, for each participant we computed the correlation between the video event vector and the closest recall event vector. We then averaged these correlation values across participants. We then computed a weighted average of all video events using the correlation values as weights. Next, we computed the dot product between this weighted-average video event vector and the R matrix (described in the paragraph above) to get activations for each word. Finally, we plotted the top 200 words where the size of the word is proportional to its activation. To get the least remembered topics/words, we performed the same analysis but inverted memory weights.
 
 In the second analysis (Fig.~\ref{fig:topics}C), we created wordles for the top/bottom 3 remembered video events indexed by the average correlation values (Fig.~\ref{fig:topics}A).  To get the ``activations'' for words associated with the video events, we computed the dot product between the video event vector and the R matrix. The same procedure was used to get word activations for the recall events. We then plotted the top 200 words for the top/bottom 3 recalled events.
+
+\bibliography{memlab}
 
 % SUPPLEMENTAL MATERIALS
 
