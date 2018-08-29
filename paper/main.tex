@@ -20,116 +20,52 @@
 \maketitle
 
 \begin{abstract}
-  How our experiences unfold over time define unique \textit{thought
-    trajectories} through the relevant representational spaces.
-  Within this geometric framework, one can compare the shape of the
-  trajectory formed by an experience to that defined by our later
-  remembering of that experience.  We propose a framework for mapping
-  naturalistic experiences onto geometric spaces that characterize how
-  they unfold over time.  New insights emerge when we apply this
-  approach to a naturalistic memory experiment which had participants
-  view and recount a video.  We found that the shapes of the
-  trajectories formed by participants' recountings were all highly
-  similar to that of the original video, but participants differed in
-  the level of detail they remembered.  We also identified a network
-  of brain structures that are sensitive to the ``shapes'' of our
-  ongoing experiences, and an overlapping network that is sensitive to
-  how we will later remember those experiences.
+How our experiences unfold over time define unique \textit{trajectories} through the relevant representational spaces.  Within this geometric framework, one can compare the shape of the trajectory formed by an experience to that defined by our later remembering of that experience.  We propose a framework for mapping naturalistic experiences onto geometric spaces that characterize how they unfold over time.  New insights emerge when we apply this approach to a naturalistic memory experiment which had participants view and recount a video.  We found that the shapes of the trajectories formed by participants' recountings were all highly similar to that of the original video, but participants differed in the level of detail they remembered.  We also identified a network of brain structures that are sensitive to the ``shapes'' of our ongoing experiences, and an overlapping network that is sensitive to how we will later remember those experiences.
 \end{abstract}
 
 
 \section*{Introduction}
 
-What does it mean to \textit{remember} something? In traditional
-episodic memory experiments \citep[e.g., list-learning or trial-based
-experiments;][]{Murd62a, Kaha96}, remembering is often cast as a
-discrete and binary operation: each studied item may be separated from
-the rest of one's experiences, and that item may be labeled as having
-been recalled versus forgotten. More nuanced studies might incorporate
-self-reported confidence measures as a proxy for memory strength, or
-ask participants to discriminate between ``recollecting'' the
-(contextual) details of an experience or having a general feeling of
-``familiarity'' \citep{Yone02}. However, characterizing and evaluating
-memory in more realistic contexts (e.g., recounting a recent
-experience to a friend) is fundamentally different.  First, real-world
-recall is continuous, rather than discrete.  Removing an event from
-the context in which it occurs often substantially changes its
-meaning.  Second, the specific words used to describe an experience
-have very little bearing on whether the experience is considered to
-have been ``remembered.''  Asking whether the rememberer has precisely
-reproduced a specific set of words to describe a given experience is
-nearly orthogonal to whether they were actually able to remember it.
-Third, one might remember the gist or essence of an experience but
-forget (or neglect to recount) particular details.  Capturing the gist
-of what happened is typically the ``point'' of recounting a memory to
-a listener but, depending on the circumstances, accurate recall of any
-specific detail may be irrelevant.
+What does it mean to \textit{remember} something? In traditional episodic memory experiments \citep[e.g., list-learning or trial-based experiments;][]{Murd62a, Kaha96}, remembering is often cast as a discrete and binary operation: each studied item may be separated from the rest of one's experiences, and that item may be labeled as having been recalled versus forgotten. More nuanced studies might incorporate self-reported confidence measures as a proxy for memory strength, or ask participants to discriminate between ``recollecting'' the (contextual) details of an experience or having a general feeling of ``familiarity'' \citep{Yone02}. However, characterizing and evaluating memory in more realistic contexts (e.g., recounting a recent experience to a friend) is fundamentally different in at least three ways~\citep[also see][for a review]{KoriGold94}.  First, real world recall is continuous, rather than discrete.  Unlike in trial-based experiments, removing a (naturalistic) event from the context in which it occurs can substantially change its meaning.  Second, the specific words used to describe an experience have little bearing on whether the experience should be considered to have been ``remembered.''  Asking whether the rememberer has precisely reproduced a specific set of words to describe a given experience is nearly orthogonal to whether they were actually able to remember it.  In classic (e.g., list-learning) memory studies, precise recall is often a primary metric of assessing the quality of participants' memories.  Third, one might remember the gist or essence of an experience but forget (or neglect to recount) particular details.  Capturing the gist of what happened is typically the main ``point'' of recounting a memory to a listener whereas, depending on the circumstances, accurate recall of any specific detail may be irrelevant.  There is no analog of the ``gist'' of an experience in most traditional memory experiments; rather we tend to assess participants' abilities to recover specific details (e.g., the precise stimuli they encountered earlier in the experiment).
 
-% JRM REWRITES STOPPED HERE
+How might one go about formally characterizing the ``gist'' of an experience?  Any given moment of an experience derives meaning from surrounding moments, as well as from longer-range temporal associations~\citep[e.g., ][]{LernEtal11}.  Therefore the timecourse of how an event unfolds is fundamental to its overall meaning.  Further, this hierarchy formed by our subjective experiences at different timescales defines a \textit{context} for each new moment~\citep[e.g., ][]{HowaKaha02, HowaEtal14}, and plays an important role in how we interpret that moment and remember it later~\citep[for review see][]{MannEtal15}.  Our memory systems can then leverage these associations to form predictions that help guide our behaviors~\citep{RangRitc12}.  For example, as we navigate the world, the features of our subjective experiences tend to change gradually (e.g.\ the room or situation we are in is strongly temporally autocorrelated), allowing us to form stable estimates of our current situation and behave accordingly~\citep{ZackEtal07, ZwaaRadv98}.  Although our experiences typically change gradually, they also occasionally change suddenly~\citep[e.g., when we walk through a doorway; ][]{RadvZack17}.  Prior research suggests that these sharp transitions (termed \textit{event boundaries}) during an experience help to discretize our experiences into \textit{events}~\citep{RadvZack17, BrunEtal18, HeusEtal18, ClewDava17, EzzyDava11, DuBrDava13}.  The interplay between the stable (within event) and transient (across event) temporal dynamics of an experience also provides a potential framework for transforming experiences into compressed memories.  For example, prior work has shown that event boundaries can influence how we learn sequences of items~\citep{HeusEtal18, DuBrDava13}, navigate~\citep{BrunEtal18}, and remember and understand narratives~\citep{ZwaaRadv98, EzzyDava11}.
 
-%(JRM: started on the next paragraph...)
-Human memory studies typically assess memory for the elements within
-an experience, such as the people, places and things
-encountered. However, real life experiences can also be described in
-terms of their temporal structure (i.e., how the contents
-relate/change over time).  For instance, naturalistic experiences are
-autocorrelated in space and time on short timescales. In other words,
-the contents of an experience often change gradually and are therefore
-similar from moment to moment. As an example, many of us spend our
-mornings/evenings at home and much of our days at work (e.g., in an
-office). While the specific happenings within these contexts differ,
-they are often highly correlated (and thus predictable) within an
-experience. Furthermore, our experiences can also be characterized by
-longer timescale correlations. For example, consider returning to your
-office after taking a lunch break. The spatial contexts before and
-after lunch are highly similar, but separated in time. Thus, while
-evaluating the ability to recall the isolated elements of an
-experience has been a fruitful way to learn about human memory,
-another important dimension to consider is the temporal structure of
-the remembered experience, and how the temporal structure of the
-memory relates to the original experience. These recurrent and
-gradually changing temporal dynamics are not typically present in
-traditional memory studies, but are likely critical to understanding
-how our memory systems encode, store and retrieve our life
-experiences.
+Here we sought to examine how the temporal dynamics of a ``naturalistic'' experience were reflected in participants' later memories of that experience.  We analyzed an open dataset which comprised behavioral and functional Magnetic Resonance Imaging (fMRI) data collected as participants viewed and then verbally recalled an episode of the BBC television series \textit{Sherlock}~\citep{ChenEtal17}.  We developed a computational framework for characterizing the temporal dynamics of the moment-by-moment content of the episode (and of participants' verbal recalls).  Specifically, we use topic modeling~\citep{BleiEtal03} to characterize the thematic conceptual (semantic) content present in each moment of the episode and recalls, and we use Hidden Markov Models~\citep{Rabi89, BaldEtal17} to discretize the evolving semantic content into events.  In this way, we cast naturalistic experiences (and recalls of those experiences) as \textit{topic trajectories} that describe how the experiences evolve over time.  In other words, the episode's topic trajectory is a formalization of its gist.  Under this framework, successful remembering entails verbally ``traversing'' the topic trajectory of the original episode, thereby reproducing the gist of the original episode.  In addition, comparing the shapes of the topic trajectories of the original episode and of participants' retellings of the episode reveals which aspects of the episode were preserved (or lost) in the translation into memory.  We also identified a network of brain structures whose responses (as participants watched the episode) reflected the gist of the episode, and a second network whose responses reflected how participants would later recount the episode.
 
-While our experiences often change gradually, they can also sometimes change suddenly (e.g., walking through a doorway) \citep{RadvZack17}. Prior research suggests that these sharp transitions (coined in the literature as ``event boundaries'') during an experience may serve to discretize our memories into ``events'' \citep{RadvZack17, BrunEtal18, HeusEtal18, ClewDava17, EzzyDava11, DuBrDava13}. Short-timescale autocorrelations in the contents of an experience are thought to associatively link information in memory, while more drastic changes in perceptual or semantic aspects of an experience may lead to discontinuities in memory \citep{HeusEtal18, BrunEtal18, EzzyDava11, DuBrDava13}.  In other words, the interplay between stable and transient temporal dynamics may impose structure on memories for those experiences. There is now compelling evidence that event boundaries can influence memory organization when learning sequences of items \citep{HeusEtal18, DuBrDava13}, during navigation \citep{BrunEtal18}, and narrative comprehension \citep{ZwaaRadv98, EzzyDava11}.  However, whether people verbally recount their experiences in a way that is structured around events has not been established.
 
-In this study, we analyzed an open dataset in which participants view and then verbally recall an episode of the BBC series \textit{Sherlock} \citep{ChenEtal17}. To capture the temporal structure of the video, we developed a novel computational approach based on topic modeling \citep{BleiEtal03} and hidden Markov models \citep{Rabi89, BaldEtal17}. This technique casts naturalistic stimuli as high-dimensional topic ``trajectories'', whereby the theme of each moment of the video is represented as a topic vector. In this framework, successful remembering entails verbally ``traversing'' the path formed by the stimulus topic trajectory as closely as possible. We hypothesized that successful memory for a naturalistic stimulus is given by a recall trajectory that closely follows the path (and covers the entirety) of the stimulus trajectory.
+\section*{Results}
 
-\subsection*{Results}
-
-\begin{figure}[th!]
+\begin{figure}[t]
 \centering
 \includegraphics[width=1\textwidth]{figs/1_analysis_schematic_bw.pdf}
 \caption{\small \textbf{Schematic of the analysis approach.} For each scene in the video, text descriptions were generated by hand. Three exemplary time points are displayed here.  Below the video descriptions are text samples from an example participant's verbal recall transcript.  We fit a topic model to the moment-by-moment video text descriptions and transformed participants' verbal recall transcripts using this same model. The bar charts display the resulting topic model weights for the video (in blue) and recall (in green) for three example topic dimensions.}
 \label{fig:schematic}
 \end{figure}
 
-\subsubsection*{Modeling the naturalistic stimulus and verbal recall}
+\subsection*{Modeling the naturalistic stimulus and verbal recall}
 We fit a topic model \citep{BleiEtal03} to hand-annotated text descriptions of scenes from the video. The text descriptions contained details of the scene such as the characters present, location, and a short summary of the scene (see Fig.~\ref{fig:schematic} for example text). As depicted in Fig.~\ref{fig:model}A, the topic vectors are sparse and change slowly over time. Furthermore, there are clear transitions from one topic ``state'' to the next, possibly indexing scene transitions in the stimulus. To get a better handle on this temporal structure, we computed a timepoints (1976) by timepoints (1976) correlation matrix of the video model (Fig.~\ref{fig:model}C).  This correlation matrix reveals that the model has a strong, block-diagonal structure with very low off-diagonal correlation values, suggesting the representations of each block are unique and highly discriminable. We found that the ``narrative details'' (a few sentences summarizing the dialogue and specific happenings of the scene) of the video were the most important feature driving this model structure (see Supp. Fig.~\ref{fig:feature-importance}A).
 
 After watching the video, participants verbally recalled (in order) as much of the episode as they could.  We used the same topic model (fit with the text descriptions of the video) to transform participants' verbal recall transcripts. An example participant's (\#13) recall model is plotted in Fig.~\ref{fig:model}B. Notably, participant \#13's recall model appears visually similar to the video model. Similar to the video model analysis (Supp. Fig.~\ref{fig:feature-importance}A), we found that the ``narrative details'' feature was most important for driving the video/recall relationship (Supp. Fig.~\ref{fig:feature-importance}B).  Like the video model, topic vectors were sparse and changed gradually.  Then, we investigated the temporal structure of the recall matrices. From each participant's recall model, we computed a sentences (68 to 294) by sentences (68 to 294) correlation matrix (Fig.~\ref{fig:model}D). Like the video model, each participant's recall correlation matrix exhibited a strong block-diagonal structure (Supp. Fig.~\ref{fig:corrmats}). Notably, this suggests that participants recounted the video in discriminable segments, likely related to the recall of specific events from the video.
 
 
-\begin{figure}[t!]
+\begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figs/2_eventseg.pdf}
 \caption{\small \textbf{Modelling naturalistic stimuli and recall.} A depiction of our analysis pipeline. For all plots, darker colors indicate greater values and the range of each plot is 0-1.  \textbf{A.} A timepoints (1976) by topics (100) matrix representing the video stimulus.  Each row represents the most likely mixture of topics for a given timepoint (i.e., topic weights). Each column represents a different topic. \textbf{B.} A sentences (294) by topics (100) matrix representing participant \#13's recall. \textbf{C.} A viewing-time (1976) by viewing-time (1976) correlation matrix representing the correlation of each moment of the video model with every other moment of the video model. The yellow boxes represent `events' recovered by a hidden Markov model. \textbf{D.} A recall-time (294 sentences) by recall-time (294) correlation matrix for participant \#13. \textbf{E.} An events (34) by topics (100) matrix where each row represents the average topic vector for each event in the video model.  \textbf{F.} An events (27) by topics (100) matrix where each row represents the average topic vector for each event in participant \#13's recall model. \textbf{G.} A recall events (27) by video events (34) correlation matrix for participant \#13. The cells with a yellow border identify the video event with the highest correlation to a given recall event. \textbf{H.} A group averaged recall events (34) by video events (34) correlation matrix.  The cells with yellow borders are the video event with the highest correlation to a given average recall event.}
 \label{fig:model}
 \end{figure}
 
-\subsubsection*{Segmenting the video and recall models into ``events''}
+\subsection*{Segmenting the video and recall models into ``events''}
 As described above, a striking feature of both the video and recall correlation matrices is a strong, block structure along the diagonal of the matrices (see Fig.~\ref{fig:model}C,D).  We hypothesized that this structure might arise from transient stability in the "theme" of both the video and of participants' memory for the video. We hypothesized that specific events described by a participant could be ``matched'' to specific video events by computing the similarity (i.e., correlation) between their topic vectors. In other words, the video event that is most thematically similar to a particular recall event is the event that the participant is most likely describing. To test this idea, we segmented the video and recall models in $k$ events (i.e., states) using a hidden Markov model ~\citep{BaldEtal17}. Our algorithm determined 34 events for the video model and a range of values (range: 8-27; mean: 15.41; SD: 5.6) for the recall models (see Methods for details on choosing an optimal $k$ value).  The events discovered for the video model and a representative participant's recall model are highlighted as yellow rectangles outlining blocks along the diagonal of the correlation matrices (Fig.~\ref{fig:model}C,D).
 
 Next, we created a video ``event model'' by averaging together neighboring topic vectors that the were classified to be in the same event, resulting in an events (34) by topics (100) matrix (Fig.~\ref{fig:model}E).  We performed the same procedure for the recall matrices (Fig.~\ref{fig:model}F). Then, we computed the correlation between video and recall event models, resulting in a video events (34) by recall events (8-27, depending on the participant) correlation matrix (Fig~\ref{fig:model}G for example, Supp. Fig~\ref{fig:matchmats} for all participants). These matrices represent the similarity (correlation) between each video event and each recall event (for each participant). To determine which video event a particular recall event was most likely describing, we found the index of the video event with the highest correlation to the recall event (i.e., the argmax).  This is depicted in Fig.~\ref{fig:model}G as the cells highlighted with a yellow border. Notably, our algorithm suggests that the example participant recalled most of the video events and did so in order.
 
 Then, we computed a group-averaged recall event model and video-recall event correlation matrix. For each participant (and each recall event), we sorted the recall event vectors (across all participants) according to the video event with the highest correlation. We then averaged the recall event vectors within each group. This yielded an average recall event vector for all but one (of 34) video events, since no participant remembered one of the events according to our model. Lastly, we computed an average recall event (34) by video event (34) correlation matrix, and highlighted the cell with the highest correlation value with a yellow border (Fig.~\ref{fig:model}H). Notably, this matrix displayed high correlation values along the diagonal and low correlations in the off-diagonal cells. This suggests that on average, participants were able to recapitulate the events in the episode in a specific, sequential and highly descriminable way.
 
-\subsubsection*{The trajectory of a naturalistic experience is preserved in recall}
+\subsection*{The trajectory of a naturalistic experience is preserved in recall}
 Classic approaches to studying free recall in episodic memory (such as overall accuracy and serial position curve) focus on the quantity of information recalled \citep{Murd62a}. More recent metrics (such as lag-CRP, semantic and temporal clustering) go further to describe list-level memory organization \citep{Kaha96, PolyEtal09}. However, these approaches cannot (and were not designed to) capture the rich temporal dynamics inherent in naturalistic stimuli and associated recall of those experiences. In the next set of analyses, we test the hypothesis that successful recall of a naturalistic stimulus entails recovering the trajectory of a stimulus.
 
-\begin{figure}[t!]
+\begin{figure}[t]
 \centering
 \includegraphics[width=1\textwidth]{figs/3_trajectory.pdf}
 \caption{\small \textbf{Video and recall trajectory plots.} \textbf{A.} 2-dimensional embedding of the video events model (reduced with UMAP algorithm). The arrows indicate the forward direction of the video events. \textbf{B.} 2-dimensional embedding of the average recall events model.  The colors refer to the most similar video events. The directional lines connecting the points represent the true video event order. The arrows represent the group-average direction of all recall event transitions (i.e., a line segment connecting two consecutive recall event vectors) that intersected a circle (radius=.5) centered on the origin of the arrow. \textbf{C.} Individual trajectory plots for each participant overlayed with the video model (black). The direction of the recall sequence is indicated by the direction of arrows connecting each recall event.  The colors refer to the most likely video event.}
@@ -140,8 +76,8 @@ To visualize the relationship between the video and recall event models, we embe
 
 %NOTE: it feels like we need some more supporting evidence that the shape of the video and the recall trajectories are related.  one possibility would be to add the analysis where i compute the distance between each recall event and the line formed by each video transition per participant. the result is that hand annotated memory correlates to this distance, suggesting that participants who better capture the shape also have better memory on average.
 
-\subsubsection*{Brain regions that mirror the correlational structure of naturalistic stimuli and memories}.
-\begin{figure}[t!]
+\subsection*{Brain regions that mirror the correlational structure of naturalistic stimuli and memories}.
+\begin{figure}[t]
 \centering
 \includegraphics[width=1\textwidth]{figs/4_brains_panels.pdf}
 \caption{\small \textbf{Video and recall model correlational structure searchlight analysis.} \textbf{A.} The correlation matrix representing the temporal structure of the video model. Below it is a surface plot of brain regions whose activity patterns mirrored the correlational structure of video model during viewing.  \textbf{B.} The left matrix is S13's video-recall correlation matrix before warping. The yellow stars represent the path recovered by dynamic time warping. The right matrix is the result after warping. The same warping path was applied to the fMRI timeseries (separately for each participant). A surface plot of brain regions whose activity patterns mirrored the participant-specific recall correlation matrix. Significance threshold (p$<$.05) for both video and recall analyses derived from a permutation procedure by phase shifting the video model and recomputing the z-scores.}
@@ -152,21 +88,21 @@ Previous work suggests that the brain may represent our experiences as ``events'
 
 While each participant remembered roughly the same sequence of events, there were subtle idiosyncracies in the way each individual described the events. For example, the event-by-event similarity structure (i.e., the off-diagonal values of the recall correlation matrices) differed across individuals (Supp. Fig.~\ref{fig:corrmats}). We hypothesized that idiosyncracies in the recall dynamics across participants might be related to the temporal structure of brain networks representing the events during video viewing. In this analysis, we identified brain areas whose responses at the time of viewing exhibited the same (segmented) idiosyncratic dynamics that later appeared in that participants’ recalls. Using a procedure similar to the approach above (see Methods for details), we searched for regions whose correlational structure during viewing was related to the idiosyncratic structure of the participant's recall model. The resulting map suggests that the correlational structure of a network of brain regions including the ventromedial prefrontal cortex, anterior cingulate, and right medial temporal lobe mirror the idiosyncratic structure of participants' recalls (Fig.~\ref{fig:brainz}).
 
-\begin{figure}[t!]
+\begin{figure}[t]
 \centering
 \includegraphics[width=1\textwidth]{figs/5_topics.pdf}
 \caption{\small \textbf{Analysis of topics by event memorability.} \textbf{A.} Group-averaged correlation between each video event and closest recall event. Error bars represent 95\% confidence intervals. Stars indicate top (green) and bottom (red) 3 remembered events across participants \textbf{B.} Wordles (top 200 words) representing a weighted average of video event topic vectors weighted by event memorability (e.g., the correlation values in A). The top wordle (green) contains words from the most remembered events and the bottom (red) contains words from least memorable events. The word sizes are proportional to the word's ``activation''. \textbf{C.} Trajectory represents the video event model embedded in a 2D space using UMAP. The large colored dots are video events. The small colored dots are individual recall events across all participants, where the colors correspond to the closest video event. The circular wordles represent the top 3 most (green circles) and least (red) memorable video events.  The left side of the wordle circles contain words associated with the video event vector and the right side contains words associated with the average recall event vector.}
 \label{fig:topics}
 \end{figure}
 
-\subsubsection*{Memorability by event and topics}
+\subsection*{Memorability by event and topics}
 A notable advantage of representing naturalistic stimuli and memory using this approach is that the event models can be mapped back to the language used to fit the model(s).  This allows for analysis (and visualization) of the language used when participants recounted their experiences.  In this next analysis, we 1) quantified the memorability of each video event and 2) used memorability to plot the ``top'' words for the most and least memorable scenes.
 
 To measure video event memorability, we computed the correlation between each video event and the closest recall event and then averaged those values within participants (Fig.~\ref{fig:topics}A). We used event memorability to create a weighted average over all video event vectors, where video events with better memory were weighted more heavily. Then, we extracted the top 200 words and created ``wordles'' representing the most memorable themes in the video. The results reveal that scenes containing ``Sherlock'' and ``John'' were highly memorable, as were scenes containing words such as ``medium'', ``street'' and ``baker'' (Fig.~\ref{fig:topics}B). To find words related to the least memorable scenes, we inverted the memorability weights and again extracted the top 200 words.  Scenes containing ``Mike'' and ``Molly'' were least remembered, and also words like ``conference'', ``hospital'' and ``psychotherapist'' (Fig.~\ref{fig:topics}B).
 
 Then, we took a closer look at the themes contained in the top/bottom 3 events, using the memorability weights to select the top/bottom events. We performed the same analysis as described above, but separately for the video and average recall event vectors representing each of the top/bottom 3 remembered events. In Figure~\ref{fig:topics}C, the trajectory represents a low-dimensional embedding of the video model and the large colored dots represent the video events. The smaller colored dots represent the distribution of individual recall events across all participants, colored by the closest video event. We plotted wordles for the top 3 (circled in green) and bottom 3 (red) most/least remembered events, where the video is represented in the left half of the circle and the average recall is represented in the right half of the circle. Visual inspection reveals that the words contained in the memorability weighted worldles (Fig.~\ref{fig:topics}B) overlap with the individual top/bottom event wordles (Fig.~\ref{fig:topics}C). These analyses shed light on the contents of naturalistic stimuli and accompanying memories, and highlight the flexibility in transforming between human and machine readable representations of the data afforded by our modeling approach.
 
-\subsubsection*{Additional measures of naturalistic recall}
+\subsection*{Additional measures of naturalistic recall}
 Representing the video and verbal recall as events in ``topic space'' also affords us the ability to characterize the quality of recall in a more fine-grained and nuanced way than was previously possible. We quantified the distance between each video event and its matching recall event (``precision''), the the distance between a video event and all non-matching recall events (``distinctiveness'') and the temporal order of the recall events (``order''). All three of these metrics were correlated to hand-annotated memory performance across participants ($p<.05$, see Supplemental Materials Section 1 for details).
 
 Just like in a traditional free recall list-learning experiment where participants view a list of words and then verbally recall them, our video-recall matching analysis approach affords us the ability to analyze memory in the same way. We considered 6 classic list-learning analyses: overall accuracy, probability of first recall \citep{Hoga75, HowaKaha99, Lami99}, lag-conditional response probability \citep{Kaha96, HowaKaha99}, serial position curve \citep{Murd62a}, temporal clustering, and semantic clustering \citep{HowaKaha02, PolyEtal09}. Extending these classic list-learning analyses to naturalistic stimuli allows to directly compare trial- and naturalistic-based recall studies (see Supplemental Materials Section 2 for details).
@@ -185,12 +121,10 @@ An important question for future work concerns the factors that drive an individ
 
 While we view this work as a major advance in characterizing and understanding human memory, as with any approach there are limitations. First, the approach relies on having a ``good'' model of the stimulus (e.g., one that describes the video in the same way as participants recall it), which is currently only achievable by a human hand-annotating each moment of the video.  To increase the scalability of this approach, future work could explore automated methods for extracting meaning from videos ~\citep{YuEtal16}.  Another potential limitation is that by its nature, the model extracts the ``gist'' of scenes from the video.  This provides desirable flexibility (e.g., participants can use different combinations of words to describe the scenes), but this comes at the expense of capturing specific details.  Thus, a future direction of this work will be to increase sensitivity to such details while maintaining flexibility.
 
-To conclude, we'll revisit the question of what it means to remember something. Our view is that ``successful remembering'' is about recovering the ``trajectory'' of an experience, rather than the ability to recognize/recall any of its particular isolated details. Decades of research suggest that episodic memories are not veridical and context-free snapshots of the past, and so treating (and modelling) them as such is overly simplistic at best (and counterproductive at worst). While it's undeniable that these models have been useful in advancing our understanding of human memory, they are severely limited in their ability to explain memory for real-life experiences. Real-life experiences are highly structured in time, and so to have a complete understanding of the human memory system, our experiments and models of memory must not ignore this fact. Our work provides a theoretical advance in our understanding of what it means to remember as well as a novel methodological tool to study it.
+To conclude, we'll revisit the question of what it means to remember something. Our view is that ``successful remembering'' is about recovering the ``trajectory'' of an experience, rather than the ability to recognize/recall any of its particular isolated details. Decades of research suggest that episodic memories are not veridical and context-free snapshots of the past, and so treating (and modelling) them as such is overly simplistic at best (and counterproductive at worst). While it's undeniable that these models have been useful in advancing our understanding of human memory, they are severely limited in their ability to explain memory for real life experiences. Real life experiences are highly structured in time, and so to have a complete understanding of the human memory system, our experiments and models of memory must not ignore this fact. Our work provides a theoretical advance in our understanding of what it means to remember as well as a novel methodological tool to study it.
 
-\pagebreak
 \bibliography{memlab}
 
-\pagebreak
 \section*{Methods}
 \label{sec:methods}
 
@@ -198,7 +132,7 @@ To conclude, we'll revisit the question of what it means to remember something. 
 Participants ($n=17$) viewed the first 50 minutes of ``A Study in Pink'', an episode of the BBC series, \textit{Sherlock}. Immediately upon completion of the video, participants were instructed to (verbally) recount the events in the \textit{Sherlock} episode in their original order and in as much detail as possible. During the entire experiment, participants were in an fMRI scanner. For comprehensive details of the experimental procedures, please refer to \cite{ChenEtal17}.
 %NOTE: is this sufficient or should i provide more detail?
 
-\subsubsection*{Fitting the topic model to the video text and recall transcripts}
+\subsection*{Fitting the topic model to the video text and recall transcripts}
 A topic model was used to estimate the most likely mixture of topics for a given sample of text. First, the video was manually segmented into 1000 scenes, and a collection of descriptive features was manually transcribed. For each scene, we considered the following features: narrative details (a sentence or two describing what happened in that scene), whether the scene was indoor or outdoor, name of all the characters in the scene, name of the character in focus, name of the character speaking, location, camera angle, music presence, and text on the screen. We concatenated the text for all of these features within each segment, creating a ``bag of words'' describing each scene. We then transformed the text descriptions into overlapping windows of 50 scene segments. For example, the first text sample comprised the text from the first 50 segments, the 2nd comprised the text from n+1:n+51, and so on. We trained our model using these overlapping text samples with scikit-learn's (version 0.19.1) `CountVectorizer' and `LatentDirichletAllocation' classes \citep{PedrEtal11} implemented using our high-dimensional visualization/analysis software, Hypertools \citep{HeusEtal18}.  First, the text was transformed into a vector of word counts (after removing English stopwords). This gave a word count vector for each scene in the video.  Then, the word count vectors were used to fit a topic model (topics=100, method=`batch'). We transformed the text descriptions using the model resulting in a scenes (1000) by topics (100) matrix. The scene descriptions often spanned multiple timepoints (i.e., TRs). To account for this, we expanded the video model by copying the rows of the model for as many timepoints that the scene description spanned. After this expansion, the shape of the model was the length of the duration of the video (1976 TRs).
 
 To create the recall models, for each participant we tokenized the recall transcript into a list of sentences and then mapped the list to overlapping windows of 10 sentences.  We transformed the list of overlapping recall sentences using the model that was trained on the video text (as described in the paragraph above). The result of this was a sentences (range: 68-294) by topics (100) matrix for each participant that represented the most likely mixture of topics for a given chunk of sentences.
@@ -253,21 +187,21 @@ In the second analysis (Fig.~\ref{fig:topics}C), we created wordles for the top/
 \renewcommand{\citenumfont}[1]{S#1}
 
 % Supplemental materials
-\begin{suppfigure}[t!]
+\begin{suppfigure}[t]
 \centering
 \includegraphics[width=1\textwidth]{figs/supp1_corrmats.pdf}
 \caption{\small \textbf{Recall model correlation matrices and event segmentation fits.} Each participant's timepoint-by-timepoint recall correlation matrix.  The yellow boxes represent ``events'' identified by a hidden Markov model.}
 \label{fig:corrmats}
 \end{suppfigure}
 
-\begin{suppfigure}[t!]
+\begin{suppfigure}[t]
 \centering
 \includegraphics[width=1\textwidth]{figs/supp2_matchmats.pdf}
 \caption{\small \textbf{Video-recall event model correlation matrices.} Each participant's video event by recall event correlation matrix.  The yellow boxes represent the maximum correlation in each column.}
 \label{fig:matchmats}
 \end{suppfigure}
 
-\begin{suppfigure}[t!]
+\begin{suppfigure}[t]
 \centering
 \includegraphics[width=1\textwidth]{figs/supp4_feature_value.pdf}
 \caption{\small \textbf{Impact of individual features on topic modeling analysis.} \textbf{A.} Contribution of each feature to model structure. Bars represent the correlation of a video model trained in the absence of a given feature to the model trained on all features. \textbf{B.} Contribution of each feature to video model/recall model relationship. The leftmost bar represents the across-participants mean correlation between the video model and recall models trained on all features. Subsequent bars represent the same relationship between video and recall models trained in the absence of a given feature. Error bars are the standard error of the mean across participants. \textbf{C.}  Individual feature trajectory similarity matrix. The first row/column is the topic trajectory the full video model. Each subsequent row/column is that of a single feature. Shading corresponds to the value of the correlation coefficient (Pearson's $r$) .}
@@ -288,7 +222,7 @@ Then, we considered the distinctiveness of each recall event. That is, how uniqu
 
 Lastly, we tested whether participants with better memory performance were also more likely to remember the events in order.  For each participant, we computed the Spearman rank correlation between the order of events that the participant recalled and the actual order of events (filtering events that were actually recalled).  We found that participants who recalled more events also recalled more of them in order (Pearson's $r(16)=.5, p=.04$). In summary, we found that better memory performance was associated with more precise, distinctive and ordered recalls.
 
-\begin{suppfigure}[t!]
+\begin{suppfigure}[t]
 \centering
 \includegraphics[width=1\textwidth]{figs/supp3_list_learning.pdf}
 \caption{\small \textbf{Naturalistic extensions of classic list-learning memory analyses.} A). The probability of first recall as a function of the serial position of the event during encoding. B). A lag-conditional response probability curve. Given recall of event i, the probability that the next recalled item will be from serial position i +/- lag. C). Proportion of events recalled as a function of serial position. All error bars are the standard error of the mean derived from a bootstrap resampling procedure.}
