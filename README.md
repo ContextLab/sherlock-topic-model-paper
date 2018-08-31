@@ -1,6 +1,6 @@
 # How is experience transformed into memory?
 
-This repo contains data and code used to produce the paper "_How is experience transformed into memory_" by Andrew C. Heusser, Paxton C. Fitzpatrick and Jeremy R. Manning. The repo is organized as follows:
+This repository contains data and code used to produce the paper "_How is experience transformed into memory_" by Andrew C. Heusser, Paxton C. Fitzpatrick, and Jeremy R. Manning. The repository is organized as follows:
 
 ```
 root
