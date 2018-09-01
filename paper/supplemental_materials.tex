@@ -33,21 +33,28 @@
 % Supplemental materials
 \begin{figure}[tp]
 \centering
-\includegraphics[width=1\textwidth]{figs/supp1_corrmats.pdf}
+\includegraphics[width=0.75\textwidth]{figs/topic_words}
+\caption{\small \textbf{Topics discovered in \textit{Sherlock}.} We applied a topic model to hand-annotated information about 1000 scenes spanning the 45 minute episode.  We identified 28 unique topics with non-zero weights (we used $K=100$ topics to fit the model).  Each topic comprises a distribution of weights over all words in the vocabulary.  For each topic, we show the words with the 10 largest weights, along with a suggested description of the topic.}
+\label{fig:topics}
+\end{figure}
+
+\begin{figure}[tp]
+\centering
+\includegraphics[width=1\textwidth]{figs/corrmats}
 \caption{\small \textbf{Recall model correlation matrices and event segmentation fits.} Each participant's timepoint-by-timepoint recall correlation matrix.  The yellow boxes represent ``events'' identified by a hidden Markov model.}
 \label{fig:corrmats}
 \end{figure}
 
 \begin{figure}[tp]
 \centering
-\includegraphics[width=1\textwidth]{figs/supp2_matchmats.pdf}
+\includegraphics[width=1\textwidth]{figs/matchmats}
 \caption{\small \textbf{Video-recall event model correlation matrices.} Each participant's video event by recall event correlation matrix.  The yellow boxes represent the maximum correlation in each column.}
 \label{fig:matchmats}
 \end{figure}
 
 \begin{figure}[tb]
 \centering
-\includegraphics[width=1\textwidth]{figs/supp4_feature_value.pdf}
+\includegraphics[width=1\textwidth]{figs/feature_value}
 \caption{\small \textbf{Impact of individual features on topic modeling analysis.} \textbf{A.} Contribution of each feature to model structure. Bars represent the correlation of a video model trained in the absence of a given feature to the model trained on all features. \textbf{B.} Contribution of each feature to video model/recall model relationship. The leftmost bar represents the across-participants mean correlation between the video model and recall models trained on all features. Subsequent bars represent the same relationship between video and recall models trained in the absence of a given feature. Error bars are the standard error of the mean across participants. \textbf{C.}  Individual feature trajectory similarity matrix. The first row/column is the topic trajectory the full video model. Each subsequent row/column is that of a single feature. Shading corresponds to the value of the correlation coefficient (Pearson's $r$) .}
 \label{fig:feature-importance}
 \end{figure}
@@ -68,7 +75,7 @@ Lastly, we tested whether participants with better memory performance were also 
 
 \begin{figure}[tb]
 \centering
-\includegraphics[width=1\textwidth]{figs/supp3_list_learning.pdf}
+\includegraphics[width=1\textwidth]{figs/list_learning}
 \caption{\small \textbf{Naturalistic extensions of classic list-learning memory analyses.} A). The probability of first recall as a function of the serial position of the event during encoding. B). A lag-conditional response probability curve. Given recall of event i, the probability that the next recalled item will be from serial position i +/- lag. C). Proportion of events recalled as a function of serial position. All error bars are the standard error of the mean derived from a bootstrap resampling procedure.}
 \label{fig:list-learning}
 \end{figure}
