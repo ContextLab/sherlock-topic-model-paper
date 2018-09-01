@@ -35,6 +35,16 @@ Here we sought to examine how the temporal dynamics of a ``naturalistic'' experi
 
 \section*{Results}
 To characterize the gists of the \textit{Sherlock} episode participants watched and their subsequent recountings of the episode, we used a topic model~\cite{BleiEtal03} to discover the latent thematic content.  \cite{ChenEtal17} collected hand-annotated information about each of 1000 (manually identified) scenes spanning the roughly 45 minute video.  This information included: a brief narrative description of what was happening; whether the scene took place indoors vs. outdoors; names of any characters on the screen; names of any characters who were in focus in the camera show; names of characters who were speaking; the location where the scene took place; the camera angle (close up, medium, long, etc.); whether or not background music was present; and other similar details (for a full list of annoted features see \textit{Methods}).  We took from these annotations the union of all unique words (excluding stop words, such as ``and,'' ``or,'' ``but,'' etc.) across all features and scenes as the ``vocabulary'' for the topic model.  We then concatenated the sets of words across all features contained in overlapping 50-scene sliding windows, and treated each 50-scene sequence as a single ``document'' for the purposes of fitting the topic model.  Next, we fit a topic model with (up to) $K = 100$ topics to this collection of documents.  We found that 28 unique topics were sufficient to describe the time-varying content of the movie (see \textit{Methods}).  Note that our approach is similar in some respects to Dynamic Topic Models~\citep{BleiLaff06}, in that we sought to characterize how the thematic content of the data evolved over time.
+
+\begin{figure}[tp]
+\centering
+\includegraphics[width=0.5\textwidth]{figs/0_topics.pdf}
+\caption{\small \textbf{Topics discovered in \textit{Sherlock}.} We applied a topic model to hand-annotated information about 1000 scenes spanning the 45 minute episode.  We identified 28 unique topics with non-zero weights (we used $K=100$ topics to fit the model).  Each topic comprises a distribution of weights over all words in the vocabulary.  For each topic, we show the words with the 10 largest weights, along with a suggested description of the topic.}
+\label{fig:topics}
+\end{figure}
+
+The topics we found appeared heavily character-focused (e.g. the top-weighted word in each topic was nearly always a character) and could be roughly divided into themes related to primarily Sherlock-focused; primarily (John) Watson-focused (Watson is Sherlock's close confidant and assistant); and themes that involved Sherlock and Watson interacting (Fig.~\ref{fig:topics}).  Several of the topics also appeared highly similar, which we hypothesized might allow us to distinguish between subtle narrative differences (e.g., if the distinctions between those overlapping topics were meaningful), but could also impair characterization of the narrative (e.g., if the distinctions between topics were not meaningful).
+
 %JRM STOPPED HERE
 
 % characterize gist of movie and recalls
