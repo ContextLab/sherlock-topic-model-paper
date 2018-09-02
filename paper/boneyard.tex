@@ -1,4 +1,63 @@
 
+\textbf{JRM STOPPED HERE}
+
+% characterize gist of movie and recalls
+% x1. movie: fit topic models (add note on dynamic topic models).  fig 1: what do the topics reflect (top words from each topic), example with a few scenes.
+% x2. notice block diagonal structure, rather than smooth transitions; motivates HMM approach.  Note about selecting K
+% x3. question: do recalls exhibit same structure?  apply topic model to recalls.  note that by projecting everything into a common topic space, the thematic content of each moment of movie/recall can be compared, even though the mix of words used to describe any given event or moment may not be consistent across people (or across annotations/recall)
+% x4. recalls exhibit blocky structure, but at different scales.  motivates fitting K separately by person
+% x5. match up events (correlations)
+% x6. now we can use classic memory analyses to examine structure of recall.  motivate and reference PFR, lag-CRP, and SPC.  but this does not tell us about structure in the *content* of what people remembered, or whether people's recalls are capturing the hierarchical temporal structure of the original movie.
+% x7. topic trajectories as a new way of characterizing recall.  assess agreement using rayleigh test.  also examine shapes of each subject's trajectory to show match.  key insight: everyone captures the general shape, but at different "sampling resolutions"
+% x8. we can also project back onto the original (word) features to understand more about what any particular part of the trajectory reflects (wordle fig)
+% x9. the above analyses tell us about how the trajectory of thematic content in the episode is both preserved and transformed in participants' memories.  we next carried out analyses to understand the neural bases of these phenomena.  analysis 1: which structures are sensitive (during viewing) to the original episode's topic trajectory?  answer: default mode.  anlaysis 2: which structure are sensitive (during viewing) to how the participants will later recall the episode?  answer: vmPFC, default mode.  (potential role of vmPFC in reflecting participant-specific memory transformations and processing)
+
+
+
+
+
+\subsection*{Brain regions that mirror the correlational structure of naturalistic stimuli and memories}.
+
+
+Previous work suggests that the brain may represent our experiences as ``events'' with different time scales in a nested hierarchy ~\citep{LernEtal11, ChenEtal17, BaldEtal17}. In this next analysis we asked: what brain regions mirror the event-like correlational structure of our topic-based video model during viewing? We used a searchlight procedure (see Methods for details) to identify regions whose timepoint-by-timepoint correlational structure matched the correlational structure of our model. This analysis revealed a network of regions including bilateral frontal and cingulate cortex (Fig.~\ref{fig:brainz}), suggesting that these regions may play a role in maintaining information relevant to the narrative trajectory of the video.
+
+While each participant remembered roughly the same sequence of events, there were subtle idiosyncracies in the way each individual described the events. For example, the event-by-event similarity structure (i.e., the off-diagonal values of the recall correlation matrices) differed across individuals (Fig.~\corrmats). We hypothesized that idiosyncracies in the recall dynamics across participants might be related to the temporal structure of brain networks representing the events during video viewing. In this analysis, we identified brain areas whose responses at the time of viewing exhibited the same (segmented) idiosyncratic dynamics that later appeared in that participants’ recalls. Using a procedure similar to the approach above (see Methods for details), we searched for regions whose correlational structure during viewing was related to the idiosyncratic structure of the participant's recall model. The resulting map suggests that the correlational structure of a network of brain regions including the ventromedial prefrontal cortex, anterior cingulate, and right medial temporal lobe mirror the idiosyncratic structure of participants' recalls (Fig.~\ref{fig:brainz}).
+
+%%%
+
+
+
+\subsection*{Additional measures of naturalistic recall}
+Representing the video and verbal recall as events in ``topic space'' also affords us the ability to characterize the quality of recall in a more fine-grained and nuanced way than was previously possible. We quantified the distance between each video event and its matching recall event (``precision''), the the distance between a video event and all non-matching recall events (``distinctiveness'') and the temporal order of the recall events (``order''). All three of these metrics were correlated to hand-annotated memory performance across participants ($p < 0.05$, see Supplemental Materials Section 1 for details).
+
+Just like in a traditional free recall list-learning experiment where participants view a list of words and then verbally recall them, our video-recall matching analysis approach affords us the ability to analyze memory in the same way. We considered 6 classic list-learning analyses: overall accuracy, probability of first recall \citep{Hoga75, HowaKaha99, Lami99}, lag-conditional response probability \citep{Kaha96, HowaKaha99}, serial position curve \citep{Murd62a}, temporal clustering, and semantic clustering \citep{HowaKaha02, PolyEtal09}. Extending these classic list-learning analyses to naturalistic stimuli allows to directly compare trial- and naturalistic-based recall studies (see Supplemental Materials Section 2 for details).
+
+
+%%%%
+
+
+\subsection*{Memorability by event and topics}
+A notable advantage of representing naturalistic stimuli and memory using this approach is that the event models can be mapped back to the language used to fit the model(s).  This allows for analysis (and visualization) of the language used when participants recounted their experiences.  In this next analysis, we 1) quantified the memorability of each video event and 2) used memorability to plot the ``top'' words for the most and least memorable scenes.
+
+To measure video event memorability, we computed the correlation between each video event and the closest recall event and then averaged those values within participants (Fig.~\ref{fig:topics}A). We used event memorability to create a weighted average over all video event vectors, where video events with better memory were weighted more heavily. Then, we extracted the top 200 words and created ``wordles'' representing the most memorable themes in the video. The results reveal that scenes containing ``Sherlock'' and ``John'' were highly memorable, as were scenes containing words such as ``medium'', ``street'' and ``baker'' (Fig.~\ref{fig:topics}B). To find words related to the least memorable scenes, we inverted the memorability weights and again extracted the top 200 words.  Scenes containing ``Mike'' and ``Molly'' were least remembered, and also words like ``conference'', ``hospital'' and ``psychotherapist'' (Fig.~\ref{fig:topics}B).
+
+Then, we took a closer look at the themes contained in the top/bottom 3 events, using the memorability weights to select the top/bottom events. We performed the same analysis as described above, but separately for the video and average recall event vectors representing each of the top/bottom 3 remembered events. In Figure~\ref{fig:topics}C, the trajectory represents a low-dimensional embedding of the video model and the large colored dots represent the video events. The smaller colored dots represent the distribution of individual recall events across all participants, colored by the closest video event. We plotted wordles for the top 3 (circled in green) and bottom 3 (red) most/least remembered events, where the video is represented in the left half of the circle and the average recall is represented in the right half of the circle. Visual inspection reveals that the words contained in the memorability weighted worldles (Fig.~\ref{fig:topics}B) overlap with the individual top/bottom event wordles (Fig.~\ref{fig:topics}C). These analyses shed light on the contents of naturalistic stimuli and accompanying memories, and highlight the flexibility in transforming between human and machine readable representations of the data afforded by our modeling approach.
+
+%%%%
+
+
+To visualize the relationship between the video and recall event models, we embedded them into a 2D space using the UMAP dimensionality reduction algorithm ~\citep{McInHeal18}, where the points represent video/recall events and the distance between them represents their similarity/distance in ``topic space'' (Fig.~\ref{fig:trajectory}A).  We observed that visually, it appears that the two models have a very similar temporal evolution and geometric structure. To further quantify this correspondence and to characterize how participants navigated through the space during recall, we analyzed the angle between successive recall events. We created a grid of evenly spaced points (.25 units) in the 2D ``topic space.'' For each point on the grid, we drew a circle (radius= 0.5) around the point and grouped together all recall transitions that intersected the circle (across participants). To visualize the average angle, we converted each transition angle to a unit vector and then averaged the vectors together. To assess consistency in the direction of the recall transition across participants, we performed a Rayleigh test ($p < 0.001$, corrected at $p < 0.05$ using the permutation procedure described in Methods). Notably, the video events fell within the path formed by the recall events.  Thus, participants' recalls followed the same path as the video model (Fig.~\ref{fig:trajectory}B), suggesting the shape of the stimulus was preserved despite idiosyncratic differences between participants in their recalls.
+
+%NOTE: it feels like we need some more supporting evidence that the shape of the video and the recall trajectories are related.  one possibility would be to add the analysis where i compute the distance between each recall event and the line formed by each video transition per participant. the result is that hand annotated memory correlates to this distance, suggesting that participants who better capture the shape also have better memory on average.
+
+
+
+
+%%%
+
+
+
+
 \subsection*{Modeling the naturalistic stimulus and verbal recall}
 We fit a topic model \citep{BleiEtal03} to hand-annotated text descriptions of scenes from the video. The text descriptions contained details of the scene such as the characters present, location, and a short summary of the scene (see Fig.~\ref{fig:schematic} for example text). As depicted in Fig.~\ref{fig:model}A, the topic vectors are sparse and change slowly over time. Furthermore, there are clear transitions from one topic ``state'' to the next, possibly indexing scene transitions in the stimulus. To get a better handle on this temporal structure, we computed a timepoints (1976) by timepoints (1976) correlation matrix of the video model (Fig.~\ref{fig:model}C).  This correlation matrix reveals that the model has a strong, block-diagonal structure with very low off-diagonal correlation values, suggesting the representations of each block are unique and highly discriminable. We found that the ``narrative details'' (a few sentences summarizing the dialogue and specific happenings of the scene) of the video were the most important feature driving this model structure (see Fig.~\featureimportance A).
 
