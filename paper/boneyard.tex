@@ -1,10 +1,18 @@
 %METHODS
 
 
+%Already say these in text:
 \subsubsection*{Matching recall events to video events}
 
 
 To estimate which video event each recall event referred to, we correlated the video events model and each recall events model. This resulted in a video events (34) by recall events (8-27) correlation matrix (for each participant) which contains the similarity between each video event and each recall event (see Fig.~\matchmats).  To find the most likely video event that a given recall event referred to, we computed the argmax over the columns of this matrix.  The result was a list of video event indices for each participant. These indices are analogous to the values found in a ``recall matrix'' from a free recall list learning experiment, but represent the recall of particular events (instead of words, for example).
+
+\subsubsection*{Topic vector word clouds}
+We created word clouds to visualize the themes contained in the recall events. One component of the topic model comprises a words (2117) by topics (100) matrix (R), where the rows represent the weight of a given word in each topic.  To find words that were maximally associated with a particular event vector, we computed the dot product between R and v, which gave a 1 by \# of words vector where the values represent the ``activation'' of each of in the event. Activation is defined as the weight of a particular word in a particular event. Then, we created word clouds by extracting the top $n$ words and plotting them where the size of the word is proportional to its activation in the event.
+
+In the first analysis (Fig.~\ref{fig:topics}A,B), we quantified the most and least remembered topics/words throughout the entire video by computing a weighted average over all recall events, where the weights were proportional to memory for each recall event. To measure memory for each event, for each participant we computed the correlation between the video event vector and the closest recall event vector. We then averaged these correlation values across participants. We then computed a weighted average of all video events using the correlation values as weights. Next, we computed the dot product between this weighted-average video event vector and the R matrix (described in the paragraph above) to get activations for each word. Finally, we plotted the top 200 words where the size of the word is proportional to its activation. To get the least remembered topics/words, we performed the same analysis but inverted memory weights.
+
+In the second analysis (Fig.~\ref{fig:topics}C), we created wordles for the top/bottom 3 remembered video events indexed by the average correlation values (Fig.~\ref{fig:topics}A).  To get the ``activations'' for words associated with the video events, we computed the dot product between the video event vector and the R matrix. The same procedure was used to get word activations for the recall events. We then plotted the top 200 words for the top/bottom 3 recalled events.
 
 
 %%%%%
