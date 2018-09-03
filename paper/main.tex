@@ -123,10 +123,12 @@ The input to the topic model we trained to characterize the dynamic content of t
 
 We created similar topic proportion matrices using hand-annotated transcripts of each participant's recall of the video~\citep[annotated by ][]{ChenEtal17}.  We tokenized the transcript into a list of sentences, and then re-organized the list into overlapping sliding windows spanning 10 sentences each; we in turn transformed each window's sentences into a word count vector (using the same vocabulary as for the video model).  We then used the topic model already trained on the video scenes to compute the most probable topic proportions for each sliding window.  This yielded a number-of-sentences (range: 68--294) by number-of-topics (100) topic proportions matrix, for each participant.  These reflected the dynamic content of each participant's recalls.  Note: for details on how we selected the video and recall window lengths and number of topics, see \textit{Supplemental Materials} and Figure~\topicopt.
 
+\subsubsection*{Parsing topic trajectories into events using Hidden Markov Models}
 
-\textbf{JRM STOPPED HERE}
+\textbf{JRM STOPPED HERE...MISSING INFO}
+% don't need background or "logic"
+% what was the actual optimization metric used?  e.g. what was the penalty parameter?  we should write out the optimization as an "argmax" equation...but need info from ACH about the penalty term
 
-\subsubsection*{Extracting events using a hidden Markov model}
 The topic model timepoint-by-timepoint correlation matrices all exhibited a block-diagonal structure (with small off-diagonal values), suggesting that the models were comprised of a number of sequential `states' (or events, see Fig.~\corrmats). To capture this structure, we fit the video and each recall model using a hidden Markov model (HMM). Given a number of states or events ($k$), the HMM recovers a set of labels that segments consecutive timepoints into $k$ events ~\citep{Rabi89, BaldEtal17}. To implement this analysis, we used the BrainIAK toolbox \citep{BaldEtal17, Brainiak}.
 
 Our metric for choosing the ``best fitting'' HMM was to choose the model with the $k$ value that maximized the ratio of the average `within-event' correlation values (i.e., the correlation values for blocks of consecutive timepoints the model identified as one event) and the average `across-event' correlation (i.e., the rest of the correlation values). Additionally, we included a penalty parameter that was proportional to the smoothing of the model that preferred models with smaller $k$ values. We chose $k$ values separately for the video model and for each recall model.  Then, using the best $k$ values, We fit a separate HMM for the video and each recall model. Finally, we averaged over timepoints identified to be in the same event resulting in a events by topics matrix for the video model and each of the recall models.
