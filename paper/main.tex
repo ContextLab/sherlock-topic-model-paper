@@ -8,7 +8,8 @@
 \usepackage{graphicx}
 \usepackage{newfloat}
 \usepackage{setspace}
-%\doublespacing
+
+\newcommand{\argmax}{\mathop{\mathrm{argmax}}\limits}
 
 \newcommand{\topics}{S1}
 \newcommand{\corrmats}{S2}
@@ -17,6 +18,7 @@
 \newcommand{\listlearning}{S5}
 \newcommand{\topicopt}{S6}
 
+%\doublespacing
 
 \title{How is experience transformed into memory?}
 \author{Andrew C. Heusser, Paxton C. Fitzpatrick, and Jeremy R. Manning\\Department of Psychological and Brain Sciences\\Dartmouth College, Hanover, NH 03755, USA\\Corresponding author: jeremy.r.manning@dartmouth.edu}
@@ -124,23 +126,23 @@ The input to the topic model we trained to characterize the dynamic content of t
 We created similar topic proportion matrices using hand-annotated transcripts of each participant's recall of the video~\citep[annotated by ][]{ChenEtal17}.  We tokenized the transcript into a list of sentences, and then re-organized the list into overlapping sliding windows spanning 10 sentences each; we in turn transformed each window's sentences into a word count vector (using the same vocabulary as for the video model).  We then used the topic model already trained on the video scenes to compute the most probable topic proportions for each sliding window.  This yielded a number-of-sentences (range: 68--294) by number-of-topics (100) topic proportions matrix, for each participant.  These reflected the dynamic content of each participant's recalls.  Note: for details on how we selected the video and recall window lengths and number of topics, see \textit{Supplemental Materials} and Figure~\topicopt.
 
 \subsubsection*{Parsing topic trajectories into events using Hidden Markov Models}
+We parsed the topic trajectories of the video and participants' recalls into events using Hidden Markov Models~\citep{Rabi89}.  Given the topic portions matrix (describing the mix of topics at each timepoint) and a number of states, $K$, an HMM recovers the set of state transitions that segments the timeseries into $K$ discrete states.  Following \cite{BaldEtal17}, we imposed an additional set of constraints on the discovered state transitions that ensured that each state was encountered exactly once (i.e., never repeated).  We used the BrainIAK toolbox~\citep{Brainiak} to implement this segmentation.
 
-\textbf{JRM STOPPED HERE...MISSING INFO}
-% don't need background or "logic"
-% what was the actual optimization metric used?  e.g. what was the penalty parameter?  we should write out the optimization as an "argmax" equation...but need info from ACH about the penalty term
-% from slack: "for the video model its 250 and for the recall models its 50, and atm i cant recall why we chose those particular numbers."  also "well, for both numbers its 5x the window size"
+We used an optimization procedure to select the appropriate $K$ for each topic proportions matrix.  Specifically, we computed (for each matrix)
+\[
+  \argmax_K \left[\frac{a}{b} - \frac{K}{\alpha}\right],
+\]
+where $a$ was the average correlation between the topic vectors of timepoints within the same state; $b$ was the average correlation between the topic vectors of timepoints within \textit{different} states; and $\alpha$ was a regularization parameter that we set to 5 times the windowlength (i.e., 250 scenes for the video topic trajectory and 50 sentences for the recall topic trajectories).  Figure~\ref{fig:model}B displays the event boundaries returned for the video, and Figure~\corrmats displays the event boundaries returned for each participant's recalls.  After obtaining these event boundaries, we created stable estimates of each topic proportions matrix by averaging the topic vectors within each event.  This yielded a number-of-events by number-of-topics matrix for the video and recalls from each participant.
 
-The topic model timepoint-by-timepoint correlation matrices all exhibited a block-diagonal structure (with small off-diagonal values), suggesting that the models were comprised of a number of sequential `states' (or events, see Fig.~\corrmats). To capture this structure, we fit the video and each recall model using a hidden Markov model (HMM). Given a number of states or events ($k$), the HMM recovers a set of labels that segments consecutive timepoints into $k$ events ~\citep{Rabi89, BaldEtal17}. To implement this analysis, we used the BrainIAK toolbox \citep{BaldEtal17, Brainiak}.
 
-Our metric for choosing the ``best fitting'' HMM was to choose the model with the $k$ value that maximized the ratio of the average `within-event' correlation values (i.e., the correlation values for blocks of consecutive timepoints the model identified as one event) and the average `across-event' correlation (i.e., the rest of the correlation values). Additionally, we included a penalty parameter that was proportional to the smoothing of the model that preferred models with smaller $k$ values. We chose $k$ values separately for the video model and for each recall model.  Then, using the best $k$ values, We fit a separate HMM for the video and each recall model. Finally, we averaged over timepoints identified to be in the same event resulting in a events by topics matrix for the video model and each of the recall models.
+\subsubsection*{Visualizing the video and recall topic trajectories}
+We used the UMAP algorithm~\citep{McInHeal18} to project the 100-dimensional topic space onto a two-dimensional space for visualization (Figs.~\ref{fig:trajectory}, \ref{fig:topics}).  To ensure that all of the trajectories were projected onto the \textit{same} lower dimensional space, we computed the low-dimensional embedding on a ``stacked'' matrix created by vertically concatenating the events-by-topics topic proportions matrices for the video and all 17 participants' recalls.  We then divided the rows of the result (a total-number-of-events by two matrix) back into separate matrices for the video topic trajectory and the trajectories for each participant's recalls (Fig.~\ref{fig:trajectory}).  This general approach for discovering a shared low-dimensional embedding for a collections of high-dimensional observations follows \cite{HeusEtal18}.
 
-\subsubsection*{Matching recall events to video events}
-To estimate which video event each recall event referred to, we correlated the video events model and each recall events model. This resulted in a video events (34) by recall events (8-27) correlation matrix (for each participant) which contains the similarity between each video event and each recall event (see Fig.~\matchmats).  To find the most likely video event that a given recall event referred to, we computed the argmax over the columns of this matrix.  The result was a list of video event indices for each participant. These indices are analogous to the values found in a ``recall matrix'' from a free recall list learning experiment, but represent the recall of particular events (instead of words, for example).
+\subsubsection*{Estimating the consistency of flow through topic space across participants}
+In Figure~\ref{fig:trajectory}B, we present an analysis aimed at characterizing locations in topic space for which we can predict that
 
-\subsubsection*{Visualizing the video and recall event models}
-To visualize the temporal structure of the video event model (34 events by 100 topics) and the recall event models (8-27 events by 100 topics), we used a technique called UMAP ~\citep{McInHeal18} to reduce the ``topic-space'' from 100 dimensions down to 2 dimensions. UMAP is a nonlinear dimensionality reduction technique which models the manifold of the data with a fuzzy topological structure, and then searches for a (2D) projection of the data that has the closest equivalent fuzzy topological structure. We concatenated (vertically stacked) all event models (video, average recall, and individual recall), and then fit and transformed all of the models at once. This assured that the models were projected into the same space.
 
-\subsubsection*{Vector field analysis}
+
 To quantify the flow of recall from event to event, we performed a vector field analysis.  We tiled the 2D topic space (x, y: -6 to 6 by .25) with an evenly spaced grid. For each grid point, we drew a circle around the point (radius= 0.5). Then, we tested whether any line segments (formed by event recall transitions) passed through this area of the topic space.  For example, say that a participant transitioned from recalling event 2 to event 3. These 2 recall events correspond to 2 points in topic space, and connecting them forms a line segment. We collected all line segments that passed through a given section of topic space (collapsing across participants). To plot the average direction of the line segments (i.e., the arrows for each grid point in Fig.~\ref{fig:trajectory}B), we converted each of them to unit vectors and then averaged. For grid points where the direction was consistent (across all participants contributing to that point), the length of the arrow approaches 1, whereas if the direction was random the length of the arrow approaches 0. Lastly, we converted each unit vector to an angle (in radians) by taking the inverse tangent of the x, y components of the vector. To test whether the distribution of angles was significantly non-uniform (i.e., displayed a preferred direction across participants), we performed a Rayleigh test on the angles ($p < 0.001$, FDR-corrected at $p < 0.05$ using Benjamani-Hochberg procedure). Arrows where the Rayleigh test was significant are displayed in color (the darker the blue the more significant) while non-significant tests are displayed in gray with lower opacity.
 
 \subsubsection*{Topic vector word clouds}
