@@ -10,6 +10,7 @@
 \usepackage{setspace}
 %\doublespacing
 
+\newcommand{\argmax}{\mathop{\mathrm{argmax}}\limits}
 
 \title{\textit{Supplemental materials for}: How is experience transformed into memory?}
 \author{Andrew C. Heusser, Paxton C. Fitzpatrick, and Jeremy R. Manning\\Department of Psychological and Brain Sciences\\Dartmouth College, Hanover, NH 03755, USA\\Corresponding author: jeremy.r.manning@dartmouth.edu}
@@ -36,8 +37,12 @@ This document provides additional details about the methods we used in the main 
 
 \section*{Additional details about topic modeling methods and results}
 \subsection*{Optimizing topic model parameters}
-In order to create accurate video and recall models, we used an optimization method that was driven by our ability to explain hand-annotated memory performance metrics collected by \cite{ChenEtal17}.  Specifically, we \textbf{JRM STOPPED HERE}
-% argmax \omega (movie window size), \rho (recall window size), and K (number of topics)
+In order to create accurate video and recall models, we used an optimization method that was driven by our ability to explain hand-annotated memory performance metrics collected by \cite{ChenEtal17}.  Specifically, we used a grid search to compute the $\omega$ (movie sliding window duration, in scenes), $\rho$ (recall sliding window duration, in sentences), and $K$ (number of topics) that satisfied
+\[
+\argmax_{\omega, \rho, K} \mathrm{corr}\left(\mathrm{corr}\left(\mu\left(\omega, \rho, K\right), \nu\left(\omega, \rho, K\right)\right), \theta\right),
+\]
+where $\mathrm{corr}(\mu, \nu)$ is the per-participant correlation between the upper triangles of the temporal correlation matrices of the video ($\mu$) and recall ($\nu$) trajectory, and $\theta$ is the per-participant hand-annotated memory performance.  We searched over a grid of pre-specified values for each of these parameters; the resulting correlations are displayed in Figure~\ref{fig:paramsearch}.  The optimal parameters were $\omega = 250$, $\rho = 50$, and $K = 100$.
+
 
 \begin{figure}[tp]
 \centering
@@ -60,7 +65,7 @@ The optimized model converged on 28 unique topics that were assigned non-zero we
 \end{figure}
 
 
-\subsection*{Feature importance}
+\subsection*{Feature importance analyses}
 To determine the contribution of each feature to the structure of the video topic proportions, we conducted a ``leave one out'' anlaysis.  Specifically, we compared the original video topic trajectory (created using all hand-annotated features from the 1000 hand-annotated scenes spanning the \textit{Sherlock episode}; see \textit{Methods} for a full list of features) with video trajectories created using all but one type of feature.  We created temporal correlation matrices for each trajectory (using the topic proportions matrices) and correlated the upper triangles of each impoverished trajectory with the original feature-complete trajectory.  Observing a lower correlation between an impoverished trajectory (holding out a particular feature) and the feature-complete trajectory would suggest that the given feature played a more prominent role in shaping the structue of the feature-complete trajectory.  We found that hand-annotated narrative details provided the most structure to the feature-complete trajectory, whereas transcriptions of onscreen text provided the least structure (Fig.~\ref{fig:feature-importance}A).
 
 \begin{figure}[tb]
@@ -74,7 +79,7 @@ We also carried out an analysis of which annotated features tended to shape aspe
 
 Next, we wondered how the different types of features might relate.  For example, knowing which characters are on screen during a given scene may also provide information about which characters are speaking.  We computed video topic trajectories for each feature in turn, and then compared the temporal correlation matrices of all pairs of features.  This provided additional confirmation that the full model (including all types of features) was largely driven by narrative details.  We also found that character-driven features (characters on screen, characters speaking, and characters in focus) were strongly correlated.  Other details, such as the presense or absense of music, led to very different topic trajectories (Fig.~\ref{fig:feature-importance}C).
 
-
+\textbf{JRM STOPPED HERE.  NOTE: STILL NEED TO LOOK AT FIG CAPTIONS TOO...}
 
 
 \section*{Additional analyses of memory performance}
