@@ -30,7 +30,28 @@
 \renewcommand{\bibnumfmt}[1]{[S#1]}
 \renewcommand{\citenumfont}[1]{S#1}
 
-% Supplemental materials
+
+\section*{Overview}
+This document provides additional details about the methods we used in the main text.  We also include some additional figures referenced in the main text.
+
+\section*{Additional details about topic modeling methods and results}
+\subsection*{Optimizing topic model parameters}
+In order to create accurate video and recall models, we used an optimization method that was driven by our ability to explain hand-annotated memory performance metrics collected by \cite{ChenEtal17}.  Specifically, we \textbf{JRM STOPPED HERE}
+% argmax \omega (movie window size), \rho (recall window size), and K (number of topics)
+
+\begin{figure}[tp]
+\centering
+\includegraphics[width=1\textwidth]{figs/parameter_search}
+\caption{\small \textbf{Optimizing video model parameters.} Matrices representing the correlation value between hand-annotated memory performance and mean squared error between video model and recall model. Best fitting model was 100 topics, 50 video window size and 10 recall window size}
+\label{fig:paramsearch}
+\end{figure}
+
+The optimized model converged on 28 unique topics that were assigned non-zero weights over the course of the video.  We provide a list of the top ten highest-weighted words from each topic in Figure~\ref{fig:topics}.
+
+
+
+
+
 \begin{figure}[tp]
 \centering
 \includegraphics[width=0.75\textwidth]{figs/topic_words}
@@ -38,19 +59,9 @@
 \label{fig:topics}
 \end{figure}
 
-\begin{figure}[tp]
-\centering
-\includegraphics[width=1\textwidth]{figs/corrmats}
-\caption{\small \textbf{Recall model correlation matrices and event segmentation fits.} Each participant's timepoint-by-timepoint recall correlation matrix.  The yellow boxes represent ``events'' identified by a hidden Markov model.}
-\label{fig:corrmats}
-\end{figure}
 
-\begin{figure}[tp]
-\centering
-\includegraphics[width=1\textwidth]{figs/matchmats}
-\caption{\small \textbf{Video-recall event model correlation matrices.} Each participant's video event by recall event correlation matrix.  The yellow boxes represent the maximum correlation in each column.}
-\label{fig:matchmats}
-\end{figure}
+\subsection*{Feature importance}
+To determine the contribution of each feature to the structure of the video topic proportions, we conducted a ``leave one out'' anlaysis.  Specifically, we compared the original video topic trajectory (created using all hand-annotated features from the 1000 hand-annotated scenes spanning the \textit{Sherlock episode}; see \textit{Methods} for a full list of features) with video trajectories created using all but one type of feature.  We created temporal correlation matrices for each trajectory (using the topic proportions matrices) and correlated the upper triangles of each impoverished trajectory with the original feature-complete trajectory.  Observing a lower correlation between an impoverished trajectory (holding out a particular feature) and the feature-complete trajectory would suggest that the given feature played a more prominent role in shaping the structue of the feature-complete trajectory.  We found that hand-annotated narrative details provided the most structure to the feature-complete trajectory, whereas transcriptions of onscreen text provided the least structure (Fig.~\ref{fig:feature-importance}A).
 
 \begin{figure}[tb]
 \centering
@@ -59,12 +70,14 @@
 \label{fig:feature-importance}
 \end{figure}
 
-\begin{figure}[tp]
-\centering
-\includegraphics[width=1\textwidth]{figs/parameter_search}
-\caption{\small \textbf{Optimizing video model parameters.} Matrices representing the correlation value between hand-annotated memory performance and mean squared error between video model and recall model. Best fitting model was 100 topics, 50 video window size and 10 recall window size}
-\label{fig:matchmats}
-\end{figure}
+We also carried out an analysis of which annotated features tended to shape aspects of the video topic trajectory that were preserved in participants' recalls.  Specifically, we computed the timepoint-by-timepoint correlation matrix of the video topic trajectory, and correlated its upper triangle with the timepoint-by-timepoint correlation matrices of each participant's recall topic trajectory (resampled using linear interpolation to have the same number of timepoints as the video trajectory).  This yielded a single correlation coefficient for each participant.  We then carried out a series of analyses whereby we repeated the analysis with each annotated feature held out in turn.  Observing a lower correlation between the video and recall trajectories (when a given feature was held out) would indicate that the feature tends to be preserved in participants' recalls.  We found that hand-annotated narrative details were the most preserved type of feature, whereas information about the camera angle tended not to feature in participants' recalls (Fig.~\ref{fig:feature-importance}B).
+
+Next, we wondered how the different types of features might relate.  For example, knowing which characters are on screen during a given scene may also provide information about which characters are speaking.  We computed video topic trajectories for each feature in turn, and then compared the temporal correlation matrices of all pairs of features.  This provided additional confirmation that the full model (including all types of features) was largely driven by narrative details.  We also found that character-driven features (characters on screen, characters speaking, and characters in focus) were strongly correlated.  Other details, such as the presense or absense of music, led to very different topic trajectories (Fig.~\ref{fig:feature-importance}C).
+
+
+
+
+\section*{Additional analyses of memory performance}
 
 \section*{Naturalistic extensions of classic list-learning analyses}
 Just like in a traditional free recall list-learning experiment where participants view a list of words and then verbally recall them, our video-recall matching analysis approach affords us the ability to analyze memory in the same way. The recalled events can be treated as ``items'' analogous to words recalled in a list-learning study. Here, we sought to characterize memory performance/dynamics by extending classic analyses originally designed for list-learning experiments to more naturalistic settings.
@@ -80,20 +93,6 @@ Then, we considered the distinctiveness of each recall event. That is, how uniqu
 
 Lastly, we tested whether participants with better memory performance were also more likely to remember the events in order.  For each participant, we computed the Spearman rank correlation between the order of events that the participant recalled and the actual order of events (filtering events that were actually recalled).  We found that participants who recalled more events also recalled more of them in order (Pearson's $r(16) = 0.5, p = 0.04$). In summary, we found that better memory performance was associated with more precise, distinctive and ordered recalls.
 
-\begin{figure}[tb]
-\centering
-\includegraphics[width=1\textwidth]{figs/list_learning}
-\caption{\small \textbf{Naturalistic extensions of classic list-learning memory analyses.} A). The probability of first recall as a function of the serial position of the event during encoding. B). A lag-conditional response probability curve. Given recall of event i, the probability that the next recalled item will be from serial position i +/- lag. C). Proportion of events recalled as a function of serial position. All error bars are the standard error of the mean derived from a bootstrap resampling procedure.}
-\label{fig:list-learning}
-\end{figure}
-
-\section*{Supplemental Methods}
-\subsection*{Quantifying the importance of features}
-To determine the contribution of each feature to the structure of the video model, we examined the similarity between the temporal structure of models trained in the absence of a single feature and that of our original (i.e., full) model (Supp. Fig.~\ref{fig:feature-importance}A). First, we iteratively removed one transcribed feature from the scene descriptions and constructed a timepoints (1976) by topis (100) matrix using a topic model fit to the remaining features. We then represented the original model as well as the new model’s temporal structure as a timepoints-by-timepoints correlation matrix. Finally, we vectorized these correlation matrices and correlated them to each other resulting in a single number (for each feature removed from the model) representing the similarity of the ``feature-removed'' models to the full model.
-
-In order to ascertain which features were important in relating the recall models to the video model, we similarly compared to the temporal structures of video and recall models deprived of a single feature at a time (Supp. Fig.~\ref{fig:feature-importance}B). For each feature removed, we transformed each participant’s recall transcript using a model trained on the feature-deprived video text windows (of 50 scene segments), and resampled the recall timeseries to match the shape of the video model (1976 timepoints). We then represented the temporal structures of each participant’s recall model as timepoints-by-timepoints correlation matrices and computed the average correlation with the temporal structure of the video model (across participants).
-
-The two prior analyses examine information (about either the video model structure or the video/recall model relationship) lost in the absence of each feature. However, they do not consider redundancy in the information each feature contributes (e.g., how much unique information does "Character speaking" provide that "Character in focus" does not?). As a measure of information overlap between features, we computed the similarity between the topic trajectories of each individual annotated feature in addition to the full feature set. First, we singularly transformed the text of each feature using a model trained on the collection of all features. We then represented the single feature's model's temporal structure as a timepoints-by-timepoints correlation matrix, and compared the temporal structures pairwise by constructing a features-by-features correlation matrix ((Supp. Fig.~\ref{fig:feature-importance}C). We additionally computed the correlation between the individual features' temporal structures and that of the full video model as a measure of the proportion of information discernible from that feature alone.
 
 \subsection*{List-learning analyses}
 \textbf{Overall Accuracy.}  To get an overall measure of the quantity of information recalled, we computed the proportion of sucessfully recalled events by counting the number of unique recall events identified by the HMM model and dividing by the total number of video events.  We performed this analysis for each participant separately.
@@ -112,6 +111,40 @@ The two prior analyses examine information (about either the video model structu
 \textbf{Precision.} This measure gives us an indication of the specific match between a video event and recall event, where values approaching 1 are highly precise and lower values are inprecise.  We defined ``precision'' as the correlation between a recall event and its matching (i.e., argmax) video event.
 
 \textbf{Distinctiveness.} Distinctiveness quantifies how similar a recall event is to all non-matching video events.  It provides a metric of how uniquely a particular recall event describes a particular video event.  To compute it, a given recall event is correlated to all video events, the argmax is removed and the rest of the values are averaged. The resulting value is subtracted from 1 such that larger values indicate a more distinctive recall event.
+
+\begin{figure}[tb]
+\centering
+\includegraphics[width=1\textwidth]{figs/list_learning}
+\caption{\small \textbf{Naturalistic extensions of classic list-learning memory analyses.} A). The probability of first recall as a function of the serial position of the event during encoding. B). A lag-conditional response probability curve. Given recall of event i, the probability that the next recalled item will be from serial position i +/- lag. C). Proportion of events recalled as a function of serial position. All error bars are the standard error of the mean derived from a bootstrap resampling procedure.}
+\label{fig:list-learning}
+\end{figure}
+
+\section*{Participant-level results referenced in the main text}
+
+% Supplemental materials
+
+
+\begin{figure}[tp]
+\centering
+\includegraphics[width=1\textwidth]{figs/corrmats}
+\caption{\small \textbf{Recall model correlation matrices and event segmentation fits.} Each participant's timepoint-by-timepoint recall correlation matrix.  The yellow boxes represent ``events'' identified by a hidden Markov model.}
+\label{fig:corrmats}
+\end{figure}
+
+\begin{figure}[tp]
+\centering
+\includegraphics[width=1\textwidth]{figs/matchmats}
+\caption{\small \textbf{Video-recall event model correlation matrices.} Each participant's video event by recall event correlation matrix.  The yellow boxes represent the maximum correlation in each column.}
+\label{fig:matchmats}
+\end{figure}
+
+
+
+
+
+
+
+
 
 %\newpage
 \renewcommand{\refname}{Supplemental references}
