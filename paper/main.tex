@@ -128,6 +128,7 @@ We created similar topic proportion matrices using hand-annotated transcripts of
 \textbf{JRM STOPPED HERE...MISSING INFO}
 % don't need background or "logic"
 % what was the actual optimization metric used?  e.g. what was the penalty parameter?  we should write out the optimization as an "argmax" equation...but need info from ACH about the penalty term
+% from slack: "for the video model its 250 and for the recall models its 50, and atm i cant recall why we chose those particular numbers."  also "well, for both numbers its 5x the window size"
 
 The topic model timepoint-by-timepoint correlation matrices all exhibited a block-diagonal structure (with small off-diagonal values), suggesting that the models were comprised of a number of sequential `states' (or events, see Fig.~\corrmats). To capture this structure, we fit the video and each recall model using a hidden Markov model (HMM). Given a number of states or events ($k$), the HMM recovers a set of labels that segments consecutive timepoints into $k$ events ~\citep{Rabi89, BaldEtal17}. To implement this analysis, we used the BrainIAK toolbox \citep{BaldEtal17, Brainiak}.
 
