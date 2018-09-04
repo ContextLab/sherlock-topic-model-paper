@@ -47,7 +47,7 @@ where $\mathrm{corr}(\mu, \nu)$ is the per-participant correlation between the u
 \begin{figure}[tp]
 \centering
 \includegraphics[width=1\textwidth]{figs/parameter_search}
-\caption{\small \textbf{Optimizing video model parameters.} Matrices representing the correlation value between hand-annotated memory performance and mean squared error between video model and recall model. Best fitting model was 100 topics, 50 video window size and 10 recall window size}
+\caption{\small \textbf{Optimizing topic model parameters.}  We performed a grid search over movie sliding window length ($\omega \in \{5, 10, 25, 50, 100 \}$), recall sliding window length ($\rho \in \{5, 10, 25, 50, 100 \}$, and number of topics ($K \in \{5, 10, 25, 50, 100 \}$.  The reported correlations are between per-subject video-recall trajectory correlations and per-subject hand-annotated memory performance ratings.}
 \label{fig:paramsearch}
 \end{figure}
 
@@ -71,7 +71,7 @@ To determine the contribution of each feature to the structure of the video topi
 \begin{figure}[tb]
 \centering
 \includegraphics[width=1\textwidth]{figs/feature_value}
-\caption{\small \textbf{Impact of individual features on topic modeling analysis.} \textbf{A.} Contribution of each feature to model structure. Bars represent the correlation of a video model trained in the absence of a given feature to the model trained on all features. \textbf{B.} Contribution of each feature to video model/recall model relationship. The leftmost bar represents the across-participants mean correlation between the video model and recall models trained on all features. Subsequent bars represent the same relationship between video and recall models trained in the absence of a given feature. Error bars are the standard error of the mean across participants. \textbf{C.}  Individual feature trajectory similarity matrix. The first row/column is the topic trajectory the full video model. Each subsequent row/column is that of a single feature. Shading corresponds to the value of the correlation coefficient (Pearson's $r$) .}
+\caption{\small \textbf{Feature importance analysis.} \textbf{A.} Contributions of each feature type to the structure of the video trajectory. The bar heights reflect the correlation between the video trajectory computed using all features with a video trajectory computed using all features except the indicated feature.  (Lower bars reflect features that contribute more substantially to the video trajectory's shape.) \textbf{B.} Which features are preserved during recall?  The bar heights reflect the (average) across-participant correlations between the video and recall trajectories.  Error bars denote 95\% confidence intervals.  \textbf{C.} Feature correlation matrix.  Each entry displays the correlation between video topic trajectories created using only the indicated (row/column) features.}
 \label{fig:feature-importance}
 \end{figure}
 
@@ -79,7 +79,7 @@ We also carried out an analysis of which annotated features tended to shape aspe
 
 Next, we wondered how the different types of features might relate.  For example, knowing which characters are on screen during a given scene may also provide information about which characters are speaking.  We computed video topic trajectories for each feature in turn, and then compared the temporal correlation matrices of all pairs of features.  This provided additional confirmation that the full model (including all types of features) was largely driven by narrative details.  We also found that character-driven features (characters on screen, characters speaking, and characters in focus) were strongly correlated.  Other details, such as the presense or absense of music, led to very different topic trajectories (Fig.~\ref{fig:feature-importance}C).
 
-\textbf{JRM STOPPED HERE.  NOTE: STILL NEED TO LOOK AT FIG CAPTIONS TOO...}
+\textbf{JRM STOPPED HERE.}
 
 
 \section*{Additional analyses of memory performance}
