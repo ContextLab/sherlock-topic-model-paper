@@ -7,7 +7,6 @@ root
 └── code : all code used in the paper
     ├── notebooks : jupyter notebooks for paper analyses
     └── scripts : python scripts used to perform brain searchlight analyses on a cluster
-
 └── data : all data used in the paper
     ├── raw : raw data before processing
     └── processed : all processed data
