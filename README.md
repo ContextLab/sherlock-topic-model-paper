@@ -34,4 +34,4 @@ We also include a Dockerfile to reproduce our computational environment. Instruc
 1. You can always fire up the container by typing the following into a terminal
     - `docker start Sherlock && docker attach Sherlock`
     - When you see the `root@` prefix, letting you know you're inside the container
-2. Close a running container with `ctrl + d` from the same terminal you used to launch the container, or `docker stop MIND` from any other terminal
+2. Close a running container with `ctrl + d` from the same terminal you used to launch the container, or `docker stop Sherlock` from any other terminal
