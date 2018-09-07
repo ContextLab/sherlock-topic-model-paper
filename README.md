@@ -1,6 +1,6 @@
 # How is experience transformed into memory?
 
-This repository contains data and code used to produce the paper "_How is experience transformed into memory_" by Andrew C. Heusser, Paxton C. Fitzpatrick, and Jeremy R. Manning. The repository is organized as follows:
+This repository contains data and code used to produce the paper "[_How is experience transformed into memory_](https://www.biorxiv.org/content/early/2018/09/06/409987)" by Andrew C. Heusser, Paxton C. Fitzpatrick, and Jeremy R. Manning. The repository is organized as follows:
 
 ```
 root
