@@ -33,7 +33,7 @@
 
 
 \section*{Overview}
-This document provides additional details about the methods we used in the main text.  We also include some additional analyses and figures referenced in the main text.
+This document provides additional details about the methods we used in the main text.  We also include some additional analyses referenced in the main text.
 
 \section*{Additional details about topic modeling methods and results}
 \subsection*{Optimizing topic model parameters}
@@ -44,7 +44,7 @@ In order to create accurate video and recall models, we used an optimization met
 where $\mathrm{corr}(\mu, \nu)$ is the per-participant correlation between the upper triangles of the temporal correlation matrices of the video ($\mu$) and recall ($\nu$) trajectory, and $\theta$ is the per-participant hand-annotated memory performance.  We searched over a grid of pre-specified values for each of these parameters; the resulting correlations are displayed in Figure~\ref{fig:paramsearch}.  The optimal parameters were $\omega = 50$, $\rho = 10$, and $K = 100$.
 
 
-\begin{figure}[tp]
+\begin{figure}[p!]
 \centering
 \includegraphics[width=1\textwidth]{figs/parameter_search}
 \caption{\small \textbf{Optimizing topic model parameters.}  We performed a grid search over video sliding window length ($\omega \in \{5, 10, 25, 50, 100 \}$), recall sliding window length ($\rho \in \{5, 10, 25, 50, 100 \}$, and number of topics ($K \in \{5, 10, 25, 50, 100 \}$.  The reported correlations are between per-subject video-recall trajectory correlations and per-subject hand-annotated memory performance ratings.}
@@ -57,7 +57,7 @@ The optimized model converged on 27 unique topics that were assigned non-zero we
 
 
 
-\begin{figure}[tp]
+\begin{figure}[p!]
 \centering
 \includegraphics[width=0.75\textwidth]{figs/topic_words}
 \caption{\small \textbf{Topics discovered in \textit{Sherlock}.} We applied a topic model to hand-annotated information about 1000 scenes spanning the 45 minute episode.  We identified 27 unique topics with non-zero weights (we used $K=100$ topics to fit the model).  Each topic comprises a distribution of weights over all words in the vocabulary.  For each topic, we show the words with the 10 largest weights, along with a suggested description of the topic.}
@@ -68,7 +68,7 @@ The optimized model converged on 27 unique topics that were assigned non-zero we
 \subsection*{Feature importance analyses}
 To determine the contribution of each feature to the structure of the video topic proportions, we conducted a ``leave one out'' analysis.  Specifically, we compared the original video topic trajectory (created using all hand-annotated features from the 1000 hand-annotated scenes spanning the \textit{Sherlock} episode; see \textit{Methods} for a full list of features) with video trajectories created using all but one type of feature.  We created temporal correlation matrices for each trajectory (using the topic proportions matrices) and correlated the upper triangles of each impoverished trajectory with the original feature-complete trajectory.  Observing a lower correlation between an impoverished trajectory (holding out a particular feature) and the feature-complete trajectory would suggest that the given feature played a more prominent role in shaping the structure of the feature-complete trajectory.  We found that hand-annotated narrative details provided the most structure to the feature-complete trajectory, whereas transcriptions of onscreen text provided the least structure (Fig.~\ref{fig:feature-importance}A).
 
-\begin{figure}[tb]
+\begin{figure}[p!]
 \centering
 \includegraphics[width=1\textwidth]{figs/feature_value}
 \caption{\small \textbf{Feature importance analysis.} \textbf{A.} Contributions of each feature type to the structure of the video trajectory. The bar heights reflect the correlation between the video trajectory computed using all features with a video trajectory computed using all features except the indicated feature.  (Lower bars reflect features that contribute more substantially to the video trajectory's shape.) \textbf{B.} Which features are preserved during recall?  The bar heights reflect the (average) across-participant correlations between the video and recall trajectories.  Error bars denote bootstrap-estimated standard error of the mean.  \textbf{C.} Feature correlation matrix.  Each entry displays the correlation between video topic trajectories created using only the indicated (row/column) features.}
@@ -89,7 +89,7 @@ Perhaps the simplest and most widely used measure of memory performance is \text
 
 As described below, we next considered three more nuanced measures of the memory performance and dynamics that are typically associated with list-learning studies.  We also provide a software package, \texttt{Quail}, for carrying out these analyses~\citep{HeusEtal17b}.
 
-\begin{figure}[tb]
+\begin{figure}[p!]
 \centering
 \includegraphics[width=1\textwidth]{figs/list_learning}
 \caption{\small \textbf{Naturalistic extensions of classic list-learning memory analyses.} \textbf{A.} The probability of first recall as a function of the serial position of the event in the video. \textbf{B}.  The probability of recalling each event, conditioned on having most recently recalled the event \textit{lag} events away in the video.  \textbf{C.} The proportion of participants who recalled each event, as a function of the serial position of the events in the video.  All panels: error bars denote bootstrap-estimated standard error of the mean.}
@@ -128,19 +128,19 @@ We tested whether participants with better memory performance were also more lik
 
 
 
-\section*{Participant-level figures referenced in the main text}
+%\section*{Participant-level figures referenced in the main text}
 
 % Supporting information
 
 
-\begin{figure}[htp]
+\begin{figure}[p!]
 \centering
 \includegraphics[width=\textwidth]{figs/corrmats}
 \caption{\small \textbf{Recall trajectory temporal correlation matrices and event segmentation fits.} Each panel is in the same format as Figure~2E in the main text.  The yellow boxes indicate HMM-identified event boundaries.}
 \label{fig:corrmats}
 \end{figure}
 
-\begin{figure}[htp]
+\begin{figure}[p!]
 \centering
 \includegraphics[width=\textwidth]{figs/matchmats}
 \caption{\small \textbf{Video-recall event correlation matrices.}  Each panel is in the same format as Figure~2G in the main text.  The yellow boxes mark the maximum correlation in each column.}
