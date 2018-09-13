@@ -42,7 +42,8 @@ RUN pip install --upgrade git+https://github.com/IntelPNI/brainiak \
     git+git://github.com/ContextLab/quail.git@b25148aa506ed1d4133a0fbccafd0caf57867ef9#egg=quail \
     fastdtw \
     scikit-learn \
-    wordcloud
+    wordcloud \
+    pycircstat
 
 # add some useful directories as mirrors of directors in the same location on your computer
 ADD data /data
