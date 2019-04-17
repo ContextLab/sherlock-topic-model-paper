@@ -19,6 +19,7 @@
 \newcommand{\listlearning}{S4}
 \newcommand{\corrmats}{S5}
 \newcommand{\matchmats}{S6}
+\newcommand{\wasserstein}{S7}
 
 \doublespacing
 \linenumbers
@@ -145,6 +146,8 @@ We used an optimization procedure to select the appropriate $K$ for each topic p
   \argmax_K \left[\frac{a}{b} - \frac{K}{\alpha}\right],
 \]
 where $a$ was the average correlation between the topic vectors of timepoints within the same state; $b$ was the average correlation between the topic vectors of timepoints within \textit{different} states; and $\alpha$ was a regularization parameter that we set to 5 times the window length (i.e., 250 scenes for the video topic trajectory and 50 sentences for the recall topic trajectories).  Figure~\ref{fig:model}B displays the event boundaries returned for the video, and Figure~\corrmats~displays the event boundaries returned for each participant's recalls.  After obtaining these event boundaries, we created stable estimates of each topic proportions matrix by averaging the topic vectors within each event.  This yielded a number-of-events by number-of-topics matrix for the video and recalls from each participant.
+
+We also evaluated a parameter-free procedure for choosing $K$, which finds the $K$ value that maximizes the Wasserstein distance (a.k.a. "Earth mover's" distance) between the within and across event distributions of correlation values. This alternative procedure largely replicated the pattern of results found with the parameterized method described above, but recovered substantially fewer events on average (Fig.\wasserstein). While both approaches seem to underestimate the number of video/recall events relative to the "true" number (as determined by human raters), the parameterized approach was closer to the true number.
 
 
 \subsubsection*{Visualizing the video and recall topic trajectories}
