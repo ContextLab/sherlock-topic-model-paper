@@ -35,15 +35,18 @@ RUN conda update setuptools
 RUN conda install -c conda-forge jupyterlab
 
 # Install packages needed
-RUN pip install --upgrade git+https://github.com/IntelPNI/brainiak \
-    nilearn \
-    hypertools \
-    seaborn \
+RUN pip install numpy==1.17.0 \
+    pandas==0.25.0 \
+    matplotlib==3.1.0 \
+    seaborn==0.9.0 \
+    hypertools==0.5.1 \
+    scikit-learn==0.19.1 \
+    nilearn==0.5.2 \
+    git+https://github.com/brainiak/brainiak.git@v0.7.1 \
     git+git://github.com/ContextLab/quail.git@b25148aa506ed1d4133a0fbccafd0caf57867ef9#egg=quail \
-    fastdtw \
-    scikit-learn \
-    wordcloud \
-    pycircstat
+    fastdtw==0.3.2 \
+    wordcloud==1.5.0 \
+    pycircstat==0.0.2
 
 # add some useful directories as mirrors of directors in the same location on your computer
 ADD data /data
