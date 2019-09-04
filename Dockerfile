@@ -41,7 +41,7 @@ RUN pip install numpy==1.17.0 \
     seaborn==0.9.0 \
     hypertools==0.5.1 \
     scikit-learn==0.19.1 \
-    nilearn==0.5.2 \
+    nilearn==0.4.2 \
     git+https://github.com/brainiak/brainiak.git@v0.7.1 \
     git+git://github.com/ContextLab/quail.git@b25148aa506ed1d4133a0fbccafd0caf57867ef9#egg=quail \
     fastdtw==0.3.2 \
