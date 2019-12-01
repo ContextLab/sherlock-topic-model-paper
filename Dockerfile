@@ -47,7 +47,8 @@ RUN pip install numpy==1.17.0 \
     fastdtw==0.3.2 \
     wordcloud==1.5.0 \
     pycircstat==0.0.2 \
-    scipy==1.2.1
+    scipy==1.2.1 \ 
+    xlrd==1.1.0
 
 # add some useful directories as mirrors of directors in the same location on your computer
 ADD data /data
