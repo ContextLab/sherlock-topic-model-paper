@@ -15,20 +15,21 @@ import numpy as np
 from fastdtw import fastdtw
 from scipy.spatial.distance import correlation
 
-N_PERMS = 100
 
 input_dir = opj(config['datadir'], 'inputs')
 traj_path = opj(input_dir, 'models_t100_v50_r10.npy')
 warped_dir = opj(input_dir, 'warped')
-scan_dir = opj(input_dir, 'fMRI')
 video_jobscript = opj(dirname(realpath(__file__)), 'searchlight_permute_video.py')
 recall_jobscript = opj(dirname(realpath(__file__)), 'searchlight_permute_recall.py')
 
-# temporally align recall trajectories to video TR timeseries
+N_PERMS = 100
+perms = np.arange(-1, N_PERMS)
+
 video_traj, recall_trajs = np.load(traj_path, allow_pickle=True)
 
+# align recall trajectories to video TR timeseries
 for sub, rec_traj in enumerate(recall_trajs):
-    sub_dtw_path = opj(warped_dir, f'sub{sub + 1}.npy')
+    sub_dtw_path = opj(warped_dir, f'sub{sub + 1}_dtw.npy')
 
     if not isfile(sub_dtw_path):
         dist, path = fastdtw(video_traj, rec_traj, dist=correlation)
@@ -39,7 +40,7 @@ for sub, rec_traj in enumerate(recall_trajs):
 # create jobs for submission
 job_commands = list()
 job_names = list()
-for perm in range(N_PERMS):
+for perm in perms:
     for subid in range(1, 18):
         job_names.append(f'searchlight_video_{subid}_{perm}')
         job_commands.append(f'{video_jobscript} {subid} {perm}')
