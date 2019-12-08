@@ -17,7 +17,7 @@ def sfn(l, msk, sl_rad, bcast_var):
 subid, perm = int(sys.argv[1]), int(sys.argv[2])
 
 input_dir = opj(config['datadir'], 'inputs')
-traj_path = opj(input_dir, 'warped', f'{subid}_dtw.npy')
+traj_path = opj(input_dir, 'warped', f'sub{subid}_dtw.npy')
 scan_path = opj(input_dir, 'fMRI', f'sherlock_movie_s{subid}_10000.nii.gz')
 results_dir = opj(config['datadir'], 'outputs', 'searchlight_recall')
 
