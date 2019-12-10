@@ -10,8 +10,9 @@ from searchlight_config import config
 # voxel function for searchlight
 def sfn(l, msk, sl_rad, bcast_var):
     b = l[0][msk, :].T
-    c = np.corrcoef(b).ravel()
-    return pearsonr(c, bcast_var.ravel())[0]
+    cm = np.corrcoef(b)
+    triu_brain = cm[np.triu_indices_from(cm, k=1)]
+    return pearsonr(triu_brain, bcast_var)[0]
 
 
 subid, perm = int(sys.argv[1]), int(sys.argv[2])
@@ -42,12 +43,15 @@ except ValueError:
 shifted = np.roll(recall_model, shift=shift, axis=0)
 shifted_corrmat = np.corrcoef(shifted)
 
+# isolate upper right triangle
+shifted_corrmat_triu = shifted_corrmat[np.triu_indices_from(shifted_corrmat, k=1)]
+
 # create Searchlight object
 sl = Searchlight(sl_rad=5)
 
 # distribute data to processes
 sl.distribute([scan_data], mask)
-sl.broadcast(shifted_corrmat)
+sl.broadcast(shifted_corrmat_triu)
 
 # run searchlight, save data
 result = sl.run_searchlight(sfn)
