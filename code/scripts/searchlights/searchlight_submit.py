@@ -19,6 +19,8 @@ from scipy.spatial.distance import correlation
 input_dir = opj(config['datadir'], 'inputs')
 traj_path = opj(input_dir, 'models_t100_v50_r10.npy')
 warped_dir = opj(input_dir, 'warped')
+vid_perms_dir = opj(config['datadir'], 'outputs', 'searchlight_video', 'perms')
+rec_perms_dir = opj(config['datadir'], 'outputs', 'searchlight_recall', 'perms')
 video_jobscript = opj(dirname(realpath(__file__)), 'searchlight_permute_video.py')
 recall_jobscript = opj(dirname(realpath(__file__)), 'searchlight_permute_recall.py')
 
@@ -40,6 +42,7 @@ for sub, rec_traj in enumerate(recall_trajs):
 # create jobs for submission
 job_commands = list()
 job_names = list()
+
 for perm in perms:
     for subid in range(1, 18):
         job_names.append(f'searchlight_video_{subid}_{perm}')
@@ -47,7 +50,6 @@ for perm in perms:
 
         job_names.append(f'searchlight_recall_{subid}_{perm}')
         job_commands.append(f'{recall_jobscript} {subid} {perm}')
-
 
 # ====== MODIFY ONLY THE CODE BETWEEN THESE LINES ======
 
