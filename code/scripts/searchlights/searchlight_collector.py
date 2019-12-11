@@ -52,12 +52,12 @@ for perm in range(100):
         for sub in range(1, 18):
             img_path = glob(opj(finished_dir, f'searchlight_{analysis}', 'perms', f'sub{sub}_perm{perm}_*'))[0]
             sub_data = np.load(img_path, allow_pickle=True)
-            img = new_img_like(ref_img, sub_data.astype(np.float))
+            img = new_img_like(ref_img, sub_data.astype(np.float64))
             imgs.append(img)
 
         imgs = concat_imgs(imgs)
-        imgs_z = r2z(imgs.get_data())
+        imgs_z = r2z(imgs.get_data().astype(np.float64))
         statmap = ttest(np.moveaxis(imgs_z, -1, 0), 0).statistic
-        stat_img = new_img_like(ref_img, statmap.astype(np.float))
+        stat_img = new_img_like(ref_img, statmap.astype(np.float64))
         result_path = opj(finished_dir, f'searchlight_{analysis}', 'perms', f'perm{perm}.nii.gz')
         stat_img.to_filename(result_path)
