@@ -6,7 +6,9 @@ This repository contains data and code used to produce the paper "[_How is exper
 root
 └── code : all code used in the paper
     ├── notebooks : jupyter notebooks for paper analyses
-    └── scripts : python scripts used to perform brain searchlight analyses on a cluster
+    └── scripts : python scripts used to perform various analyses on a cluster
+        ├── embedding : scripts used to optimize the UMAP embedding seed for the trajectory figure
+        └── searchlights : scripts used to perform the brain searchlight analyses
 └── data : all data used in the paper
     ├── raw : raw data before processing
     └── processed : all processed data
