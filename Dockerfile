@@ -39,7 +39,7 @@ RUN pip install numpy==1.17.0 \
     pandas==0.25.0 \
     matplotlib==3.1.0 \
     seaborn==0.9.0 \
-    hypertools==0.5.1 \
+    hypertools==0.6.2 \
     scikit-learn==0.19.1 \
     git+git://github.com/nilearn/nilearn.git@c0d14098c6b56381e4b527ca21986f86955cbf4f \
     git+https://github.com/brainiak/brainiak.git@v0.7.1 \
