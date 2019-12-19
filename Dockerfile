@@ -25,6 +25,9 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 # Setup anaconda path
 ENV PATH /opt/conda/bin:$PATH
 
+# Enable UTF-8 locale
+ENV LANG C.UTF-8
+
 # Install gcc to make it work with brainiak
 RUN ["/bin/bash", "-c", "conda install -y gcc"]
 
