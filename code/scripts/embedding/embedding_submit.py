@@ -11,17 +11,13 @@ from os.path import join as opj
 
 
 # ====== MODIFY ONLY THE CODE BETWEEN THESE LINES ======
-import numpy as np
 job_script = opj(os.path.dirname(os.path.realpath(__file__)), 'embedding_cruncher.py')
-
 embeddings_dir = opj(config['datadir'], 'embeddings')
-fig_dir = config['figdir']
+min_seed = 0
+max_seed = 100
 
 job_commands = list()
 job_names = list()
-
-min_seed = 0
-max_seed = 10000
 
 # order 1: recalls, video, avg recall
 # order 2: recalls, avg recall, video
@@ -31,22 +27,11 @@ max_seed = 10000
 # order 6: avg recalls, video, recalls
 
 for order in range(1, 7):
-    if not os.path.isdir(opj(embeddings_dir, f'order{order}')):
-        os.mkdir(opj(embeddings_dir, f'order{order}'))
-    if not os.path.isdir(opj(fig_dir, f'order{order}')):
-        os.mkdir(opj(fig_dir, f'order{order}'))
-    for division in range(10):
-        job_commands.append(f'{job_script} {order} {min_seed} {max_seed} {division}')
-        job_names.append(f'optimize_embedding_order{order}_{min_seed}_{max_seed}_{division}')
+    os.mkdir(opj(embeddings_dir, f'order{order}'))
 
-    # done = [int(os.path.splitext(file)[0][4:]) for file in os.listdir(opj(embeddings_dir, f'order{order}'))]
-    # seeds_todo = [s for s in seeds if s not in done]
-
-    # for seed in seeds_todo:
-    #     job_commands.append(f'{job_script} {order} {seed}')
-    #     job_names.append(f'optimize_embedding_order{order}_seed{seed}')
-
-
+    for seed in range(min_seed, max_seed + 1):
+        job_commands.append(f'{job_script} {order} {seed}')
+        job_names.append(f'optimize_embedding_order{order}_{seed}')
 
 # ====== MODIFY ONLY THE CODE BETWEEN THESE LINES ======
 
