@@ -30,6 +30,7 @@
       - Thus the TR topic trajectory's timeseries is based on real-time (seconds), and each TR's topic vector roughly matches a duration-weighted average of windows centered on a timepoint that fell during that TR.
 - removed resampling step for recall trajectories (resampled trajectories not used in paper and FFT-based resampling function used assumed periodicity)
 - removed some unused imports and function definitions
+- added code to explicitly save out data files that existed in repo without clear source
 
 
 ### eventseg_analysis
@@ -43,6 +44,13 @@
 ### eventseg_fig
 - now using P17 as example participant
 - changed tick frequency for recall subplots
+
+
+### trajectory_analysis_and_fig
+- removed hard-coded removal of video event with 0 matched recalls from embeddings
+- added code to dynamically check for the same thing in a clearer way
+- updated parts of multiple comparisons correction that were previously hard-coded
+- updated figure with new embeddings, tweaked bounds, size, etc. accordingly
 
 
 ### list_learning_analyses
@@ -63,6 +71,11 @@
 - changed some variable names so they don't overwrite each other
 
 
+### schematic
+- updated text parsing to better match new pipeline
+- fixed bug in figure, updated figure to include changes previously made in illustrator
+
+
 ### scripts
 - removed existing searchlight scripts, added directory of scripts to run searchlight analyses on HPCC
 - fixed voxel function to correlate only upper triangle of topic vector & voxel activity temporal correlation matrices
@@ -70,6 +83,7 @@
 - fixed recall searchlight script to run on non-resampled trajectories
 - no longer warping fMRI data based on resampled recall-based DTW path
 - added directory of scripts for optimizing embedding seed for trajectory figure
+- added script to illustrate how output from cluster scripts becomes data as it exists in repo
 
 
 ### precision_distinctiveness_fig
@@ -92,12 +106,20 @@
 
 
 ### wordle_analysis_and_fig
-- wrote function to deal with SPC for correlations (does Fisher z-transform/inverse transform before/after averaging; computes and plots 95% bootstraped CIs)
+- removed some unused imports & functions
+- wrote function to deal with SPC for precision/correlations (does Fisher z-transform/inverse transform before/after averaging; computes and plots 95% bootstrapped CIs)
+- added code to fit CountVectorizer and LatentDirichletAllocation models
+  - fit models had previously existed in repo without code for creating
+- adjusted scaling params in trajectory distribution plot to work with new embeddings
 
 
 ### corrmats
 - updated axis labels from sentence units to window units
 - updated axis ticks to change based on individual's trajectory length
+
+
+### topic_words
+- new, simple notebook. Added to show how words in topic_words figure were identified
 
 
 ### various feature importance analysis/fig notebooks
@@ -122,7 +144,7 @@
 # Paper:
 - updated all stats to reflect new results
 - updated references to number of windows/events throughout
-- updated most figures (but haven't formatted any in illustrator yet)
+- updated all figures
 - added text describing new elements of topic modeling procedure
 - added some new text to precision/distinctiveness results & methods sections
 - updated event segmentation methods to describe Wasserstein distance-based K-optimization
@@ -138,6 +160,8 @@
 - switched to installing `nilearn` from github to fix compatibility issue with `mpl_toolkits.mpl3d.axes3d.Axes3D`
 - upgraded pinned `scipy` version to minimum version with `scipy.stats.wasserstein`
 - pinned `xlrd` version to enable `pandas.read_excel`
+- updated `hypertools` version after finishing new release
+- added `spurplus` with version pin
 
 # README:
 - updated tree structure to reflect new cluster script directories in `code/scripts`
