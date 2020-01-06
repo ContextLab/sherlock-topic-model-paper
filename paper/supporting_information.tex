@@ -12,8 +12,8 @@
 
 \newcommand{\argmax}{\mathop{\mathrm{argmax}}\limits}
 
-\title{\textit{Supporting Information for}: How is experience transformed into memory?}
-\author{Andrew C. Heusser, Paxton C. Fitzpatrick, and Jeremy R. Manning\\Department of Psychological and Brain Sciences\\Dartmouth College, Hanover, NH 03755, USA\\Corresponding author: jeremy.r.manning@dartmouth.edu}
+\title{\textit{Supporting Information for}: Memory for television episodes preserves event content while introducing new across-event similarities}
+\author{Andrew C. Heusser\textsuperscript{1, 2}, Paxton C. Fitzpatrick\textsuperscript{1}, and Jeremy R. Manning\textsuperscript{1, *}\\\textsuperscript{1}Department of Psychological and Brain Sciences\\Dartmouth College, Hanover, NH 03755, USA\\\textsuperscript{2}Akili Interactive\\Boston, MA 02110\\\textsuperscript{*}Corresponding author: jeremy.r.manning@dartmouth.edu}
 
 \bibliographystyle{apa}
 
@@ -145,25 +145,11 @@ Next, we wondered how the different types of features might relate.  For example
 
 \begin{figure}[p!]
 \centering
-\includegraphics[width=.9\textwidth]{figs/k_corrs}
-\caption{\small \textbf{Within- and across-event correlations as a function of $K$.}  As part of the event-segmentation procedure, we searched over a range of possible $K$-values [2,50] (i.e., number of events) for the video and each recall topic trajectory, separately.  For each $K$, we used an HMM to segment the trajectory into $K$-events. We then computed the average correlation between topic vectors at timepoints within the same event, and the average correlation between topic vectors at timepoints across different events.}
-\label{fig:k_corrs}
-\end{figure}
-
-\begin{figure}[p!]
-\centering
 \includegraphics[width=.9\textwidth]{figs/k_optimization}
 \caption{\small \textbf{Video and recall trajectory $K$-optimization functions.}  We selected the optimal $K$-value for the video and each recall trajectory, using the formula described in \textit{Methods}. This computation resulted in a curve for each trajectory, describing the regularized ratio of the average within-event topic vector correlation to the average across-event topic vector correlation, as a function of $K$.}
 \label{fig:k_optimization}
 \end{figure}
 
-\begin{figure}[p!]
-\centering
-\includegraphics[width=\textwidth]{figs/trajectory_wasserstein}
-\caption{\small \textbf{Trajectories using Wasserstein distance for choosing $K$.}  We replicated the trajectory analysis using Wasserstein distance, a parameter-free procedure for choosing $K$. Overall, the pattern of findings is quite similar to our main approach, but resulted in a smaller number of events.}
-\label{fig:trajectory_wasserstein}
-\end{figure}
-  
 \
 
 \newpage
