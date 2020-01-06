@@ -1,71 +1,18 @@
 import os
-import pickle
-from shutil import copy2
+import sys
 import numpy as np
 import pandas as pd
 from os.path import join as opj
-from scipy.spatial.distance import pdist, cdist
+from shutil import copy2
+from scipy.spatial.distance import pdist
+from scipy.stats import pearsonr
 from embedding_config import config
 
-try:
-    from tqdm import trange
-    range_ = trange
-except ModuleNotFoundError:
-    range_ = range
 
-SEEDS = list(range(10001))
-# PERCENTILE = 99.95
-# METRICS = ['dispersion', 'intersections']
-# WEIGHTS = {
-#     'dispersion': .5,
-#     'intersections': .5
-# }
-
-# METRICS = ['intersections']
-# WEIGHTS = {
-#     'intersections': 1
-# }
-
-# METRICS = ['dispersion']
-# WEIGHTS = {
-#     'dispersion': 1
-# }
-
-# METRICS = ['dispersion', 'intersections']
-# WEIGHTS = {
-#     'dispersion': .75,
-#     'intersections': .25
-# }
-
-METRICS = ['dispersion', 'intersections']
-WEIGHTS = {
-    'dispersion': .25,
-    'intersections': .75
-}
-
-events_dir = opj(config['datadir'], 'events')
-embeddings_dir = opj(config['datadir'], 'embeddings')
-optimized_dir = opj(config['datadir'], 'optimized')
+order = sys.argv[1]
 
 
 # Define some functions ########################################################
-def r2z(r):
-    with np.errstate(invalid='ignore', divide='ignore'):
-        return 0.5 * (np.log(1 + r) - np.log(1 - r))
-
-
-def spatial_similarity(embedding, original_pdist, emb_metric):
-    """
-    computes correlation between pairwise euclidean distance in embedding space
-    and correlation distance in original space
-    """
-    emb_pdist = pdist(embedding, emb_metric)
-    if emb_metric == 'correlation':
-        emb_pdist = 1 - emb_pdist
-    return 1 - pdist((emb_pdist, original_pdist), 'correlation')[0]
-
-
-# source: https://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect
 def _segments_intersect2d(a1, b1, a2, b2):
     s1 = b1 - a1
     s2 = b2 - a2
@@ -95,175 +42,63 @@ def n_intersections(x):
     return intersections
 
 
-def dispersion_dist(emb):
-    # normalize to fit in unit square
-    scaled = ((emb - emb.min(0))*2 / (emb.max(0) - emb.min(0))) - 1
-    avg_point = scaled.mean(0)
-    return cdist(np.atleast_2d(avg_point), scaled, 'euclidean').mean()
-
-# OLD OPTIMIZE_EMBEDDING function
-# def optimize_embedding(opt_results, seeds=None, metrics=None, weights=None, percentile=-1):
-#     """
-#     chooses an optimal UMAP embedding based on a weighted combination of
-#     optimization metrics
-#     Parameters
-#     ----------
-#     opt_results :   dict
-#                     dictionary of {optimization metric: array}
-#                     where the array holds the results of the optimization
-#                     metric for each seed
-#
-#     seeds       :   list-like (default None)
-#                     random seed numbers corresponding to the indices of arrays
-#                     in opt_results.  Useful when optimizing over a range of
-#                     seeds that doesn't start at 0 or is unordered.  Defaults to
-#                     indices of opt_results arrays.
-#
-#     metrics     :   list-like (default None)
-#                     which metrics to consider in optimization. If None, all
-#                     metrics are considered
-#
-#     weights     :   dict (default None)
-#                     weights (values) to apply to optimization metrics (keys)
-#                     considered. If None, all metrics are weighted equally.
-#
-#     percentile  :   int or float (default -1)
-#                     The percentile above which "optimal" embeddings (by the
-#                     weighted combination of metrics) will be returned.  If
-#                     -1, only the single best embedding is returned.
-#
-#     Returns
-#     ----------
-#     optimal_embs : dict
-#                    a nested dictionary of {rectype: {optimal seed: embedding}}
-#
-#     """
-#     if not metrics:
-#         metrics = list(opt_results.keys())
-#     if not weights:
-#         weights = {m: 1 / len(metrics) for m in metrics}
-#     if not seeds:
-#         seeds = np.arange(len(opt_results[metrics[0]]))
-#     seeds = np.array(seeds)
-#
-#     assert sum(weights.values()) == 1, 'weights must sum to 1'
-#     assert metrics == list(weights.keys()), 'you must pass a weight value for each metric considered'
-#     assert all(seeds.shape == opt_results[m].shape for m in metrics), 'number of seeds must match the number of results'
-#
-#     scores = pd.DataFrame()
-#     for metric in metrics:
-#         asc = False if metric == 'intersections' else True
-#         res = pd.Series(opt_results[metric])
-#         scores[metric] = res.rank(pct=True, ascending=asc)
-#
-#     scores.index = seeds
-#     weighted = (scores * weights).sum(axis=1)
-#
-#     if percentile == -1:
-#         optimal_seeds = weighted.idxmax()
-#     else:
-#         top_perc = weighted.loc[weighted.rank(pct=True) > percentile / 100].index
-#         optimal_seeds = top_perc.values
-#
-#     return optimal_seeds
+def spatial_similarity(emb, orig_pdist):
+    # computes correlation between pairwise distances in embedding space and
+    # pairwise distances in original space
+    emb_pdist = pdist(emb, 'euclidean')
+    # invert values to compare Euclidean distance with correlation
+    emb_pdist = 0 - emb_pdist
+    return pearsonr(emb_pdist, orig_pdist)[0]
 
 
-def score_embedding(results, metrics=None, weights=None):
-    if not metrics:
-        metrics = list(results.keys())
-    if not weights:
-        weights = {m: 1 / len(metrics) for m in metrics}
+# Main collector script ########################################################
+events_dir = opj(config['datadir'], 'events')
+results_dir = opj(config['datadir'], 'results')
+results_path = opj(results_dir, f'order{order}_results.p')
+embeddings_dir = opj(config['datadir'], 'embeddings', f'order{order}')
 
-    assert sum(weights.values()) == 1, 'weights must sum to 1'
-    assert metrics == list(weights.keys()), 'you must pass a weight value for each metric considered'
-
-    scores = pd.DataFrame()
-    for metric in metrics:
-        asc = False if metric == 'intersections' else True
-        res = pd.Series(results[metric])
-        scores[metric] = res.rank(pct=True, ascending=asc)
-
-    weighted = (scores * weights).sum(axis=1)
-    return weighted
-
-
-def optimize_embedding(opt_results, metrics, weights, n_best=10):
-    orders_scores = pd.DataFrame()
-    for order, results in opt_results.items():
-        orders_scores[order] = score_embedding(results, metrics=metrics, weights=weights)
-
-    return orders_scores.stack().nlargest(n_best).index.values
-
-##################################################
-# load events in original topic space
+# load video events in original topic space, pre-compute pairwise distance
 video_events = np.load(opj(events_dir, 'video_events.npy'))
-avg_recall_events = np.load(opj(events_dir, 'avg_recall_events.npy'))
-recall_events = np.load(opj(events_dir, 'recall_events.npy'), allow_pickle=True)
+topic_space_pdist = 1 - pdist(video_events, 'correlation')
 
-orig_pdist = 1 - pdist(video_events, 'correlation')
+embeddings = os.listdir(embeddings_dir)
+results = pd.DataFrame(columns=['intersections', 'spatial_recovery'])
 
-orders = [f'order{ord}' for ord in range(1, 7)]
-order_results = {}
+for filename in embeddings:
+    emb_path = opj(embeddings_dir, filename)
+    param_id = os.path.splitext(filename)[0]
+    video_embedding = np.load(emb_path, allow_pickle=True)[0]
+    n_intersects = n_intersections(video_embedding)
+    spatial_recovery = spatial_similarity(video_embedding, topic_space_pdist)
 
-for order in orders:
-    results_path = opj(optimized_dir, f'{order}_results.p')
-    embs_dir = opj(embeddings_dir, order)
+    results.loc[param_id] = [n_intersects, spatial_recovery]
 
-    # load optimization results if already run
-    if os.path.isfile(results_path):
-        print(f'loading results for {order}...')
-        with open(results_path, 'rb') as f:
-            order_results[order] = pickle.load(f)
-        continue
+results.to_pickle(results_path)
 
-    # skip order if not all seeds finished
-    elif len(os.listdir(embs_dir)) < len(SEEDS):
-        print(f'skipping {order} -- not all seeds finished')
-        continue
 
-    # otherwise compute results
-    print(f'computing results for {order}...')
-    dispersion = np.full((len(SEEDS),), np.nan)
-    intersections = np.full((len(SEEDS),), np.nan)
-    similarity_euc = np.full((len(SEEDS),), np.nan)
-    similarity_corr = np.full((len(SEEDS),), np.nan)
+# Choose optimal embedding #####################################################
+# only run if all other collector scripts have finished
+if len(os.listdir(results_dir)) == 6:
+    optimized_dir = opj(config['datadir'], 'optimized')
+    if not os.path.isdir(optimized_dir):
+        os.mkdir(optimized_dir)
 
-    for ix, seed in enumerate(range_(SEEDS[0], SEEDS[-1]+1)):
-        fpath = opj(embs_dir, f'seed{seed}.npy')
-        embeddings = np.load(fpath, allow_pickle=True)
-        video_embedding = embeddings[0]
-        avg_recall_embedding = embeddings[1]
-        recall_embeddings = embeddings[2:]
+    good_embeddings = pd.DataFrame(columns=['spatial_recovery'])
+    for order in range(1, 7):
+        filepath = opj(results_dir, f'order{order}_results.p')
+        results = pd.read_pickle(filepath)
+        # consider only embeddings with no intersections
+        no_intersections = results.loc[results['intersections'] == 0]
+        if no_intersections.empty:
+            continue
 
-        dispersion[ix] = dispersion_dist(video_embedding)
-        intersections[ix] = n_intersections(video_embedding)
-        similarity_euc[ix] = spatial_similarity(video_embedding,
-                                                     orig_pdist,
-                                                     'euclidean')
-        similarity_corr[ix] = spatial_similarity(video_embedding,
-                                                 orig_pdist,
-                                                 'correlation')
+        for ix in no_intersections.index:
+            new_ix = f'order{order}_{ix}'
+            no_intersections.loc[new_ix] = no_intersections.loc[ix]
 
-    results_dict = {
-        'dispersion': dispersion,
-        'intersections': intersections,
-        'similarity_euc': similarity_euc,
-        'similarity_corr': similarity_corr
-    }
-
-    with open(results_path, 'wb') as f:
-        pickle.dump(results_dict, f)
-
-    order_results[order] = results_dict
-
-################################################################################
-output = {}
-
-opt_params = optimize_embedding(order_results, metrics=METRICS, weights=WEIGHTS, n_best=10)
-suffix = '-'.join([str(m) + str(w) for m, w in zip(METRICS, WEIGHTS.values())])
-
-print('suffix is', suffix)
-for seed, order in opt_params:
-    emb_path = opj(embeddings_dir, order, f'seed{seed}.npy')
-    opt_path = opj(optimized_dir, f'{order}_seed{seed}_{suffix}.npy')
-    copy2(emb_path, opt_path)
+    # select embedding that best reflects shape of 100D video trajectory
+    optimal_embedding = good_embeddings['spatial_recovery'].idxmax()
+    order, *params = optimal_embedding.split('_')[0]
+    source_path = opj(embeddings_dir, order, f"{'_'.join(params)}.npy")
+    dest_path = opj(optimized_dir, 'embeddings.npy')
+    copy2(source_path, dest_path)

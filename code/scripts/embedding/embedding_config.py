@@ -23,9 +23,6 @@ config['jobname'] = "embedding"  # default job name
 config['q'] = "largeq"  # options: default, test, largeq
 config['nnodes'] = 1  # how many nodes to use for this one job
 config['ppn'] = 1  # how many processors to use for this one job (assume 4GB of RAM per processor)
-config['walltime'] = '2:00:00'  # maximum runtime, in h:MM:SS
+config['walltime'] = '12:00:00'  # maximum runtime, in h:MM:SS
 config['cmd_wrapper'] = "python"  # replace with actual command wrapper (e.g. matlab, python, etc.)
-
-#extra options
-
 # ====== MODIFY ONLY THE CODE BETWEEN THESE LINES ======
