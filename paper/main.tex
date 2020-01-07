@@ -16,7 +16,6 @@
 \newcommand{\topicopt}{S1}
 \newcommand{\topics}{S2}
 \newcommand{\featureimportance}{S3}
-% \newcommand{\listlearning}{S4}
 \newcommand{\corrmats}{S4}
 \newcommand{\matchmats}{S5}
 \newcommand{\kopt}{S6}
@@ -109,7 +108,7 @@ Statistical models of memory studies often treat memory recalls as binary (e.g. 
 \end{figure}
 
 
-The prior analyses leverage the correspondence between the 100-dimensional topic proportion matrices for the video and participants' recalls to characterize recall.  However, it is difficult to gain deep insights into that content solely by examining the topic proportion matrices (e.g., Figs.~\ref{fig:model}A, D) or the corresponding correlation matrices (Figs.~\ref{fig:model}B, E, \corrmats).  To visualize the time-varying high-dimensional content in a more intuitive way~\citep{HeusEtal18a} we projected the topic proportions matrices onto a two-dimensional space using Uniform Manifold Approximation and Projection~\citep[UMAP; ][]{McInHeal18}.  In this lower-dimensional space, each point represents a single video or recall event, and the distances between the points reflect the distances between the events' associated topic vectors (Fig.~\ref{fig:trajectory}). In other words, events that are near to each other in this space are more semantically similar.
+The prior analyses leverage the correspondence between the 100-dimensional topic proportion matrices for the video and participants' recalls to characterize recall.  However, it is difficult to gain deep insights into that content solely by examining the topic proportion matrices (e.g., Figs.~\ref{fig:model}A, D) or the corresponding correlation matrices (Figs.~\ref{fig:model}B, E, \corrmats).  To visualize the time-varying high-dimensional content in a more intuitive way~\citep{HeusEtal18a} we projected the topic proportions matrices onto a two-dimensional space using Uniform Manifold Approximation and Projection~\citep[UMAP; ][]{McInEtal18}.  In this lower-dimensional space, each point represents a single video or recall event, and the distances between the points reflect the distances between the events' associated topic vectors (Fig.~\ref{fig:trajectory}). In other words, events that are near to each other in this space are more semantically similar.
 
 
 \begin{figure}[tp]
@@ -253,7 +252,7 @@ We also considered the \textit{distinctiveness} of each recalled event. That is,
 where $\bar{c}(\mathrm{event})$ is the average correlation between the given recalled event's topic vector and the topic vectors from all video events \textit{except} the best-matching video event.  We then averaged these distinctiveness scores across all of the events recalled by the given participant. As above, we used Fisher's $z$-transformation before correlating these values with hand-annotated and model derived memory performance scores across-subjects.
 
 \subsubsection*{Visualizing the video and recall topic trajectories}
-We used the UMAP algorithm~\citep{McInHeal18} to project the 100-dimensional topic space onto a two-dimensional space for visualization (Figs.~\ref{fig:trajectory}, \ref{fig:topics}).  To ensure that all of the trajectories were projected onto the \textit{same} lower dimensional space, we computed the low-dimensional embedding on a ``stacked'' matrix created by vertically concatenating the events-by-topics topic proportions matrices for the video and all 17 participants' recalls.  We then divided the rows of the result (a total-number-of-events by two matrix) back into separate matrices for the video topic trajectory and the trajectories for each participant's recalls (Fig.~\ref{fig:trajectory}).  This general approach for discovering a shared low-dimensional embedding for a collections of high-dimensional observations follows \cite{HeusEtal18a}.  Note: for further details on how we created this low-dimensional embedding space, see \textit{Supporting Information}.
+We used the UMAP algorithm~\citep{McInEtal18} to project the 100-dimensional topic space onto a two-dimensional space for visualization (Figs.~\ref{fig:trajectory}, \ref{fig:topics}).  Importantly, to ensure that all of the trajectories were projected onto the \textit{same} lower dimensional space, we computed the low-dimensional embedding on a ``stacked'' matrix created by vertically concatenating the events-by-topics topic proportions matrices for the video, across-participants average recalls and all 17 individual participants' recalls.  We then divided the rows of the result (a total-number-of-events by two matrix) back into separate matrices for the video topic trajectory and the trajectories for each participant's recalls (Fig.~\ref{fig:trajectory}).  This general approach for discovering a shared low-dimensional embedding for a collections of high-dimensional observations follows \cite{HeusEtal18a}.  Note: for further details on how we created this low-dimensional embedding space, see \textit{Supporting Information}.
 % ------ NOTE: ------
 % need to add info about embedding optimization
 % - Paxton
