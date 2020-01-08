@@ -12,6 +12,7 @@
 %\doublespacing
 
 \newcommand{\argmax}{\mathop{\mathrm{argmax}}\limits}
+\newcommand{\argmin}{\mathop{\mathrm{argmin}}\limits}
 
 \title{\textit{Supporting Information for}: Memory for television episodes preserves event content while introducing new across-event similarities}
 \author{Andrew C. Heusser\textsuperscript{1, 2}, Paxton C. Fitzpatrick\textsuperscript{1}, and Jeremy R. Manning\textsuperscript{1, *}\\\textsuperscript{1}Department of Psychological and Brain Sciences\\Dartmouth College, Hanover, NH 03755, USA\\\textsuperscript{2}Akili Interactive\\Boston, MA 02110\\\textsuperscript{*}Corresponding author: jeremy.r.manning@dartmouth.edu}
@@ -48,7 +49,7 @@ where $\mathrm{corr}(\mu, \nu)$ is the per-participant correlation between the u
 \begin{figure}[p!]
 \centering
 \includegraphics[width=1\textwidth]{figs/parameter_search}
-\caption{\small \textbf{Optimizing topic model parameters.}  We performed a grid search over video sliding window length ($\omega \in \{5, 10, 25, 50, 100 \}$), recall sliding window length ($\rho \in \{5, 10, 25, 50, 100 \}$, and number of topics ($K \in \{5, 10, 25, 50, 100 \}$.  The reported correlations are between per-subject video-recall trajectory correlations and per-subject hand-annotated memory performance ratings.}
+\caption{\small \textbf{Optimizing topic model parameters.}  We performed a grid search over video sliding window length ($\omega \in \{5, 10, 25, 50, 100 \}$), recall sliding window length ($\rho \in \{5, 10, 25, 50, 100 \}$), and number of topics ($K \in \{5, 10, 25, 50, 100 \}$).  The reported correlations are between per-subject video-recall trajectory correlations and per-subject hand-annotated memory performance ratings.}
 \label{fig:paramsearch}
 \end{figure}
 
@@ -80,10 +81,20 @@ Next, we wondered how the different types of features might relate.  For example
 \subsection*{Creating a low-dimensional embedding space}
 Figures~5 and 6C in the main text display two-dimensional projections of the 100-dimensional topic trajectories for the video (5A, 6C), average recall (5B), and each individual's recall (5C, 6C).  We created these embeddings using the Uniform Manifold Approximation and Projection algorithm \citep[UMAP;][]{McInEtal18} called from our high-dimensional visualization and text analysis software, \texttt{HyperTools}~\citep{HeusEtal18a}.  An advantage of the UMAP algorithm over comparable manifold learning techniques (such as $t$-SNE) is that UMAP explicitly attempts to preserve the global structure of the data \citep{McInEtal18,BechEtal19} by constructing a space where distance on the manifold is standard Euclidean distance, with respect to the global coordinate system.  This was important in our use case, as we wanted to visualize both the evolving structure of the video and the spatial relationships between presented and recalled content.  
 
-UMAP achieves a balance between representing local and global structure via a subset of its hyper-parameters: \texttt{n\_neighbors} , \texttt{spread}, and \texttt{min\_dist}.  The \texttt{n\_neighbors} hyper-parameter ($K$) denotes the number of nearest neighbors to consider in constructing the high-dimensional fuzzy simplicial set for each datapoint.  \texttt{Spread} ($\gamma$) and \texttt{min\_dist} ($\delta$) function together to create the differentiable decay curve used to approximate the injective function used to map between high- and low-dimensional fuzzy simplicial sets.  In essence, \texttt{min\_dist} determines the degree to which nearby points are clustered or expanded, relative to to the overall \texttt{spread}.
+UMAP achieves a balance between representing local and global structure via a subset of its hyper-parameters: \texttt{n\_neighbors} , \texttt{spread}, and \texttt{min\_dist}.  The \texttt{n\_neighbors} hyper-parameter ($K$) denotes the number of nearest neighbors to consider in constructing the high-dimensional fuzzy simplicial set for each datapoint.  \texttt{Spread} ($\gamma$) and \texttt{min\_dist} ($\delta$) function together to create the differentiable decay curve used to approximate the injective function used to map between high- and low-dimensional fuzzy simplicial sets.  In essence, \texttt{min\_dist} determines the degree to which nearby points are clustered or expanded, relative to to the overall \texttt{spread}.  
 
-To optimize the manifold space shown in Figures~5 and 6C, we performed a grid search over pre-specified values of these hyper-parameters, as well as a pre-specified set of random states ($\tau$).  Additionally, as described in \textit{Methods}, we ensured the video and recall events were projected onto the \textit{same} low-dimensional manifold by fitting the embedding model to a stacked matrix of 
+Two other parameters ultimately affect this balance between preserving local and global structure: the seed ($\tau$) for the (pseudo-)random number generator, and the order of the observations (i.e., trajectories) to be embedded ($\phi$).  As described in \textit{Methods}, we ensured the video and recall events were projected onto the \textit{same} low-dimensional manifold by fitting the embedding model to a stacked matrix of all video, average recall, and individuals' recall events.  After initializing the low-dimensional simplicial set (by default, using a spectral embedding of the high-dimensional simplicial set's fuzzy 1-skeleton), UMAP optimizes the embedding using stochastic gradient descent with cross-entropy as a cost function.  During optimization, indices of the data are sampled at random, and thus local minimum reached by the optimization is dependent on both the state of the RNG and the sequence of observations.
 
+We performed a grid search over pre-specified values of these hyper-parameters, and optimized the manifold space for visualization based on two criteria: First, that the 2D embedding of the video trajectory should reflect its original 100-dimensional structure as faithfully as possible. Second, that the path traversed by the video trajectory should intersect itself as few times as possible.  The first criteria helps promote the ability to gain (albeit fuzzy) intuitions about similarities and differences between sections of video content based on their locations in the embedding space.  The second criteria was motivated by the low off-diagonal values in the video trajectory's temporal correlation matrix (suggesting that the same topic-space coordinates should not be revisited; see Figure~2A in the main text) and the inability to accurately describe the consistency of participants' transitions through topic space at locations where those transitions were consistent, but occurred in multiple, orthogonal directions (see \textit{Methods} for analysis details).  We formalized this optimization as the combination of values that satisfied
+\[
+\argmax_{\left\{K, \gamma, \delta, \tau, \varphi~\in~E~\mathrm{|}~\Phi\left(K, \gamma, \delta, \tau, \varphi \right) \right\}} \left[\mathrm{corr}\left(\Upsilon\left(\xi_{K, \gamma, \delta, \tau, \varphi}\right),~\Upsilon\left(\chi\right)\right)\right],~\mathrm{where}
+\]
+\[
+\Phi\left(K, \gamma, \delta, \tau, \varphi \right) = \argmin_{K, \gamma, \delta, \tau, \varphi} \left[\Gamma\left(\xi_{K, \gamma, \delta, \tau, \varphi}\right)\right],
+\]
+$\xi$ is the video's trajectory through the manifold space; $\chi$ is the original, 100-dimensional video trajectory; $\Upsilon$ is a condensed matrix of pairwise distances between event vectors (computed using correlation distance in the original topic space and Euclidean distance in the manifold space); $\mathrm{corr}\left(\Upsilon\left(\xi\right), \Upsilon\left(\chi\right)\right)$ is the correlation between the sets of pairwise distances, and $\Gamma$ is the number of instances in which lines drawn between consecutive video event embeddings intersect.   We searched over the hyper-parameter values
+\[
+K \in \{
 
 
 \section*{Participant-level figures referenced in the main text}
