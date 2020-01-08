@@ -27,7 +27,7 @@ else:
     to_reduce = [avg_recall_events] + [video_events] + list(recall_events)
 
 for n_neighbors in list(range(100, 220, 10)) + [161]:
-    for min_dist in np.arange(.1, .9, .2):
+    for min_dist in np.arange(.1, 1, .2):
         for spread in range(1, 11, 2):
             params = {
                 'metric': 'correlation',
