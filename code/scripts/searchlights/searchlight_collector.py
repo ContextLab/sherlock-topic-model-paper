@@ -50,7 +50,7 @@ for perm in range(100):
     for analysis in ['video', 'recall']:
         imgs = []
         for sub in range(1, 18):
-            img_path = glob(opj(finished_dir, f'searchlight_{analysis}', 'perms', f'sub{sub}_perm{perm}_*'))[0]
+            img_path = glob(opj(output_dir, f'searchlight_{analysis}', 'perms', f'sub{sub}_perm{perm}_*'))[0]
             sub_data = np.load(img_path, allow_pickle=True)
             img = new_img_like(ref_img, sub_data.astype(np.float64))
             imgs.append(img)
