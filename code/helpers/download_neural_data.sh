@@ -17,11 +17,9 @@ DEST=/mnt/data/processed/fMRI
 # create the new directory
 mkdir -p $DEST
 
-# download compressed file
-FILE=wget -c https://dataspace.princeton.edu/jspui/bitstream/88435/dsp01nz8062179/7/SherlockMovies_published.tgz -O -
-
-# extract contents to fMRI directory
-tar $FILE -xz -C $DEST
+# download compressed file, extract contents to fMRI directory
+wget -c https://dataspace.princeton.edu/jspui/bitstream/88435/dsp01nz8062179/7/SherlockMovies_published.tgz -O - \
+tar -xz -C $DEST
 
 # gzip each .nii file to save some space
 gzip $DEST/*
