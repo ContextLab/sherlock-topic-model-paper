@@ -11,3 +11,6 @@
 *.#*
 *.out
 *.dvi
+paper/figs/tmp
+data/processed/fMRI
+
