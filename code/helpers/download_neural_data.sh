@@ -8,6 +8,8 @@
 # yourself by copying the download link next to "SherlockMovies_published.tgz"
 # on the page linked above.
 
+# NOTE: THIS TAKES QUITE A WHILE TO COMPLETE (>1 hour)
+
 # the destination for the files
 DEST=/mnt/data/processed/fMRI
 
