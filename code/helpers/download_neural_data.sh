@@ -8,7 +8,8 @@
 # yourself by copying the download link next to "SherlockMovies_published.tgz"
 # on the page linked above.
 
-# NOTE: THIS TAKES QUITE A WHILE TO COMPLETE (>1 hour)
+# NOTE: this takes quite a while to complete (>1 hour)
+# ALSO NOTE: the scan data will take up ~11.44 GB of space on your computer
 
 # the destination for the files
 DEST=/mnt/data/processed/fMRI
@@ -22,5 +23,5 @@ FILE=wget -c https://dataspace.princeton.edu/jspui/bitstream/88435/dsp01nz806217
 # extract contents to fMRI directory
 tar $FILE -xz -C $DEST
 
-# gzip each .nii file to save space
+# gzip each .nii file to save some space
 gzip $DEST/*
