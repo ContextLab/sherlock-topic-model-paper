@@ -42,11 +42,9 @@ SEMANTIC_PARAMS = {
     }
 }
 
-# hand-annotated memory performance
+# hand-annotated memory performance & number of HMM-identified recall events
 # eventseg_analysis.ipynb, list-learning_analysis.ipynb, precision_distinctiveness_fig.ipynb
 HAND_REC = np.array([27, 24, 32, 33, 32, 39, 30, 39, 28, 40, 34, 38, 47, 38, 27, 37, 39])
-
-# number of recall events per participant
 # list-learning_analysis.ipynb, precision_distinctiveness_fig.ipynb
 N_REC_EVENTS = np.array([11, 16, 12, 10, 10, 12, 11, 16, 14, 15, 15, 23, 29, 16, 13, 17, 22])
 
@@ -140,14 +138,14 @@ def create_diag_mask(corrmat, diag_limit=None):
 
 
 # Fisher Z-transformation & inverse transformation
-# precision_distinctiveness_fig.ipynb,
+# precision_distinctiveness_fig.ipynb, searchlight_analyses.ipynb
 def r2z(r):
     with np.errstate(invalid='ignore', divide='ignore'):
         return 0.5 * (np.log(1 + r) - np.log(1 - r))
 
 
 # plotting temporal correlation matrices
-#eventseg_fig.ipynb
+# eventseg_fig.ipynb
 def draw_bounds(ax, model):
     bounds = np.where(np.diff(np.argmax(model.segments_[0], axis=1)))[0]
     bounds_aug = np.concatenate(([0],bounds,[model.segments_[0].shape[0]]))
