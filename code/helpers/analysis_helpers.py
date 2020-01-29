@@ -42,12 +42,15 @@ SEMANTIC_PARAMS = {
     }
 }
 
+# scale for embedding-space trajectory figures
+# trajectory_analysis_and_fig.ipynb, wordle_analysis_and_fig.ipynb
+SCALE = 30
+
 # hand-annotated memory performance & number of HMM-identified recall events
 # eventseg_analysis.ipynb, list-learning_analysis.ipynb, precision_distinctiveness_fig.ipynb
 HAND_REC = np.array([27, 24, 32, 33, 32, 39, 30, 39, 28, 40, 34, 38, 47, 38, 27, 37, 39])
 # list-learning_analysis.ipynb, precision_distinctiveness_fig.ipynb
 N_REC_EVENTS = np.array([11, 16, 12, 10, 10, 12, 11, 16, 14, 15, 15, 23, 29, 16, 13, 17, 22])
-
 
 
 #####################################
@@ -138,10 +141,21 @@ def create_diag_mask(corrmat, diag_limit=None):
 
 
 # Fisher Z-transformation & inverse transformation
-# precision_distinctiveness_fig.ipynb, searchlight_analyses.ipynb
+# precision_distinctiveness_fig.ipynb, searchlight_analyses.ipynb, wordle_analysis_and_fig.ipynb
 def r2z(r):
     with np.errstate(invalid='ignore', divide='ignore'):
         return 0.5 * (np.log(1 + r) - np.log(1 - r))
+
+
+# wordle_analysis_and_fig.ipynb
+def z2r(z):
+    with np.errstate(invalid='ignore', divide='ignore'):
+        return (np.exp(2 * z) - 1) / (np.exp(2 * z) + 1)
+
+
+# wordle_analysis_and_fig.ipynb
+def corr_mean(rs, axis=0):
+    return z2r(np.nanmean([r2z(r) for r in rs], axis=axis))
 
 
 # plotting temporal correlation matrices
@@ -155,3 +169,47 @@ def draw_bounds(ax, model):
                                  facecolor='none')
         ax.add_patch(rect)
     return ax
+
+
+# adding arrows to trajectory embedding plots
+# trajectory_analysis_and_fig.ipynb, wordle_analysis_and_fig.ipynb
+def add_arrows(axes, x, y, **kwargs):
+    # spacing of arrows
+    aspace = .05
+    aspace *= SCALE
+    # r is the distance spanned between pairs of points
+    r = [0]
+    for i in range(1,len(x)):
+        dx = x[i]-x[i-1]
+        dy = y[i]-y[i-1]
+        r.append(np.sqrt(dx*dx+dy*dy))
+    r = np.array(r)
+    # rtot is a cumulative sum of r, it's used to save time
+    rtot = []
+    for i in range(len(r)):
+        rtot.append(r[0:i].sum())
+    rtot.append(r.sum())
+    arrowData = [] # will hold tuples of x,y,theta for each arrow
+    arrowPos = 0 # current point on walk along data
+    rcount = 1
+    while arrowPos < r.sum():
+        x1,x2 = x[rcount-1],x[rcount]
+        y1,y2 = y[rcount-1],y[rcount]
+        da = arrowPos-rtot[rcount]
+        theta = np.arctan2((x2-x1),(y2-y1))
+        ax = np.sin(theta)*da+x1
+        ay = np.cos(theta)*da+y1
+        arrowData.append((ax,ay,theta))
+        arrowPos+=aspace
+        while arrowPos > rtot[rcount+1]:
+            rcount+=1
+            if arrowPos > rtot[-1]:
+                break
+
+    # could be done in above block if you want
+    for ax,ay,theta in arrowData:
+        # use aspace as a guide for size and length of things
+        # scaling factors were chosen by experimenting a bit
+        axes.arrow(ax,ay,
+                   np.sin(theta)*aspace/10,np.cos(theta)*aspace/10,
+                   head_width=aspace/3, **kwargs)
