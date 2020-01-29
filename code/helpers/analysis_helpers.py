@@ -43,10 +43,11 @@ SEMANTIC_PARAMS = {
 }
 
 # hand-annotated memory performance
-# list-learning_analysis.ipynb, precision_distinctiveness_fig.ipynb
+# eventseg_analysis.ipynb, list-learning_analysis.ipynb, precision_distinctiveness_fig.ipynb
 HAND_REC = np.array([27, 24, 32, 33, 32, 39, 30, 39, 28, 40, 34, 38, 47, 38, 27, 37, 39])
 
 # number of recall events per participant
+# list-learning_analysis.ipynb, precision_distinctiveness_fig.ipynb
 N_REC_EVENTS = np.array([11, 16, 12, 10, 10, 12, 11, 16, 14, 15, 15, 23, 29, 16, 13, 17, 22])
 
 
@@ -56,6 +57,7 @@ N_REC_EVENTS = np.array([11, 16, 12, 10, 10, 12, 11, 16, 14, 15, 15, 23, 29, 16,
 #####################################
 
 # text preprocessing
+# topic_model_analysis.ipynb, feature_contribution.ipynb
 def format_text(text):
     if isinstance(text, pd.Series):
         text = ' '.join(list(text.dropna()))
@@ -69,6 +71,7 @@ def format_text(text):
     return punc_stripped
 
 
+# topic_model_analysis.ipynb, feature_contribution.ipynb
 def parse_windows(textlist, wsize):
     windows = []
     w_lengths = []
@@ -86,6 +89,7 @@ def parse_windows(textlist, wsize):
     return windows, w_lengths
 
 
+# topic_model_analysis.ipynb, feature_contribution.ipynb
 def get_video_timepoints(window_spans, annotations):
     timepoints = []
     for first, last in window_spans:
@@ -97,6 +101,7 @@ def get_video_timepoints(window_spans, annotations):
 
 
 # dynamic time-warping recall trajectories
+# feature_contribution.ipynb, searchlight_fig.ipynb
 def warp_recall(recall_traj, video_traj, return_paths=False):
     dist, path = fastdtw(video_traj, recall_traj, dist=correlation)
     recall_path = [i[1] for i in path]
@@ -109,11 +114,13 @@ def warp_recall(recall_traj, video_traj, return_paths=False):
 
 
 # masking long-timescale temporal correlations
+# feature_contribution.ipynb, searchlight_fig.ipynb
 def kth_diag_indices(arr, k):
     row_ix, col_ix = np.diag_indices_from(arr)
     return row_ix[:-k], col_ix[k:]
 
 
+# feature_contribution.ipynb, searchlight_fig.ipynb
 def find_diag_limit(corrmat):
     for k in range(corrmat.shape[0]):
         d = np.diag(corrmat, k=k)
@@ -121,6 +128,7 @@ def find_diag_limit(corrmat):
             return k
 
 
+# feature_contribution.ipynb, searchlight_fig.ipynb
 def create_diag_mask(corrmat, diag_limit=None):
     diag_mask = np.zeros_like(corrmat, dtype=bool)
     if diag_limit is None:
@@ -132,6 +140,7 @@ def create_diag_mask(corrmat, diag_limit=None):
 
 
 # Fisher Z-transformation & inverse transformation
+# precision_distinctiveness_fig.ipynb,
 def r2z(r):
     with np.errstate(invalid='ignore', divide='ignore'):
         return 0.5 * (np.log(1 + r) - np.log(1 - r))
