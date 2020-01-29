@@ -124,3 +124,9 @@ def create_diag_mask(corrmat, diag_limit=None):
         ix = kth_diag_indices(diag_mask, k)
         diag_mask[ix] = True
     return diag_mask
+
+
+# Fisher Z-transformation & inverse transformation
+def r2z(r):
+    with np.errstate(invalid='ignore', divide='ignore'):
+        return 0.5 * (np.log(1 + r) - np.log(1 - r))
