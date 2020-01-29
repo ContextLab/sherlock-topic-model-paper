@@ -5,7 +5,9 @@
 import re
 import numpy as np
 import pandas as pd
+from fastdtw import fastdtw
 from IPython.display import display, Markdown
+from scipy.spatial.distance import correlation
 
 # provide link to this file on GitHub for reference
 github_link = "https://github.com/contextlab/sherlock-topic-model-paper/blob/master/code/helpers/analysis_helpers.py"
@@ -17,7 +19,7 @@ display(info_msg)
 #          RE-USED VARIABLES        #
 #####################################
 
-# Topic modeling parameters
+# topic modeling parameters
 N_TOPICS = 100
 VIDEO_WSIZE = 50
 RECALL_WSIZE = 10
@@ -36,6 +38,11 @@ SEMANTIC_PARAMS = {
     }
 }
 
+# hand-annotated memory performance
+HAND_REC = np.array([27, 24, 32, 33, 32, 39, 30, 39, 28, 40, 34, 38, 47, 38, 27, 37, 39])
+
+# number of recall events per participant
+N_REC_EVENTS = np.array([11, 16, 12, 10, 10, 12, 11, 16, 14, 15, 15, 23, 29, 16, 13, 17, 22])
 
 
 
@@ -82,3 +89,38 @@ def get_video_timepoints(window_spans, annotations):
         timepoints.append((window_onset + window_offset) / 2)
 
     return np.array(timepoints)
+
+
+# dynamic time-warping recall trajectories
+def warp_recall(recall_traj, video_traj, return_paths=False):
+    dist, path = fastdtw(video_traj, recall_traj, dist=correlation)
+    recall_path = [i[1] for i in path]
+    warped_recall = recall_traj[recall_path]
+    if return_paths:
+        video_path = [i[0] for i in path]
+        return warped_recall, video_path, recall_path
+    else:
+        return warped_recall
+
+
+# masking long-timescale temporal correlations
+def kth_diag_indices(arr, k):
+    row_ix, col_ix = np.diag_indices_from(arr)
+    return row_ix[:-k], col_ix[k:]
+
+
+def find_diag_limit(corrmat):
+    for k in range(corrmat.shape[0]):
+        d = np.diag(corrmat, k=k)
+        if ~(d > 0).any():
+            return k
+
+
+def create_diag_mask(corrmat, diag_limit=None):
+    diag_mask = np.zeros_like(corrmat, dtype=bool)
+    if diag_limit is None:
+        diag_limit = find_diag_limit(corrmat)
+    for k in range(1, diag_limit):
+        ix = kth_diag_indices(diag_mask, k)
+        diag_mask[ix] = True
+    return diag_mask
