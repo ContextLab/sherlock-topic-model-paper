@@ -23,7 +23,7 @@ display(info_msg)
 #####################################
 
 # topic modeling parameters
-# topic_model_analysis.ipynb, feature_contribution.ipynb
+# topic_model_analysis.ipynb, feature_contribution.ipynb, feature_similarity.ipynb
 N_TOPICS = 100
 VIDEO_WSIZE = 50
 RECALL_WSIZE = 10
@@ -55,7 +55,7 @@ N_REC_EVENTS = np.array([11, 16, 12, 10, 10, 12, 11, 16, 14, 15, 15, 23, 29, 16,
 #####################################
 
 # text preprocessing
-# topic_model_analysis.ipynb, feature_contribution.ipynb
+# topic_model_analysis.ipynb, feature_contribution.ipynb, feature_similarity.ipynb
 def format_text(text):
     if isinstance(text, pd.Series):
         text = ' '.join(list(text.dropna()))
@@ -69,7 +69,7 @@ def format_text(text):
     return punc_stripped
 
 
-# topic_model_analysis.ipynb, feature_contribution.ipynb
+# topic_model_analysis.ipynb, feature_contribution.ipynb, feature_similarity.ipynb
 def parse_windows(textlist, wsize):
     windows = []
     w_lengths = []
@@ -87,7 +87,7 @@ def parse_windows(textlist, wsize):
     return windows, w_lengths
 
 
-# topic_model_analysis.ipynb, feature_contribution.ipynb
+# topic_model_analysis.ipynb, feature_contribution.ipynb, feature_similarity.ipynb
 def get_video_timepoints(window_spans, annotations):
     timepoints = []
     for first, last in window_spans:
@@ -99,7 +99,7 @@ def get_video_timepoints(window_spans, annotations):
 
 
 # dynamic time-warping recall trajectories
-# feature_contribution.ipynb, searchlight_fig.ipynb
+# searchlight_fig.ipynb, feature_contribution.ipynb
 def warp_recall(recall_traj, video_traj, return_paths=False):
     dist, path = fastdtw(video_traj, recall_traj, dist=correlation)
     recall_path = [i[1] for i in path]
@@ -112,13 +112,13 @@ def warp_recall(recall_traj, video_traj, return_paths=False):
 
 
 # masking long-timescale temporal correlations
-# feature_contribution.ipynb, searchlight_fig.ipynb
+# searchlight_fig.ipynb, feature_contribution.ipynb, feature_similarity.ipynb
 def kth_diag_indices(arr, k):
     row_ix, col_ix = np.diag_indices_from(arr)
     return row_ix[:-k], col_ix[k:]
 
 
-# feature_contribution.ipynb, searchlight_fig.ipynb
+# searchlight_fig.ipynb, feature_contribution.ipynb, feature_similarity.ipynb
 def find_diag_limit(corrmat):
     for k in range(corrmat.shape[0]):
         d = np.diag(corrmat, k=k)
@@ -126,7 +126,7 @@ def find_diag_limit(corrmat):
             return k
 
 
-# feature_contribution.ipynb, searchlight_fig.ipynb
+# searchlight_fig.ipynb, feature_contribution.ipynb, feature_similarity.ipynb
 def create_diag_mask(corrmat, diag_limit=None):
     diag_mask = np.zeros_like(corrmat, dtype=bool)
     if diag_limit is None:
@@ -145,7 +145,7 @@ def r2z(r):
 
 
 # plotting temporal correlation matrices
-# eventseg_fig.ipynb
+# eventseg_fig.ipynb, corrmats.ipynb
 def draw_bounds(ax, model):
     bounds = np.where(np.diff(np.argmax(model.segments_[0], axis=1)))[0]
     bounds_aug = np.concatenate(([0],bounds,[model.segments_[0].shape[0]]))
