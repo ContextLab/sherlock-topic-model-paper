@@ -1,6 +1,7 @@
 # This file contains variables and functions used across multiple analysis
 # notebooks (in /code/notebooks/) in a centralized location.  Both variables
-# and functions are grouped according to their use
+# and functions are grouped according to their use, and tagged with the notebooks
+# in which they're imported for easy searching
 
 import re
 import numpy as np
@@ -8,6 +9,8 @@ import pandas as pd
 from fastdtw import fastdtw
 from IPython.display import display, Markdown
 from scipy.spatial.distance import correlation
+
+import matplotlib.patches as patches
 
 # provide link to this file on GitHub for reference
 github_link = "https://github.com/contextlab/sherlock-topic-model-paper/blob/master/code/helpers/analysis_helpers.py"
@@ -20,6 +23,7 @@ display(info_msg)
 #####################################
 
 # topic modeling parameters
+# topic_model_analysis.ipynb, feature_contribution.ipynb
 N_TOPICS = 100
 VIDEO_WSIZE = 50
 RECALL_WSIZE = 10
@@ -39,6 +43,7 @@ SEMANTIC_PARAMS = {
 }
 
 # hand-annotated memory performance
+# list-learning_analysis.ipynb, precision_distinctiveness_fig.ipynb
 HAND_REC = np.array([27, 24, 32, 33, 32, 39, 30, 39, 28, 40, 34, 38, 47, 38, 27, 37, 39])
 
 # number of recall events per participant
@@ -130,3 +135,16 @@ def create_diag_mask(corrmat, diag_limit=None):
 def r2z(r):
     with np.errstate(invalid='ignore', divide='ignore'):
         return 0.5 * (np.log(1 + r) - np.log(1 - r))
+
+
+# plotting temporal correlation matrices
+#eventseg_fig.ipynb
+def draw_bounds(ax, model):
+    bounds = np.where(np.diff(np.argmax(model.segments_[0], axis=1)))[0]
+    bounds_aug = np.concatenate(([0],bounds,[model.segments_[0].shape[0]]))
+    for i in range(len(bounds_aug)-1):
+        rect = patches.Rectangle((bounds_aug[i], bounds_aug[i]), bounds_aug[i+1]-bounds_aug[i],
+                                 bounds_aug[i+1]-bounds_aug[i], linewidth=1, edgecolor='#FFF9AE',
+                                 facecolor='none')
+        ax.add_patch(rect)
+    return ax
