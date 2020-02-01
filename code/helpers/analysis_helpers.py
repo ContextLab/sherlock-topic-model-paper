@@ -23,7 +23,7 @@ display(info_msg)
 #####################################
 
 # topic modeling parameters
-# topic_model_analysis.ipynb, feature_contribution.ipynb, feature_similarity.ipynb
+# topic_model_analysis.ipynb, feature_contribution.ipynb, feature_similarity.ipynb, precision_detail.ipynb
 N_TOPICS = 100
 VIDEO_WSIZE = 50
 RECALL_WSIZE = 10
@@ -47,9 +47,9 @@ SEMANTIC_PARAMS = {
 SCALE = 30
 
 # hand-annotated memory performance & number of HMM-identified recall events
-# eventseg_analysis.ipynb, list-learning_analysis.ipynb, precision_distinctiveness_fig.ipynb, precision_detail.ipynb
+# eventseg_analysis.ipynb, list-learning_analysis.ipynb, precision_distinctiveness_fig.ipynb
 HAND_REC = np.array([27, 24, 32, 33, 32, 39, 30, 39, 28, 40, 34, 38, 47, 38, 27, 37, 39])
-# list-learning_analysis.ipynb, precision_distinctiveness_fig.ipynb, precision_detail.ipynb
+# list-learning_analysis.ipynb, precision_distinctiveness_fig.ipynb
 N_REC_EVENTS = np.array([11, 16, 12, 10, 10, 12, 11, 16, 14, 15, 15, 23, 29, 16, 13, 17, 22])
 
 
