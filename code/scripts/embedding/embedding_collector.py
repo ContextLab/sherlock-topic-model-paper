@@ -94,11 +94,11 @@ if len(os.listdir(results_dir)) == 6:
 
         for ix in no_intersections.index:
             new_ix = f'order{order}_{ix}'
-            no_intersections.loc[new_ix] = no_intersections.loc[ix]
+            good_embeddings.loc[new_ix] = no_intersections.loc[ix]
 
     # select embedding that best reflects shape of 100D video trajectory
     optimal_embedding = good_embeddings['spatial_recovery'].idxmax()
-    order, *params = optimal_embedding.split('_')[0]
-    source_path = opj(embeddings_dir, order, f"{'_'.join(params)}.npy")
+    order, *params = optimal_embedding.split('_')
+    source_path = opj(config['datadir'], 'embeddings', order, f"{'_'.join(params)}.npy")
     dest_path = opj(optimized_dir, 'embeddings.npy')
     copy2(source_path, dest_path)

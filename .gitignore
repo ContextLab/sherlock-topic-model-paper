@@ -11,3 +11,7 @@
 *.#*
 *.out
 *.dvi
+*__pycache__
+paper/figs/tmp
+data/processed/fMRI
+

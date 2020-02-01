@@ -21,7 +21,7 @@ cd <config['startdir']>
 
 echo ----
 
-echo ACTIVATING MEMORY DYNAMICS VIRTUAL ENVIRONMENT
+echo ACTIVATING CONDA ENV
 module load python
 source activate memdyn
 

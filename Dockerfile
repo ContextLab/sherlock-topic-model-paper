@@ -54,11 +54,6 @@ RUN pip install numpy==1.17.0 \
     xlrd==1.1.0 \
     spurplus==2.3.3
 
-# add some useful directories as mirrors of directors in the same location on your computer
-ADD data /data
-ADD code /code
-ADD paper /paper
-
 # Finally, expose a port from within the docker so we can use it to run
 # jupyter notebooks
 EXPOSE 9999
