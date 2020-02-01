@@ -68,7 +68,6 @@ def format_text(text):
 
     no_possessive = text.lower().replace("'s", '')
     punc_stripped = re.sub(pattern, '', no_possessive)
-    spaced = ' '.join(punc_stripped.split())
     return punc_stripped
 
 
