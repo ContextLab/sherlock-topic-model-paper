@@ -23,7 +23,8 @@ display(info_msg)
 #####################################
 
 # topic modeling parameters
-# topic_model_analysis.ipynb, feature_contribution.ipynb, feature_similarity.ipynb, precision_detail.ipynb
+# topic_model_analysis.ipynb, feature_contribution.ipynb, feature_similarity.ipynb,
+# precision_detail_fig.ipynb, distinctiveness_detail_fig.ipynb
 N_TOPICS = 100
 VIDEO_WSIZE = 50
 RECALL_WSIZE = 10
@@ -152,7 +153,7 @@ def z2r(z):
         return (np.exp(2 * z) - 1) / (np.exp(2 * z) + 1)
 
 
-# wordle_analysis_and_fig.ipynb
+# wordle_analysis_and_fig.ipynb, , distinctiveness_detail_fig.ipynb
 def corr_mean(rs, axis=0):
     return z2r(np.nanmean([r2z(r) for r in rs], axis=axis))
 
