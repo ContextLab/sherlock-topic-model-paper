@@ -43,7 +43,7 @@ In order to create accurate video and recall models, we used an optimization met
 \[
 \argmax_{\omega, \rho, K} \left[\mathrm{corr}\left(\mathrm{corr}\left(\mu\left(\omega, \rho, K\right), \nu\left(\omega, \rho, K\right)\right), \theta\right)\right],
 \]
-where $\mathrm{corr}(\mu, \nu)$ is the per-participant correlation between the temporal correlation matrices of the video ($\mu$) and recall ($\nu$) trajectory, and $\theta$ is the per-participant hand-annotated memory performance.  We searched over a grid of pre-specified values for each of these parameters; the resulting correlations are displayed in Figure~\ref{fig:paramsearch}.  The optimal parameters were $\omega = 50$, $\rho = 10$, and $K = 100$.
+where $\mathrm{corr}(\mu, \nu)$ is the per-participant correlation between the temporal correlation matrices of the video ($\mu$) and recall ($\nu$) trajectory, and $\theta$ is the per-participant hand-annotated memory performance.  We searched over a grid of pre-specified values for each of these parameters; the resulting correlations are displayed in Figure~\ref{fig:paramsearch}.  The optimal parameters were $\omega = 50$, $\rho = 10$, and $K = 100$. In subsequent refinements of our topic modeling approach, we made various improvements to how we parse the video and recall text and construct the trajectories' timeseries, but maintained these optimized parameters throughout.
 
 
 \begin{figure}[]
