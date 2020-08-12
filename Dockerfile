@@ -34,26 +34,27 @@ RUN ["/bin/bash", "-c", "conda install -y gcc"]
 # update setuptools
 RUN conda update setuptools
 
-# install jupyter lab
-RUN conda install -c conda-forge jupyterlab
+# copy in helpers package
+COPY code/sherlock_helpers/ /buildfiles/sherlock_helpers/
 
-# Install packages needed
-RUN pip install numpy==1.17.0 \
+# Install packages
+RUN pip install --upgrade pip && pip install \
+    numpy==1.17.0 \
     pandas==0.25.0 \
     matplotlib==3.1.0 \
     seaborn==0.9.0 \
     hypertools==0.6.2 \
     scikit-learn==0.19.1 \
     git+git://github.com/nilearn/nilearn.git@c0d14098c6b56381e4b527ca21986f86955cbf4f \
-    git+https://github.com/brainiak/brainiak.git@v0.7.1 \
+    --no-use-pep517 git+https://github.com/brainiak/brainiak.git@v0.7.1 \
     git+git://github.com/ContextLab/quail.git@71dd53c792dd915dc84879d8237e3582dd68b7a4#egg=quail \
     fastdtw==0.3.2 \
     wordcloud==1.5.0 \
     pycircstat==0.0.2 \
     scipy==1.2.1 \ 
     xlrd==1.1.0 \
-    spurplus==2.3.3
+    spurplus==2.3.3 \
+    /buildfiles/sherlock_helpers
 
-# Finally, expose a port from within the docker so we can use it to run
-# jupyter notebooks
+# Finally, expose a port from within the docker so we can use it to run jupyter notebooks
 EXPOSE 9999
