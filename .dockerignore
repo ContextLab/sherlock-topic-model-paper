@@ -1,0 +1,4 @@
+# since the container will be mounted to the project root, we can exclude almost everything from the build context to save space
+**
+# needs to be included to install local helpers package during build
+!/code/sherlock_helpers/
