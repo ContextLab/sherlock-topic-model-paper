@@ -38,7 +38,7 @@ RUN conda update setuptools
 COPY code/sherlock_helpers/ /buildfiles/sherlock_helpers/
 
 # Install packages
-RUN pip install --upgrade pip && pip install \
+RUN pip install \
     numpy==1.17.0 \
     pandas==0.25.0 \
     matplotlib==3.1.0 \
@@ -46,7 +46,7 @@ RUN pip install --upgrade pip && pip install \
     hypertools==0.6.2 \
     scikit-learn==0.19.1 \
     git+git://github.com/nilearn/nilearn.git@c0d14098c6b56381e4b527ca21986f86955cbf4f \
-    --no-use-pep517 git+https://github.com/brainiak/brainiak.git@v0.7.1 \
+    git+https://github.com/brainiak/brainiak.git@v0.7.1 \
     git+git://github.com/ContextLab/quail.git@71dd53c792dd915dc84879d8237e3582dd68b7a4#egg=quail \
     fastdtw==0.3.2 \
     wordcloud==1.5.0 \
