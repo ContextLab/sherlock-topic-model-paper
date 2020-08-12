@@ -54,7 +54,8 @@ RUN pip install \
     scipy==1.2.1 \ 
     xlrd==1.1.0 \
     spurplus==2.3.3 \
-    /buildfiles/sherlock_helpers
+    /buildfiles/sherlock_helpers && \
+    rm -rf /buildfiles
 
 # Finally, expose a port from within the docker so we can use it to run jupyter notebooks
 EXPOSE 9999
