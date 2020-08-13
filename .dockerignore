@@ -1,4 +1,2 @@
-# since the container will be mounted to the project root, we can exclude almost everything from the build context to save space
+# since the container will be mounted to the project root, we can exclude everything from the build context to save space and speed up the build
 **
-# needs to be included to install local helpers package during build
-!/code/sherlock_helpers/
