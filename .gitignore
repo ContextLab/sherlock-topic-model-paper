@@ -4,6 +4,9 @@
 # Python bytecode
 *__pycache__
 
+# Python package distribution egg
+*.egg-info
+
 # PyCharm style config dir
 *.idea
 
