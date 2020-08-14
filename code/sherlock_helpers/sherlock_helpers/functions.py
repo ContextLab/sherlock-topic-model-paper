@@ -15,7 +15,7 @@ from IPython.display import display, HTML
 from IPython.core.oinspect import pylight
 from scipy.spatial.distance import correlation
 
-from .constants import EDGECOLOR, GRID_SCALE
+from .constants import EDGECOLOR, GRID_SCALE, RAW_DIR, RECALL_WSIZE
 
 
 ########################################
@@ -31,6 +31,44 @@ def format_text(text):
 
     no_possessive = text.lower().replace("'s", '')
     return re.sub(pattern, '', no_possessive)
+
+
+def get_recall_event_text(event_boundaries, subid):
+    onset, offset = event_boundaries
+    transcript_path = RAW_DIR.joinpath(f'NN{subid} transcript.txt')
+    with transcript_path.open(encoding='cp1252') as f:
+        transcript = f.read().replace(b'\x92'.decode('cp1252'), "'").strip()
+
+    textlist = transcript.split('.')
+    windows = []
+    window_n = 0
+    for w_ix in range(1, RECALL_WSIZE):
+        if onset <= window_n <= offset:
+            start, end = 0, w_ix
+            windows.append('.'.join(textlist[start:end]))
+
+        window_n += 1
+
+    for w_ix in range(len(textlist)):
+        if onset <= window_n <= offset:
+            start = w_ix
+            end = w_ix + RECALL_WSIZE if w_ix + RECALL_WSIZE <= len(textlist) else len(textlist)
+            windows.append('.'.join(textlist[start:end]))
+
+        window_n += 1
+
+    full_reclist = '.'.join(windows).split('.')
+    recall_text_slice = pd.unique(full_reclist)
+    return '.'.join(recall_text_slice).strip() + '.'
+
+
+def get_video_event_text(event_boundaries):
+    onset, offset = event_boundaries
+    video_text = pd.read_excel(RAW_DIR.joinpath('Sherlock_Segments_1000_NN_2017.xlsx'))
+    text_slice = video_text.loc[(video_text['Start Time (TRs, 1.5s)'] >= onset)
+                                & (video_text['End Time (TRs, 1.5s)'] < offset),
+                                'Scene Details - A Level ']
+    return ' '.join(text_slice)
 
 
 def get_video_timepoints(window_spans, annotations):
@@ -272,11 +310,11 @@ def multicol_display(*outputs,
     cell_style = ";".join(f"{prop}:{val}" for prop, val in cell_css.items())
 
     # string templates for individual elements
-    html_table = f"<table style={table_style}>{{caption}}{{header}}{{content}}</table>"
-    html_caption = f"<caption style={caption_style}>{{content}}</caption>"
-    html_header = f"<th style={header_style}>{{content}}</th>"
-    html_row = f"<tr style={row_style}>{{content}}</tr>"
-    html_cell = f"<td style={cell_style}>{{content}}</td>"
+    html_table = f"<table style='{table_style}'>{{caption}}{{header}}{{content}}</table>"
+    html_caption = f"<caption style='{caption_style}'>{{content}}</caption>"
+    html_header = f"<th style='{header_style}'>{{content}}</th>"
+    html_row = f"<tr style='{row_style}'>{{content}}</tr>"
+    html_cell = f"<td style='{cell_style}'>{{content}}</td>"
 
     # fill element templates with content
     cap = html_caption.format(content=caption) if caption is not None else ''
