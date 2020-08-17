@@ -49,8 +49,7 @@ RUN pip install \
     wordcloud==1.5.0 \
     pycircstat==0.0.2 \
     scipy==1.2.1 \ 
-    xlrd==1.1.0 \
-    spurplus==2.3.3
+    xlrd==1.1.0 
 
 # Define a bash function to simplify notebook launch command
 RUN echo 'jupyter() { if [[ $@ == "notebook" ]]; then command jupyter notebook /mnt/code/notebooks --port=9999 --no-browser --ip=0.0.0.0 --allow-root; else command jupyter "$@"; fi; }' >> /root/.bashrc
