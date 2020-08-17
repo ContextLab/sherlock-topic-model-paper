@@ -33,44 +33,6 @@ def format_text(text):
     return re.sub(pattern, '', no_possessive)
 
 
-def get_recall_event_text(event_boundaries, subid):
-    onset, offset = event_boundaries
-    transcript_path = RAW_DIR.joinpath(f'NN{subid} transcript.txt')
-    with transcript_path.open(encoding='cp1252') as f:
-        transcript = f.read().replace(b'\x92'.decode('cp1252'), "'").strip()
-
-    textlist = transcript.split('.')
-    windows = []
-    window_n = 0
-    for w_ix in range(1, RECALL_WSIZE):
-        if onset <= window_n <= offset:
-            start, end = 0, w_ix
-            windows.append('.'.join(textlist[start:end]))
-
-        window_n += 1
-
-    for w_ix in range(len(textlist)):
-        if onset <= window_n <= offset:
-            start = w_ix
-            end = w_ix + RECALL_WSIZE if w_ix + RECALL_WSIZE <= len(textlist) else len(textlist)
-            windows.append('.'.join(textlist[start:end]))
-
-        window_n += 1
-
-    full_reclist = '.'.join(windows).split('.')
-    recall_text_slice = pd.unique(full_reclist)
-    return '.'.join(recall_text_slice).strip() + '.'
-
-
-def get_video_event_text(event_boundaries):
-    onset, offset = event_boundaries
-    video_text = pd.read_excel(RAW_DIR.joinpath('Sherlock_Segments_1000_NN_2017.xlsx'))
-    text_slice = video_text.loc[(video_text['Start Time (TRs, 1.5s)'] >= onset)
-                                & (video_text['End Time (TRs, 1.5s)'] < offset),
-                                'Scene Details - A Level ']
-    return ' '.join(text_slice)
-
-
 def get_video_timepoints(window_spans, annotations):
     timepoints = []
     for first, last in window_spans:
@@ -99,7 +61,63 @@ def parse_windows(textlist, wsize):
 
 
 ########################################
-#         STATS/MATH FUNCTIONS         #
+#             TEXT RECOVERY            #
+########################################
+
+def get_recall_text(onset, offset, subid):
+    transcript_path = RAW_DIR.joinpath(f'NN{subid} transcript.txt')
+    with transcript_path.open(encoding='cp1252') as f:
+        transcript = f.read().replace(b'\x92'.decode('cp1252'), "'").strip()
+
+    textlist = transcript.split('.')
+    windows = []
+    window_n = 0
+    for w_ix in range(1, RECALL_WSIZE):
+        if onset <= window_n <= offset:
+            start, end = 0, w_ix
+            windows.append('.'.join(textlist[start:end]))
+
+        window_n += 1
+
+    for w_ix in range(len(textlist)):
+        if onset <= window_n <= offset:
+            start = w_ix
+            end = w_ix + RECALL_WSIZE if w_ix + RECALL_WSIZE <= len(textlist) else len(textlist)
+            windows.append('.'.join(textlist[start:end]))
+
+        window_n += 1
+
+    full_reclist = '.'.join(windows).split('.')
+    recall_text_slice = pd.unique(full_reclist)
+    return '.'.join(recall_text_slice).strip() + '.'
+
+
+def get_topic_words(cv, lda, topics=None, n_words=10):
+    if topics is None:
+        topics = np.arange(lda.components_.shape[0])
+    elif isinstance(topics, int):
+        topics = [topics]
+
+    topic_words = dict()
+    vocab = np.array(cv.get_feature_names())
+    for topic in topics:
+        weights = lda.components_[topic]
+        word_ixs = np.argsort(weights)[::-1][:n_words]
+        topic_words[topic] = vocab[word_ixs]
+
+    return topic_words
+
+
+def get_video_text(onset, offset):
+    video_text = pd.read_excel(RAW_DIR.joinpath('Sherlock_Segments_1000_NN_2017.xlsx'))
+    text_slice = video_text.loc[(video_text['Start Time (TRs, 1.5s)'] >= onset)
+                                & (video_text['End Time (TRs, 1.5s)'] < offset),
+                                'Scene Details - A Level ']
+    return ' '.join(text_slice)
+
+
+########################################
+#              STATS/MATH              #
 ########################################
 
 def corr_mean(rs, axis=0):
@@ -117,7 +135,7 @@ def z2r(z):
 
 
 ########################################
-#          PLOTTING FUNCTIONS          #
+#               PLOTTING               #
 ########################################
 
 def add_arrows(axes, x, y, **kwargs):
