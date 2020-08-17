@@ -199,32 +199,35 @@ def draw_bounds(ax, model):
     return ax
 
 ########################################
-#            BRAIN ANALYSES            #
+#          ARRAY MANIPULATION          #
 ########################################
 
 
-def create_diag_mask(corrmat, diag_limit=None):
-    diag_mask = np.zeros_like(corrmat, dtype=bool)
+def create_diag_mask(arr, diag_start=0, diag_limit=None):
+    diag_mask = np.zeros_like(arr, dtype=bool)
     if diag_limit is None:
-        diag_limit = find_diag_limit(corrmat)
+        diag_limit = find_diag_limit(arr)
 
-    for k in range(1, diag_limit):
+    for k in range(diag_start, diag_limit):
         ix = kth_diag_indices(diag_mask, k)
         diag_mask[ix] = True
 
     return diag_mask
 
 
-def find_diag_limit(corrmat):
-    for k in range(corrmat.shape[0]):
-        d = np.diag(corrmat, k=k)
+def find_diag_limit(arr):
+    for k in range(arr.shape[0]):
+        d = np.diag(arr, k=k)
         if ~(d > 0).any():
             return k
 
 
 def kth_diag_indices(arr, k):
     row_ix, col_ix = np.diag_indices_from(arr)
-    return row_ix[:-k], col_ix[k:]
+    if k == 0:
+        return row_ix, col_ix
+    else:
+        return row_ix[:-k], col_ix[k:]
 
 
 def warp_recall(recall_traj, video_traj, return_paths=False):
@@ -255,7 +258,7 @@ def multicol_display(*outputs,
         # formats some common Python objects for display
         if isinstance(obj, str):
             return obj.replace('\n', '<br>')
-        elif isinstance(obj, (int, float)):
+        elif isinstance(obj, (int, float, np.integer, np.floating)):
             return str(obj)
         elif (isinstance(obj, (list, tuple, set, Iterator))
               or type(obj).__module__ == 'numpy'):
