@@ -34,11 +34,9 @@ RUN ["/bin/bash", "-c", "conda install -y gcc"]
 # update setuptools
 RUN conda update setuptools
 
-# install jupyter lab
-RUN conda install -c conda-forge jupyterlab
-
-# Install packages needed
-RUN pip install numpy==1.17.0 \
+# Install packages
+RUN pip install \
+    numpy==1.17.0 \
     pandas==0.25.0 \
     matplotlib==3.1.0 \
     seaborn==0.9.0 \
@@ -51,9 +49,16 @@ RUN pip install numpy==1.17.0 \
     wordcloud==1.5.0 \
     pycircstat==0.0.2 \
     scipy==1.2.1 \ 
-    xlrd==1.1.0 \
-    spurplus==2.3.3
+    xlrd==1.1.0 
 
-# Finally, expose a port from within the docker so we can use it to run
-# jupyter notebooks
+# Define a bash function to simplify notebook launch command
+RUN echo 'jupyter() { if [[ $@ == "notebook" ]]; then command jupyter notebook /mnt/code/notebooks --port=9999 --no-browser --ip=0.0.0.0 --allow-root; else command jupyter "$@"; fi; }' >> /root/.bashrc
+
+# Set launch command to install helpers package the first time container is run
+CMD ["/bin/bash", "-c", "source /root/.bashrc && [ -z $HELPERS_INSTALLED ] && { echo \"installing sherlock-helpers package\" && python -W ignore -m  pip install -qe code/sherlock_helpers && echo 'HELPERS_INSTALLED=1' >> /root/.bashrc; }; /bin/bash"]
+
+# Set default working directory to repo mountpoint
+WORKDIR /mnt
+
+# Finally, expose a port from within the docker so we can use it to run jupyter notebooks
 EXPOSE 9999

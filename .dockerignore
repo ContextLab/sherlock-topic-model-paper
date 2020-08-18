@@ -1,0 +1,2 @@
+# since the container will be mounted to the project root, we can exclude everything from the build context to save space and speed up the build
+**

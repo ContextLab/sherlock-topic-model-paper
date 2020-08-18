@@ -1,17 +1,35 @@
+# IPython notebook checkpoints
+*ipynb_checkpoints*
+ 
+# Python bytecode
+*__pycache__
+
+# Python package distribution egg
+*.egg-info
+
+# PyCharm style config dir
+*.idea
+
+# Mac Finder layout config
+*.DS_Store*
+
+# LaTex-related files
 *.log
 *.aux
-*.idea
-*.DS_Store*
-*ipynb_checkpoints*
 *.fdb_latexmk
 *.fls
 *.synctex.gz
 *.bbl
 *.blg
-*.#*
 *.out
 *.dvi
-*__pycache__
+
+# emacs lockfiles
+*.#*
+
+# raw figure components
 paper/figs/tmp
+
+# huge (>11GB) directory of fMRI data from Chen et al. (2017)
 data/processed/fMRI
 
