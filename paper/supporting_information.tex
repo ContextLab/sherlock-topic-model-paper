@@ -15,7 +15,7 @@
 \newcommand{\argmin}{\mathop{\mathrm{argmin}}\limits}
 
 \title{\textit{Supporting Information for}: Geometric models reveal behavioral and neural signatures of how naturalistic experiences are transformed into episodic memories}
-\author{Andrew C. Heusser\textsuperscript{1, 2, \textdagger}, Paxton C. Fitzpatrick\textsuperscript{1, \textdagger}, and Jeremy R. Manning\textsuperscript{1, *}\\\textsuperscript{1}Department of Psychological and Brain Sciences\\Dartmouth College, Hanover, NH 03755, USA\\\textsuperscript{2}Akili Interactive\\Boston, MA 02110\\\textsuperscript{\textdagger}Denotes equal contribution\\\textsuperscript{*}Corresponding author: Jeremy.R.Manning@dartmouth.edu}
+\author{Andrew C. Heusser\textsuperscript{1, 2, \textdagger}, Paxton C. Fitzpatrick\textsuperscript{1, \textdagger}, and Jeremy R. Manning\textsuperscript{1, *}\\\textsuperscript{1}Department of Psychological and Brain Sciences\\Dartmouth College, Hanover, NH 03755, USA\\\textsuperscript{2}Akili Interactive\\Boston, MA 02110\\\textsuperscript{\textdagger}Denotes equal contribution\\\textsuperscript{*}Corresponding author: Jeremy.R.Manning@Dartmouth.edu}
 
 \bibliographystyle{apa}
 
@@ -39,21 +39,21 @@ This document provides additional details about the methods we used in the main 
 
 \section*{Additional details about topic modeling methods and results}
 \subsection*{Optimizing topic model parameters}
-In order to create accurate video and recall models, we used an optimization method that was driven by our ability to explain hand-annotated memory performance metrics collected by \cite{ChenEtal17}.  Specifically, we used a grid search to compute the $\omega$ (video sliding window duration, in scenes), $\rho$ (recall sliding window duration, in sentences), and $K$ (number of topics) that satisfied
+In order to create accurate episode and recall models, we used an optimization method that was driven by our ability to explain hand-annotated memory performance metrics collected by \cite{ChenEtal17}.  Specifically, we used a grid search to compute the $\omega$ (episode sliding window duration, in scenes), $\rho$ (recall sliding window duration, in sentences), and $K$ (number of topics) that satisfied
 \[
 \argmax_{\omega, \rho, K} \left[\mathrm{corr}\left(\mathrm{corr}\left(\mu\left(\omega, \rho, K\right), \nu\left(\omega, \rho, K\right)\right), \theta\right)\right],
 \]
-where $\mathrm{corr}(\mu, \nu)$ is the per-participant correlation between the temporal correlation matrices of the video ($\mu$) and recall ($\nu$) trajectory, and $\theta$ is the per-participant hand-annotated memory performance.  We searched over a grid of pre-specified values for each of these parameters; the resulting correlations are displayed in Figure~\ref{fig:paramsearch}.  The optimal parameters were $\omega = 50$, $\rho = 10$, and $K = 100$. In subsequent refinements of our topic modeling approach, we made various improvements to how we parse the video and recall text and construct the trajectories' timeseries, but maintained these optimized parameters throughout.
+where $\mathrm{corr}(\mu, \nu)$ is the per-participant correlation between the temporal correlation matrices of the episode ($\mu$) and recall ($\nu$) trajectory, and $\theta$ is the per-participant hand-annotated memory performance.  We searched over a grid of pre-specified values for each of these parameters; the resulting correlations are displayed in Figure~\ref{fig:paramsearch}.  The optimal parameters were $\omega = 50$, $\rho = 10$, and $K = 100$. In subsequent refinements of our topic modeling approach, we made various improvements to how we parse the episode and recall text and construct the trajectories' timeseries, but maintained these optimized parameters throughout.
 
 
 \begin{figure}[]
 \centering
 \includegraphics[width=1\textwidth]{figs/parameter_search}
-\caption{\small \textbf{Optimizing topic model parameters.}  We performed a grid search over video sliding window length ($\omega \in \{5, 10, 25, 50, 100 \}$), recall sliding window length ($\rho \in \{5, 10, 25, 50, 100 \}$), and number of topics ($K \in \{5, 10, 25, 50, 100 \}$).  The reported correlations are between per-subject video-recall trajectory correlations and per-subject hand-annotated memory performance ratings.}
+\caption{\small \textbf{Optimizing topic model parameters.}  We performed a grid search over episode sliding window length ($\omega \in \{5, 10, 25, 50, 100 \}$), recall sliding window length ($\rho \in \{5, 10, 25, 50, 100 \}$), and number of topics ($K \in \{5, 10, 25, 50, 100 \}$).  The reported correlations are between per-subject episode-recall trajectory correlations and per-subject hand-annotated memory performance ratings.}
 \label{fig:paramsearch}
 \end{figure}
 
-The optimized model converged on 32 unique topics that were assigned non-zero weights over the course of the video.  We provide a list of the top ten highest-weighted words from each topic in Figure~\ref{fig:topics}.
+The optimized model converged on 32 unique topics that were assigned non-zero weights over the course of the episode.  We provide a list of the top ten highest-weighted words from each topic in Figure~\ref{fig:topics}.
 
 \begin{figure}[]
 \centering
@@ -64,7 +64,7 @@ The optimized model converged on 32 unique topics that were assigned non-zero we
 %\FloatBarrier
 
 \subsection*{Feature importance analyses}
-To determine the contribution of each feature to the structure of the video topic proportions, we conducted a ``leave one out'' analysis.  Specifically, we compared the original video topic trajectory (created using all hand-annotated features from the 998 hand-annotated scenes spanning the \textit{Sherlock} episode; see \textit{Methods} for a full list of features) with video trajectories created using all but one type of feature.  We created temporal correlation matrices for each trajectory (using the topic proportions matrices) and correlated the proximal diagonals from the upper triangles of each impoverished trajectory with the original feature-complete trajectory (see \textit{Methods} for details on how we isolated proximal temporal correlations).  Observing a lower correlation between an impoverished trajectory (holding out a particular feature) and the feature-complete trajectory would suggest that the given feature played a more prominent role in shaping the temporal structure of the feature-complete trajectory.  We found that hand-annotated narrative details provided the most structure to the feature-complete trajectory, whereas the name of the character(s) in focus for each shot provided the least structure (Fig.~\ref{fig:feature-importance}A).
+To determine the contribution of each feature to the structure of the episode topic proportions, we conducted a ``leave one out'' analysis.  Specifically, we compared the original episode topic trajectory (created using all hand-annotated features from the 998 hand-annotated scenes spanning the \textit{Sherlock} episode; see \textit{Methods} for a full list of features) with episode trajectories created using all but one type of feature.  We created temporal correlation matrices for each trajectory (using the topic proportions matrices) and correlated the proximal diagonals from the upper triangles of each impoverished trajectory with the original feature-complete trajectory (see \textit{Methods} for details on how we isolated proximal temporal correlations).  Observing a lower correlation between an impoverished trajectory (holding out a particular feature) and the feature-complete trajectory would suggest that the given feature played a more prominent role in shaping the temporal structure of the feature-complete trajectory.  We found that hand-annotated narrative details provided the most structure to the feature-complete trajectory, whereas the name of the character(s) in focus for each shot provided the least structure (Fig.~\ref{fig:feature-importance}A).
 
 \begin{figure}[]
 \centering
