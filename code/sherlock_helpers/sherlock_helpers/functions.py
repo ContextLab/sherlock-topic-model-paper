@@ -111,7 +111,7 @@ def get_topic_words(cv, lda, topics=None, n_words=10):
 def get_video_text(onset, offset):
     video_text = pd.read_excel(RAW_DIR.joinpath('Sherlock_Segments_1000_NN_2017.xlsx'))
     text_slice = video_text.loc[(video_text['Start Time (TRs, 1.5s)'] >= onset)
-                                & (video_text['End Time (TRs, 1.5s)'] < offset),
+                                & (video_text['Start Time (TRs, 1.5s)'] < offset),
                                 'Scene Details - A Level ']
     return ' '.join(text_slice)
 
