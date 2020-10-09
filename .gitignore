@@ -23,6 +23,7 @@
 *.blg
 *.out
 *.dvi
+_region_.tex
 
 # emacs lockfiles
 *.#*
