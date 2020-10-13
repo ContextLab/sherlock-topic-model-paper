@@ -23,6 +23,11 @@
 *.blg
 *.out
 *.dvi
+*.fff
+*.lof
+
+#docx temp files
+*~$*.docx
 
 # emacs lockfiles
 *.#*
