@@ -125,6 +125,27 @@ def corr_mean(rs, axis=0):
     return z2r(np.nanmean([r2z(r) for r in rs], axis=axis))
 
 
+def pearsonr_ci(x, y, ci=95, n_boots=1000):
+    x = np.asarray(x)
+    y = np.asarray(y)
+    rand_ixs = np.random.randint(0, x.shape[0], size=(n_boots, x.shape[0]))
+    # (n_boots, n) paired subsample arrays
+    x_boots = x[rand_ixs]
+    y_boots = y[rand_ixs]
+    # difference from mean for each subsample
+    x_mdiffs = x_boots - x_boots.mean(axis=1)[:, None]
+    y_mdiffs = y_boots - y_boots.mean(axis=1)[:, None]
+    # sum of squares
+    x_ss = np.einsum('ij, ij -> i', x_mdiffs, x_mdiffs)
+    y_ss = np.einsum('ij, ij -> i', y_mdiffs, y_mdiffs)
+    # pearson correlation for each subsample
+    r_boots = np.einsum('ij, ij -> i', x_mdiffs, y_mdiffs) / np.sqrt(x_ss * y_ss)
+    # upper and lower bounds for confidence interval
+    ci_low = np.percentile(r_boots, (100 - ci) / 2)
+    ci_high = np.percentile(r_boots, (ci + 100) / 2)
+    return ci_low, ci_high
+
+
 def r2z(r):
     with np.errstate(invalid='ignore', divide='ignore'):
         return 0.5 * (np.log(1 + r) - np.log(1 - r))
@@ -133,15 +154,6 @@ def r2z(r):
 def z2r(z):
     with np.errstate(invalid='ignore', divide='ignore'):
         return (np.exp(2 * z) - 1) / (np.exp(2 * z) + 1)
-
-
-def pearsonr_ci(r, n, alpha=0.05):
-    z = r2z(r)
-    std_err = 1 / ((n - 3) ** 0.5)
-    z_a = norm.ppf(0.5 * (1 + alpha))    # 2-tailed
-    ci_low = z - z_a * std_err
-    ci_high = z + z_a * std_err
-    return z2r(ci_low), z2r(ci_high)
 
 
 ########################################
