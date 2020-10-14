@@ -138,9 +138,12 @@ def z2r(z):
 #               PLOTTING               #
 ########################################
 
-def add_arrows(axes, x, y, **kwargs):
+def add_arrows(axes, x, y, *, aspace=None, head_width=None, **kwargs):
     # spacing of arrows
-    aspace = .05 * GRID_SCALE
+    if aspace is None:
+        aspace = .05 * GRID_SCALE
+    if head_width is None:
+        head_width = aspace / 3
     # distance spanned between pairs of points
     r = [0]
     for i in range(1, len(x)):
@@ -180,7 +183,7 @@ def add_arrows(axes, x, y, **kwargs):
                    ay,
                    np.sin(theta) * aspace / 10,
                    np.cos(theta) * aspace / 10,
-                   head_width=aspace / 3,
+                   head_width=head_width,
                    **kwargs)
 
 
