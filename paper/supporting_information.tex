@@ -24,16 +24,19 @@
 \newcommand{\brains}{8}
 
 
-\title{\textit{Supporting Information for}: Geometric models reveal behavioral and neural signatures of transforming naturalistic experiences into episodic memories}
-\author{Andrew C. Heusser\textsuperscript{1, 2, \textdagger}, Paxton C. Fitzpatrick\textsuperscript{1, \textdagger}, and Jeremy R. Manning\textsuperscript{1, *}\\\textsuperscript{1}Department of Psychological and Brain Sciences\\Dartmouth College, Hanover, NH 03755, USA\\\textsuperscript{2}Akili Interactive Labs\\Boston, MA 02110\\\textsuperscript{\textdagger}Denotes equal contribution\\\textsuperscript{*}Corresponding author: Jeremy.R.Manning@Dartmouth.edu}
+\title{\textit{Supporting Information for}: Geometric models reveal behavioral and neural signatures of transforming experiences into memories}
+\author{Andrew C. Heusser\textsuperscript{1, 2, \textdagger}, Paxton C. Fitzpatrick\textsuperscript{1, \textdagger}, and Jeremy R. Manning\textsuperscript{1, *}\\\textsuperscript{1}Department of Psychological and Brain Sciences\\Dartmouth College, Hanover, NH 03755, USA\\\textsuperscript{2}Akili Interactive Labs\\Boston, MA 02110, USA\\\textsuperscript{\textdagger}Denotes equal contribution\\\textsuperscript{*}Corresponding author: Jeremy.R.Manning@Dartmouth.edu}
 
 \bibliographystyle{apa}
 
 \begin{document}
-\begin{titlepage}
-  \maketitle
-  \thispagestyle{empty}
-\end{titlepage}
+
+\renewcommand{\figurename}{Supplementary Figure}
+
+%\begin{titlepage}
+%  \maketitle
+%  \thispagestyle{empty}
+%\end{titlepage}
 
 \setcounter{equation}{0}
 \setcounter{figure}{0}
@@ -41,16 +44,16 @@
 \setcounter{page}{1}
 \setcounter{section}{0}
 \makeatletter
-\renewcommand{\theequation}{S\arabic{equation}}
-\renewcommand{\thefigure}{S\arabic{figure}}
+%\renewcommand{\theequation}{S\arabic{equation}}
+%\renewcommand{\thefigure}{S\arabic{figure}}
 \renewcommand{\bibnumfmt}[1]{[S#1]}
 \renewcommand{\citenumfont}[1]{S#1}
 
 
-\section*{Overview}
-This document provides additional details about the methods we used in the main text.  We also include some additional analyses referenced in the main text.
+%\section*{Overview}
+%This document provides additional details about the methods we used in the main text.  We also %include some additional analyses referenced in the main text.
 
-\section*{Additional details about topic modeling methods and results}
+\section*{Supplementary methods}
 \subsection*{Optimizing topic model parameters}
 In order to create accurate episode and recall models, we used an optimization method that was driven by our ability to explain hand-annotated memory performance metrics collected by \cite{ChenEtal17}.  In an earlier variant of our study~\citep{HeusMann18}, we used a grid search to compute the $\omega$ (episode sliding window duration, in scenes), $\rho$ (recall sliding window duration, in sentences), and $K$ (number of topics) that satisfied
 \[
@@ -111,8 +114,9 @@ $\xi$ is the episode's trajectory through the manifold space; $\chi$ is the orig
 % \FloatBarrier
 \newpage
 \begin{centering}
- \vspace*{\fill}
-    \section*{Participant-level figures referenced in the main text}
+  \vspace*{\fill}
+  \section*{Supplementary figures}
+    \subsection*{Participant-level figures referenced in the main text}
     \vspace*{\fill}
   \end{centering}
 
@@ -138,7 +142,7 @@ $\xi$ is the episode's trajectory through the manifold space; $\chi$ is the orig
 \end{figure}
 
 \newpage
-\renewcommand{\refname}{Supplemental references}
+\renewcommand{\refname}{Supplementary references}
 \bibliography{CDL-bibliography/memlab}
 
 
