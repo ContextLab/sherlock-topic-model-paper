@@ -14,6 +14,7 @@ from fastdtw import fastdtw
 from IPython.display import display, HTML
 from IPython.core.oinspect import pylight
 from scipy.spatial.distance import correlation
+from scipy.stats import norm
 
 from .constants import EDGECOLOR, GRID_SCALE, RAW_DIR, RECALL_WSIZE
 
@@ -132,6 +133,15 @@ def r2z(r):
 def z2r(z):
     with np.errstate(invalid='ignore', divide='ignore'):
         return (np.exp(2 * z) - 1) / (np.exp(2 * z) + 1)
+
+
+def pearsonr_ci(r, n, alpha=0.05):
+    z = r2z(r)
+    std_err = 1 / ((n - 3) ** 0.5)
+    z_a = norm.ppf(0.5 * (1 + alpha))    # 2-tailed
+    ci_low = z - z_a * std_err
+    ci_high = z + z_a * std_err
+    return z2r(ci_low), z2r(ci_high)
 
 
 ########################################
