@@ -125,20 +125,20 @@ def corr_mean(rs, axis=0):
     return z2r(np.nanmean([r2z(r) for r in rs], axis=axis))
 
 
-def pearsonr_ci(x, y, ci=95, n_boots=1000):
+def pearsonr_ci(x, y, ci=95, n_boots=10000):
     x = np.asarray(x)
     y = np.asarray(y)
     rand_ixs = np.random.randint(0, x.shape[0], size=(n_boots, x.shape[0]))
-    # (n_boots, n) paired subsample arrays
+    # (n_boots, n_observations) paired arrays
     x_boots = x[rand_ixs]
     y_boots = y[rand_ixs]
-    # difference from mean for each subsample
+    # differences from means
     x_mdiffs = x_boots - x_boots.mean(axis=1)[:, None]
     y_mdiffs = y_boots - y_boots.mean(axis=1)[:, None]
-    # sum of squares
+    # sums of squares
     x_ss = np.einsum('ij, ij -> i', x_mdiffs, x_mdiffs)
     y_ss = np.einsum('ij, ij -> i', y_mdiffs, y_mdiffs)
-    # pearson correlation for each subsample
+    # pearson correlations
     r_boots = np.einsum('ij, ij -> i', x_mdiffs, y_mdiffs) / np.sqrt(x_ss * y_ss)
     # upper and lower bounds for confidence interval
     ci_low = np.percentile(r_boots, (100 - ci) / 2)
