@@ -1,6 +1,6 @@
 # IPython notebook checkpoints
 *ipynb_checkpoints*
- 
+
 # Python bytecode
 *__pycache__
 
@@ -25,6 +25,8 @@
 *.dvi
 *.fff
 *.lof
+_region_.tex
+
 
 #docx temp files
 *~$*.docx
@@ -37,4 +39,3 @@ paper/figs/tmp
 
 # huge (>11GB) directory of fMRI data from Chen et al. (2017)
 data/processed/fMRI
-
