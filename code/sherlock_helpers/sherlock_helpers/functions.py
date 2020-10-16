@@ -14,6 +14,7 @@ from fastdtw import fastdtw
 from IPython.display import display, HTML
 from IPython.core.oinspect import pylight
 from scipy.spatial.distance import correlation
+from scipy.stats import norm
 
 from .constants import EDGECOLOR, GRID_SCALE, RAW_DIR, RECALL_WSIZE
 
@@ -124,6 +125,27 @@ def corr_mean(rs, axis=0):
     return z2r(np.nanmean([r2z(r) for r in rs], axis=axis))
 
 
+def pearsonr_ci(x, y, ci=95, n_boots=10000):
+    x = np.asarray(x)
+    y = np.asarray(y)
+    rand_ixs = np.random.randint(0, x.shape[0], size=(n_boots, x.shape[0]))
+    # (n_boots, n_observations) paired arrays
+    x_boots = x[rand_ixs]
+    y_boots = y[rand_ixs]
+    # differences from means
+    x_mdiffs = x_boots - x_boots.mean(axis=1)[:, None]
+    y_mdiffs = y_boots - y_boots.mean(axis=1)[:, None]
+    # sums of squares
+    x_ss = np.einsum('ij, ij -> i', x_mdiffs, x_mdiffs)
+    y_ss = np.einsum('ij, ij -> i', y_mdiffs, y_mdiffs)
+    # pearson correlations
+    r_boots = np.einsum('ij, ij -> i', x_mdiffs, y_mdiffs) / np.sqrt(x_ss * y_ss)
+    # upper and lower bounds for confidence interval
+    ci_low = np.percentile(r_boots, (100 - ci) / 2)
+    ci_high = np.percentile(r_boots, (ci + 100) / 2)
+    return ci_low, ci_high
+
+
 def r2z(r):
     with np.errstate(invalid='ignore', divide='ignore'):
         return 0.5 * (np.log(1 + r) - np.log(1 - r))
@@ -138,9 +160,12 @@ def z2r(z):
 #               PLOTTING               #
 ########################################
 
-def add_arrows(axes, x, y, **kwargs):
+def add_arrows(axes, x, y, *, aspace=None, head_width=None, **kwargs):
     # spacing of arrows
-    aspace = .05 * GRID_SCALE
+    if aspace is None:
+        aspace = .05 * GRID_SCALE
+    if head_width is None:
+        head_width = aspace / 3
     # distance spanned between pairs of points
     r = [0]
     for i in range(1, len(x)):
@@ -180,7 +205,7 @@ def add_arrows(axes, x, y, **kwargs):
                    ay,
                    np.sin(theta) * aspace / 10,
                    np.cos(theta) * aspace / 10,
-                   head_width=aspace / 3,
+                   head_width=head_width,
                    **kwargs)
 
 
