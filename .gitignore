@@ -39,3 +39,5 @@ paper/figs/tmp
 
 # huge (>11GB) directory of fMRI data from Chen et al. (2017)
 data/processed/fMRI
+
+paper/.failed-tests.txt
