@@ -28,8 +28,9 @@
 _region_.tex
 
 
-#docx temp files
+#docx and xlsx temp files
 *~$*.docx
+*~$*.xlsx
 
 # emacs lockfiles
 *.#*
